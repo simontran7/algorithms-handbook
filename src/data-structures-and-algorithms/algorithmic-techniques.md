@@ -147,7 +147,7 @@ def fixed_sliding_window(array, k):
 
 ### Use Case
 
-You need a subroutine which involves range-sum queries of a subarray in $O(1)$.
+You need a subroutine which involves range-sum queries of a subarray in \\(O(1)\\).
 
 ### Usage
 
@@ -368,7 +368,7 @@ not stack
 ```
 
 > [!NOTE]
-> We often use the stack to store the result and convert it to a string using the $O(n)$ string builder Technique.
+> We often use the stack to store the result and convert it to a string using the \\(O(n)\\) string builder Technique.
 
 ```python
 def build_string(string):
@@ -828,7 +828,7 @@ def matrix_iterative_bfs(matrix):
 ### Use Case
 
 - Repeatedly find the maximum or minimum element
-- Get the "top" $k$ elements
+- Get the "top" \\(k\\) elements
 
 ```python
 import heapq
@@ -1069,14 +1069,14 @@ def find_ge(array, target):
 
 You're trying to find a **maximum** or **minimum** value, and:
 
-- You can verify (usually with a greedy algorithm) in $O(n)$ time (or faster) whether a given candidate `x` is a valid solution
+- You can verify (usually with a greedy algorithm) in \\(O(n)\\) time (or faster) whether a given candidate `x` is a valid solution
 - The solution space has to be structured so that all valid answers are grouped together on one side. That is:
     - If `x` is a valid solution:
-        - For a maximum, all values $ \le x$ are also valid.
-        - For a minimum, all values $\ge x$ are also valid.
+        - For a maximum, all values \\( \le x\\) are also valid.
+        - For a minimum, all values \\(\ge x\\) are also valid.
     - If `x` is not a valid solution:
-        - For a maximum, all values $\gt x$ are also invalid.
-        - For a minimum, all values $\lt x$ are also invalid.
+        - For a maximum, all values \\(\gt x\\) are also invalid.
+        - For a minimum, all values \\(\lt x\\) are also invalid.
 
 #### Usage
 
@@ -1171,16 +1171,16 @@ Decide on the relevant state variables (i.e. what parameters it should have). A 
 
 **Common state variables:**
 
-- A primary index $i$ along an input string, input array, or an implicit range of numbers. This state variable represents the slice in the range $[0, i]$, thereby flowing backwards, or it may represent a slice in the range $[i, N)$, thereby flowing forwards.
-- A secondary index $j$ along an input string or an input array, or an implicit range of numbers. This state variable is often used in conjunction with a primary state variable $i$ to represent the slice in the range $[i, j]$. It may also simply represent another index into the second input.
-- An integer variable to track the remaining amount of moves when there is an imposed problem constraint $k$.
+- A primary index \\(i\\) along an input string, input array, or an implicit range of numbers. This state variable represents the slice in the range \\([0, i]\\), thereby flowing backwards, or it may represent a slice in the range \\([i, N)\\), thereby flowing forwards.
+- A secondary index \\(j\\) along an input string or an input array, or an implicit range of numbers. This state variable is often used in conjunction with a primary state variable \\(i\\) to represent the slice in the range \\([i, j]\\). It may also simply represent another index into the second input.
+- An integer variable to track the remaining amount of moves when there is an imposed problem constraint \\(k\\).
 - A boolean variable to track a status.
 
 > [!NOTE]
 > Constants given by the problem should _never_ be state variables!
 
 > [!NOTE]
-> The **dimensionality** of a dynamic programming problem is determined by the number of state variables required by a dynamic programming algorithm. We say a problem is a $1D$ dynamic programming problem when a dynamic programming algorithm only requires one state variable, and when the dynamic programming algorithm requires only two state variables, we call that problem a $2D$ dynamic programming problem.
+> The **dimensionality** of a dynamic programming problem is determined by the number of state variables required by a dynamic programming algorithm. We say a problem is a \\(1D\\) dynamic programming problem when a dynamic programming algorithm only requires one state variable, and when the dynamic programming algorithm requires only two state variables, we call that problem a \\(2D\\) dynamic programming problem.
 
 #### Step 3: Determine the Recurrence Relation
 
@@ -1228,7 +1228,7 @@ return dp(<initial arguments for the state variables>)
 
 1. Initialize an array `dp` that is sized according to the subproblem variables largest values. In particular, whenever you have a base case of the form `if i >= n: return <base case value>`, and somewhere else in your algorithm you have `dp(i + x)`, then your array must have `n + x` rows.
 2. For every base case `if <state variable> == <value>: return <base case value>`, explicitly set them in the lookup table `dp` i.e., `dp[<state variable>][...] = <base case value>` or implicitly through the initial values of the lookup table.
-3. Write for-loop(s) that will iterate over your state variables, such that the outermost for loop iterates the first state variable in the order of the `dp()` parameters, and such that the `range()` should begin from the first _non-base-case_ state variables problems, and end at the final result state variables. For boolean state variables, the range should be from $[0, 2)$. However, for certain matrix problems (e.g., Unique Paths, Minimum Path Sum) where the calculation for a cell `(row, col)` depends only on the results from cells that are above it `(row - 1, col)`, to its left `(row, col - 1)`, or both `(row - 1, col - 1)`, you can iterate through all the rows and columns from top-to-bottom, left-to-right. Within the loop, you use `continue` to skip the base case cells because their values have already been correctly initialized.
+3. Write for-loop(s) that will iterate over your state variables, such that the outermost for loop iterates the first state variable in the order of the `dp()` parameters, and such that the `range()` should begin from the first _non-base-case_ state variables problems, and end at the final result state variables. For boolean state variables, the range should be from \\([0, 2)\\). However, for certain matrix problems (e.g., Unique Paths, Minimum Path Sum) where the calculation for a cell `(row, col)` depends only on the results from cells that are above it `(row - 1, col)`, to its left `(row, col - 1)`, or both `(row - 1, col - 1)`, you can iterate through all the rows and columns from top-to-bottom, left-to-right. Within the loop, you use `continue` to skip the base case cells because their values have already been correctly initialized.
 4. Under the inner-most for loop, copy-paste _only_ the recurrence logic from your memoization function.
 5. Change every `dp(<state variable 1>, <state variable 2>, <...>)` function calls and `result` to array accesses `dp[<state variable 1>][<state variable 2][<...>]`. For boolean state variables, represent `True` as `1` and `False` as `0`.
 
@@ -1428,7 +1428,7 @@ def merge(intervals):
 
 ### Use Case
 
-Problems that involve `x mod m`, (`m` is typically $10^9 + 7$), where:
+Problems that involve `x mod m`, (`m` is typically \\(10^9 + 7\\)), where:
 
 - Building `x` is expensive (repeated work)
 - `x` becomes too large

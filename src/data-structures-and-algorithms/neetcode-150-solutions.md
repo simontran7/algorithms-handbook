@@ -21,9 +21,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `nums`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `nums`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ### [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/description/)
 
@@ -49,9 +49,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `s` and `t` (they should be equal). Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(1)$
+Let \\(n\\) be the element count of `s` and `t` (they should be equal). Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [1. Two Sum](https://leetcode.com/problems/two-sum/description/)
 
@@ -73,9 +73,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `nums`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `nums`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ### [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/description/)
 
@@ -97,9 +97,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `strs`, and $k$ the element count of the longest possible string in `strs`. Then:
-- Time Complexity: worst-case $O(nk)$
-- Space Complexity: worst-case $O(nk)$
+Let \\(n\\) be the element count of `strs`, and \\(k\\) the element count of the longest possible string in `strs`. Then:
+- Time Complexity: worst-case \\(O(nk)\\)
+- Space Complexity: worst-case \\(O(nk)\\)
 
 ### [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/description/)
 
@@ -163,9 +163,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `nums`. Then:
-- Time Complexity: average-case $O(n)$, worst-case $O(n^2)$
-- Space Complexity: worst-case $O(nk)$
+Let \\(n\\) be the element count of `nums`. Then:
+- Time Complexity: average-case \\(O(n)\\), worst-case \\(O(n^2)\\)
+- Space Complexity: worst-case \\(O(nk)\\)
 
 ### [271. Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/description/)
 
@@ -207,9 +207,9 @@ class Codec:
 
 #### Complexity Analysis
 
-Let $m$ be the total characters across all original strings, and $n$ be the element count of `strs`. Then:
-- Time Complexity: worst-case $O(m)$
-- Space Complexity: worst-case $O(m + n)$
+Let \\(m\\) be the total characters across all original strings, and \\(n\\) be the element count of `strs`. Then:
+- Time Complexity: worst-case \\(O(m)\\)
+- Space Complexity: worst-case \\(O(m + n)\\)
 
 ### [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
 
@@ -236,9 +236,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `nums`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(1)$ (excluding the output list)
+Let \\(n\\) be the element count of `nums`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\) (excluding the output list)
 
 ### [36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/description/)
 
@@ -267,9 +267,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `board`. Then:
-- Time Complexity: worst-case $O(n^2)$
-- Space Complexity: worst-case $O(n^2)$
+Let \\(n\\) be the element count of `board`. Then:
+- Time Complexity: worst-case \\(O(n^2)\\)
+- Space Complexity: worst-case \\(O(n^2)\\)
 
 ### [121. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/description/)
 
@@ -296,9 +296,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `nums`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `nums`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ## Two Pointers Problems
 
@@ -329,9 +329,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `s`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(1)$
+Let \\(n\\) be the element count of `s`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [167. Two Sum II - Input Array is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
 
@@ -357,9 +357,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `numbers`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(1)$
+Let \\(n\\) be the element count of `numbers`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [15. 3Sum](https://leetcode.com/problems/3sum/description/)
 
@@ -398,9 +398,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `nums`. Then:
-- Time Complexity: worst-case $O(n^2)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `nums`. Then:
+- Time Complexity: worst-case \\(O(n^2)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ### [11. Container with Most Water](https://leetcode.com/problems/container-with-most-water/)
 
@@ -426,9 +426,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `height`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(1)$
+Let \\(n\\) be the element count of `height`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/description/)
 
@@ -458,9 +458,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `height`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(1)$
+Let \\(n\\) be the element count of `height`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ## Stack Problems
 
@@ -491,9 +491,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `s`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `s`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ### [155. Min Stack](https://leetcode.com/problems/min-stack/description/)
 
@@ -530,13 +530,13 @@ class MinStack:
 
 #### Complexity Analysis
 
-Let $n$ be the number of operations:
+Let \\(n\\) be the number of operations:
 - Time Complexity:
-    - `push(...)`: worst-case $O(1)$
-    - `pop(...)`: worst-case $O(1)$
-    - `top(...)`: worst-case $O(1)$
-    - `getMin(...)`: worst-case $O(1)$
-- Space Complexity: worst-case $O(n)$
+    - `push(...)`: worst-case \\(O(1)\\)
+    - `pop(...)`: worst-case \\(O(1)\\)
+    - `top(...)`: worst-case \\(O(1)\\)
+    - `getMin(...)`: worst-case \\(O(1)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ### [150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
 
@@ -573,9 +573,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `tokens`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `tokens`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ### [739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
 
@@ -599,9 +599,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `temperatures`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `temperatures`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ### [853. Car Fleet](https://leetcode.com/problems/car-fleet/description/)
 
@@ -625,9 +625,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `cars`. Then:
-- Time Complexity: worst-case $O(n \log n)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `cars`. Then:
+- Time Complexity: worst-case \\(O(n \log n)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ### [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/description/)
 
@@ -660,9 +660,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `heights`. Then:
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(n)$
+Let \\(n\\) be the element count of `heights`. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(n)\\)
 
 ## Binary Search Problems
 
@@ -690,9 +690,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the element count of `nums`. Then:
-- Time Complexity: worst-case $O(\log n)$
-- Space Complexity: worst-case $O(1)$
+Let \\(n\\) be the element count of `nums`. Then:
+- Time Complexity: worst-case \\(O(\log n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
 
@@ -722,9 +722,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $m$ be the element count of `matrix`, and $n$ be the element count of `matrix[i]` for $i \in 1, 2, \dots, m$. Then:
-- Time Complexity: worst-case $O(\log (m \times n))$
-- Space Complexity: worst-case $O(1)$
+Let \\(m\\) be the element count of `matrix`, and \\(n\\) be the element count of `matrix[i]` for \\(i \in 1, 2, \dots, m\\). Then:
+- Time Complexity: worst-case \\(O(\log (m \times n))\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/description/)
 
@@ -754,9 +754,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $m$ be the largest possible $k$, and $n$ be the element count of `piles`. Then:
-- Time complexity: worst-case $O(n \log m)$
-- Space complexity: worst-case $O(1)$
+Let \\(m\\) be the largest possible \\(k\\), and \\(n\\) be the element count of `piles`. Then:
+- Time complexity: worst-case \\(O(n \log m)\\)
+- Space complexity: worst-case \\(O(1)\\)
 
 ### [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
 
@@ -780,9 +780,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the count of `nums`. Then:
-- Time Complexity: worst-case $O(\log n)$
-- Space Complexity: worst-case $O(1)$
+Let \\(n\\) be the count of `nums`. Then:
+- Time Complexity: worst-case \\(O(\log n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/description/)
 
@@ -816,9 +816,9 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the count of `nums`. Then:
-- Time Complexity: worst-case $O(\log n)$
-- Space Complexity: worst-case $O(1)$
+Let \\(n\\) be the count of `nums`. Then:
+- Time Complexity: worst-case \\(O(\log n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [981. Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/description/)
 
@@ -858,11 +858,11 @@ class TimeMap:
 
 #### Complexity Analysis
 
-Let $m$ be the number of `set` function calls, $n$ the number of `get` function calls, and `l` be the average element count of key and value strings. Then:
+Let \\(m\\) be the number of `set` function calls, \\(n\\) the number of `get` function calls, and `l` be the average element count of key and value strings. Then:
 - Time Complexity:
-    - `set(...)`: worst-case $O(m \cdot l)$
-    - `get(...)`: worst-case $O(n \cdot (l \cdot \log m))$
-- Space Complexity: worst-case $O(m \cdot l)$
+    - `set(...)`: worst-case \\(O(m \cdot l)\\)
+    - `get(...)`: worst-case \\(O(n \cdot (l \cdot \log m))\\)
+- Space Complexity: worst-case \\(O(m \cdot l)\\)
 
 ### [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
 
@@ -919,10 +919,10 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $m$ be the size of `nums1` and $n$ be the size of  `nums2`. Then:
+Let \\(m\\) be the size of `nums1` and \\(n\\) be the size of  `nums2`. Then:
 
-- Time Complexity: worst-case $O(\log(min(m, n)))$
-- Space Complexity: worst-case $O(1)$
+- Time Complexity: worst-case \\(O(\log(min(m, n)))\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ## Sliding Window Problems
 
@@ -946,10 +946,10 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the size of `prices`. Then:
+Let \\(n\\) be the size of `prices`. Then:
 
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(1)$
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 ### [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
 
@@ -973,10 +973,10 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the count of `s` and $m$ be the number of distinct characters in the input's alphabet. Then:
+Let \\(n\\) be the count of `s` and \\(m\\) be the number of distinct characters in the input's alphabet. Then:
 
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(min(n, m))$
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(min(n, m))\\)
 
 ### [424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
 
@@ -1006,7 +1006,7 @@ class Solution:
 
 #### Complexity Analysis
 
-Let $n$ be the count of `s`, and  $m$ be the number of distinct characters in the input's alphabet. Then:
+Let \\(n\\) be the count of `s`, and  \\(m\\) be the number of distinct characters in the input's alphabet. Then:
 
-- Time Complexity: worst-case $O(n)$
-- Space Complexity: worst-case $O(m)$
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(m)\\)
