@@ -78,12 +78,12 @@ def variable_sliding_window_max(array):
     for right in range(len(array)):
         # 1. unconditonally extend add the new element to the window.
         <update state for s[right]>
-    
+
         # 2. while the invariant is violated, restore the sliding window.
         while <window is broken condition>:
             <update state for s[left]>   # undo the leaving element's contribution to the sliding window
             left += 1
-    
+
         # 3. record the window length now that the invariant now holds (i.e., window is valid).
         result = max(result, right - left + 1)
 
@@ -101,12 +101,12 @@ def variable_sliding_window_min(array):
     for right in range(len(array)):
         # 1. unconditonally extend add the new element to the window.
         <update state for s[right]>
-    
+
         # 2. while the invariant holds, shrink the sliding window.
         while <window is valid condition>:
             # record before shrinking away validity
-            result = min(result, right - left + 1) 
-            <update state for s[left]> 
+            result = min(result, right - left + 1)
+            <update state for s[left]>
             left += 1
 
     return result if result != math.inf else -1
@@ -1480,13 +1480,15 @@ def mod_sum(nums: list, mod: int) -> int:
     return result
 ```
 
-## Dijkstra's Algorithm
+## Shortest Path Algorithms
 
-### Use Case
+### Dijkstra's Algorithm
+
+#### Use Case
 
 Finding the single source shortest path on graphs with non-negative edge weights.
 
-### Usage
+#### Usage
 
 ```python
 import math
@@ -1516,13 +1518,19 @@ def dijkstras(edges, source):
                 heapq.heappush(pq, (new_distnace, neighbour))
 ```
 
-## Topological Sort
+### Bellman-Ford Algorithm (TO LEARN)
+
+### Floyd-Warshall Algorithm (TO LEARN)
+
+## Topological Sorting
 
 ### Use Case
 
 Problems involving prerequisites.
 
-### Usage (Kahn's Algorithm)
+### Usage
+
+#### Kahn's Algorithm
 
 ```python
 from collections import defaultdict, deque
@@ -1546,6 +1554,47 @@ def kahns_algorithm(n, edges):
                 queue.append(neighbour)
 
     return result if len(result) == n else [] # if len(result) != n, there's a cycle
+```
+
+#### DFS-based Algorithm (TO LEARN)
+
+```python
+from collections import defaultdict
+
+def dfs_topological_sort(n, edges):
+    graph = defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+
+    UNVISITED = 0
+    IN_PROGRESS = 1
+    VISITED = 2
+
+    state = [UNVISITED] * n
+    result = []
+    has_cycle = False
+
+    def dfs(vertex):
+        nonlocal has_cycle
+        state[vertex] = 1
+        for neighbour in graph[vertex]:
+            if state[neighbour] == IN_PROGRESS:
+                has_cycle = True
+                return
+            if state[neighbour] == UNVISITED:
+                dfs(neighbour)
+                if has_cycle:
+                    return
+        state[vertex] = VISITED
+        result.append(vertex)
+
+    for vertex in range(n):
+        if state[vertex] == UNVISITED:
+            dfs(vertex)
+            if has_cycle:
+                return []
+
+    return result[::-1]
 ```
 
 ## Disjoint Set (Union-Find)
@@ -1591,7 +1640,7 @@ class DisjointSet:
 > [!NOTE]
 > Sometimes, you may need to augment the Disjoint Set to a relational Disjoint Set by storing extra data along parent pointers to propagate edge weights or relations.
 
-## Minimum Spanning Tree Construction
+## Minimum Spanning Tree Algorithms
 
 ### Use Case
 
@@ -1678,4 +1727,54 @@ def quickselect(array, k):
             return array[k]
 ```
 
-## Radix Sort (TO LEARN)
+## Sorting Algorithms (TO LEARN)
+
+### Selection Sort
+
+### Bubble Sort
+
+### Insertion Sort
+
+### Heap Sort
+
+### Merge Sort
+
+### Quick Sort
+
+### Counting Sort
+
+### Radix Sort
+
+### Bucket Sort
+
+## Divide and Conquer
+
+### Use Case
+
+The problem has a natural partition where it can be split into independent subproblems of the same type, solved separately, then combined.
+
+### Usage
+
+```python
+def divide_and_conquer(S):
+    # Divide
+    subproblems = divide(S)
+
+    # Conquer
+    subresults = [divide_and_conquer(subproblem) for subproblem in subproblems]
+
+    # Combine
+    return combine(subresults)
+```
+
+## Segment Tree (TO LEARN)
+
+## Fenwick Tree (Binary Index Tree) (TO LEARN)
+
+## Suffix Tree (TO LEARN)
+
+## String Matching Algorithms (TO LEARN)
+
+### Rabin Karp
+
+### KMP

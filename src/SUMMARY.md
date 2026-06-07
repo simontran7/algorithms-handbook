@@ -4,7 +4,7 @@
 
 - [Asymptotic Analysis](./data-structures-and-algorithms/asymptotic-analysis.md)
 - [Algorithmic Techniques](./data-structures-and-algorithms/algorithmic-techniques.md)
-- [NeetCode 150 Solutions](./data-structures-and-algorithms/neetcode-150-solutions.md)
+- [NeetCode 150](./data-structures-and-algorithms/neetcode-150.md)
 
 # Computer Architecture
 
@@ -16,3 +16,7 @@
 
 # Operating Systems
 
+# Tools
+
+- [Linux Environment](./tools/linux-environment.md)
+- [Git](./tools/git.md)

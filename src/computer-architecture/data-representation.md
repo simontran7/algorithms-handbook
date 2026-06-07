@@ -186,25 +186,23 @@ An \\(N\\)-bit unsigned integer can take up values in the range of \\([0, 2^N - 
 
 **Signed integers** reserve one bit (typically the MSB) to indicate sign, reducing the range of representable positive values but enabling representation of negative numbers.
 
-**Two's complement** is the most common encoding system to represent signed integers. A number encoded under two's complement has its MSB exclusively as a sign bit:
+Signed integers are typically encoded using the **two's complement** encoding system. A number encoded under two's complement has its MSB exclusively as a sign bit:
 - \\(\text{MSB} = 0\\): positive number (or zero)
 - \\(\text{MSB} = 1\\): negative number
 
-An \\(N\\)-bit unsigned integer using two's complement can take up values from \\(-2^{N-1}\\) to \\(2^{N-1} - 1\\).
+An \\(N\\)-bit signed integer can take up values from \\(-2^{N-1}\\) to \\(2^{N-1} - 1\\).
 
-To represent a positive number using two's complement, no change is required.
-
-To represent a negative number using two's complement:
-1. Start with the binary representation of the positive number and toggle all the bits
-2. Add 1 to the result from step 1
+- To encode a positive number using two's complement: we don't change anything. The binary representation of a signed positive integer is the exact same as the binary representation of an unsigned integer.
+- To encode a negative number using two's complement:
+  1. Start with the binary representation of the positive number and toggle all the bits
+  2. Add 1 to the result from step 1
 
 To understand why this works, think of these steps as a way of finding the additive inverse \\(-b\\) such that \\(b + (-b) = 1000\dots0\\). We target \\(1000\dots0\\) (\\(n + 1\\) bits wide) rather than \\(0000\dots0\\) because in a \\(n\\) fixed-width register, the leading \\(1\\) is discarded as overflow, making them equivalent. It also sidesteps the problem with one's complement, where \\(b + \tilde{b} = 1111\dots1\\) introduces a "negative zero" (\\(1111\dots1\\)) alongside the usual \\(0000\dots0\\).
 
 Step 1 exploits the fact that toggling all the bits of \\(b\\) produces a number \\(\tilde{b}\\) such that every bit position sums to \\(1\\), giving \\(b + \tilde{b} = 1111\dots1\\). Step 2 then adds \\(1\\) to both sides of the equation: the right-hand side carries all the way through, flipping \\(1111\dots1\\) into \\(1000\dots0\\) (with the leading \\(1\\) overflowing out of the register), and the left-hand side tells us the additive inverse is \\(\tilde{b} + 1\\).
 
 > [!NOTE]
-> When converting from binary to decimal, if the MSB is a 1, treat it as a negative number, then proceed as discussed in the "Any Base to Decimal" section.
-
+> Signed and unsigned integers differ only in interpretation. The same bit pattern can represent different values depending on the type (e.g., the bits `11111101` is \\(253\\) when interpreted as an unsigned integer, and \\(-3\\) as signed integer).
 
 ## Floating-Point Representation
 
