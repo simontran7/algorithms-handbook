@@ -104,7 +104,6 @@ def variable_sliding_window_min(array):
 
         # 2. while the invariant holds, shrink the sliding window.
         while <window is valid condition>:
-            # record before shrinking away validity
             result = min(result, right - left + 1)
             <update state for s[left]>
             left += 1
@@ -122,17 +121,21 @@ You are looking for a subarray/substring of some length `k` that satisfies a cer
 
 ```python
 def fixed_sliding_window(array, k):
-    current_sum = 0
-    result = 0
     left = 0
+    current = 0
+    result = <initial value>
 
-    for right, num in enumerate(array):
-        current_sum += num
+    # 1. seed the first window of size `k`.
+    for i in range(k):
+        <update state for array[i]>
 
-        if (right - left + 1) == k:
-            result = max(result, current_sum)
-            current_sum -= array[left]
-            left += 1
+    result = <update result from initial window>
+
+    # 2. slide the window: add `right`, remove `left`, update `result`.
+    for right in range(k, len(array)):
+        <update state for array[right]>
+        <undo state for array[right - k]>
+        result = <update result>
 
     return result
 ```
