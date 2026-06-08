@@ -95,17 +95,17 @@ import math
 
 def variable_sliding_window_min(array):
     left = 0
-    current = 0
+    current = <data to track the window>
     result = math.inf
 
     for right in range(len(array)):
         # 1. unconditonally extend add the new element to the window.
-        <update state for s[right]>
+        <update `current` for `s[right]`>
 
         # 2. while the invariant holds, shrink the sliding window.
         while <window is valid condition>:
             result = min(result, right - left + 1)
-            <update state for s[left]>
+            <update `current` for `s[left]`>
             left += 1
 
     return result if result != math.inf else -1
@@ -121,21 +121,20 @@ You are looking for a subarray/substring of some length `k` that satisfies a cer
 
 ```python
 def fixed_sliding_window(array, k):
-    left = 0
-    current = 0
+    current = <data to track the window>
     result = <initial value>
 
     # 1. seed the first window of size `k`.
     for i in range(k):
-        <update state for array[i]>
+        <update `current` for array[i]>
 
-    result = <update result from initial window>
+    <update result from initial window>
 
     # 2. slide the window: add `right`, remove `left`, update `result`.
     for right in range(k, len(array)):
-        <update state for array[right]>
-        <undo state for array[right - k]>
-        result = <update result>
+        <update `current` for `array[right]`>
+        <undo `current` for `array[right - k]`>
+        <update `result`>
 
     return result
 ```
