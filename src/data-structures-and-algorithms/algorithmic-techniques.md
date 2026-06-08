@@ -59,6 +59,26 @@ def two_pointers_merge(array1, array2):
     return result
 ```
 
+### Two Pointers, Read/Write
+
+#### Use Case
+
+The problem asks you to modify an array in-place and return the new length.
+
+#### Template
+
+```python
+def read_write(array):
+    write = 0
+
+    for read in range(len(array)):
+        if <condition to keep array[read]>:
+            array[write] = array[read]  # optionally transform
+            write += 1
+
+    return write # new length
+```
+
 ## Sliding Window
 
 ### Variable Sliding Window

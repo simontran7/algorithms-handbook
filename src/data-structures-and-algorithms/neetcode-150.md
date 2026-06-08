@@ -846,7 +846,7 @@ class TimeMap:
                 low = mid + 1
             else:
                 high = mid
-        
+
         return values[low - 1][0] if low > 0 else ""
 
 
@@ -870,7 +870,7 @@ Let \\(m\\) be the number of `set` function calls, \\(n\\) the number of `get` f
 
 The goal is to find the correct *partition* of both arrays since with a correct partition, the median is simply the the largest element on the left when the total is *odd*, or the average of the largest on the left and smallest on the right when the total number of elements is *even*.
 
-A partition is correct when *everything on the left is smaller than everything on the right* across *both* arrays. 
+A partition is correct when *everything on the left is smaller than everything on the right* across *both* arrays.
 
 For instance, given `nums1 = [1, 3, 5]` and `nums2 = [2, 4, 6]`, acorrect partition is:
 
@@ -882,7 +882,7 @@ nums2:  2     |  4  6
 The idea is to binary search over the *position of the dividing line* in the smaller list, since once that's fixed, the position of the dividing line in the larger array is determined automatically (i.e., both left piles together must contain exactly half of all elements, leaving no freedom in where the second dividing line goes).
 
 We then adjust accordingly the dividing line in the smaller array based on the values of the *boundaries* (i.e., the largest value on each left pile, `nums1_left_pile_max` and `nums2_left_pile_max`, and the smallest value on each right pile, `nums1_right_pile_min` and `nums2_right_pile_min`) given that each list is already sorted:
-- If `nums1_left_pile_max <= nums2_right_pile_min` (since `nums1_left_pile_max <= nums1_right_pile_min` is always true) and `nums2_left_pile_max <= nums1_right_pile_min` (since `nums2_left_pile_max <= nums2_right_pile_min` is always true): it is a correct partition. 
+- If `nums1_left_pile_max <= nums2_right_pile_min` (since `nums1_left_pile_max <= nums1_right_pile_min` is always true) and `nums2_left_pile_max <= nums1_right_pile_min` (since `nums2_left_pile_max <= nums2_right_pile_min` is always true): it is a correct partition.
 - If `nums1_left_pile_max > nums2_right_pile_min`: the left pile of `nums1`  has a value that's too large, so we decrement the `nums1_left_pile_count` by 1.
 - Otherwise: the left pile of `nums2`'s left pile has a value that's too large, so we decrement the `nums1_left_pile_count` by 1.
 
@@ -894,21 +894,21 @@ class Solution:
         # set `nums1` to be the smaller list.
         # goal is to binary search on the smallest list
         if len(nums1) > len(nums2):
-            nums1, nums2 = nums2, nums1  
+            nums1, nums2 = nums2, nums1
 
         low = 0 # represents no elements can go in `nums1`'s left pile
         high = len(nums1) # represents all elements can go in `nums1`' left pile
 
         while low <= high:
-            nums1_left_pile_count = (low + high) // 2 
+            nums1_left_pile_count = (low + high) // 2
             # If the total is odd, you want the left pile to have one more element than the right (that way the median is simply the largest element on the left)
             nums2_left_pile_count = (len(nums1) + len(nums2) + 1) // 2 - nums1_left_pile_count
-        
+
             nums1_left_pile_max = nums1[nums1_left_pile_count - 1] if nums1_left_pile_count > 0 else -math.inf
             nums1_right_pile_min = nums1[nums1_left_pile_count] if nums1_left_pile_count < len(nums1) else math.inf
             nums2_left_pile_max = nums2[nums2_left_pile_count - 1] if nums2_left_pile_count > 0 else -math.inf
             nums2_right_pile_min = nums2[nums2_left_pile_count] if nums2_left_pile_count < len(nums2) else math.inf
-        
+
             if nums1_left_pile_max <= nums2_right_pile_min and nums2_left_pile_max <= nums1_right_pile_min:
                 return (max(nums1_left_pile_max, nums2_left_pile_max) + min(nums1_right_pile_min, nums2_right_pile_min)) / 2 if (len(nums1) + len(nums2)) % 2 == 0 else max(nums1_left_pile_max, nums2_left_pile_max)
             elif nums1_left_pile_max > nums2_right_pile_min:
@@ -940,8 +940,8 @@ class Solution:
             if prices[right] < prices[left]:
                 left = right
             result = max(result, prices[right] - prices[left])
-        
-        return result   
+
+        return result
 ```
 
 #### Complexity Analysis
@@ -967,7 +967,7 @@ class Solution:
                 left = last_seen[s[right]] + 1
             last_seen[s[right]] = right
             result = max(result, right - left + 1)
-        
+
         return result
 ```
 
@@ -1010,3 +1010,55 @@ Let \\(n\\) be the count of `s`, and  \\(m\\) be the number of distinct charact
 
 - Time Complexity: worst-case \\(O(n)\\)
 - Space Complexity: worst-case \\(O(m)\\)
+
+### [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/description/)
+
+#### Solution
+
+```python
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        ALPHABET_COUNT = 26
+
+        if len(s1) > len(s2):
+            return False
+
+        s1_char_freq = [0] * ALPHABET_COUNT
+        s2_char_freq = [0] * ALPHABET_COUNT
+
+        for i in range(len(s1)):
+            s1_char_freq[ord(s1[i]) - ord('a')] += 1
+            s2_char_freq[ord(s2[i]) - ord('a')] += 1
+
+        freq_matches = 0
+        for i in range(ALPHABET_COUNT):
+            if s1_char_freq[i] == s2_char_freq[i]:
+                freq_matches += 1
+
+        for right in range(len(s1), len(s2)):
+            if freq_matches == ALPHABET_COUNT:
+                return True
+
+            r = ord(s2[right]) - ord('a')
+            s2_char_freq[r] += 1
+            if s2_char_freq[r] == s1_char_freq[r]:
+                freq_matches += 1
+            elif s2_char_freq[r] == s1_char_freq[r] + 1:
+                freq_matches -= 1
+
+            l = ord(s2[right - len(s1)]) - ord('a')
+            s2_char_freq[l] -= 1
+            if s2_char_freq[l] == s1_char_freq[l]:
+                freq_matches += 1
+            elif s2_char_freq[l] == s1_char_freq[l] - 1:
+                freq_matches -= 1
+
+        return freq_matches == ALPHABET_COUNT
+```
+
+#### Complexity Analysis
+
+Let \\(l_1\\) be the length of `s1`, and  \\(l_2\\) be the length of `s2`. Then:
+
+- Time Complexity: worst-case \\(O(l_2)\\)
+- Space Complexity: worst-case \\(O(1)\\)
