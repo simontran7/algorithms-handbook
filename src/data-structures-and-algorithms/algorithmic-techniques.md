@@ -2,7 +2,7 @@
 
 ## Two Pointers
 
-### Two Pointers, Opposite Ends
+### Opposite Ends
 
 #### Use Case
 
@@ -11,7 +11,7 @@ The list input is sorted, and you are looking for a pair (or pairs) that meet a 
 #### Template
 
 ```python
-def two_pointers_opposite_ends(array):
+def opposite_ends_two_pointers(array):
     left = 0
     right = len(array) - 1
     result = 0
@@ -27,7 +27,7 @@ def two_pointers_opposite_ends(array):
     return result
 ```
 
-### Two Pointers, Merge
+### Merge
 
 #### Use Case
 
@@ -36,7 +36,7 @@ The input list is sorted, and you want to perform an in-place modification by fi
 #### Template
 
 ```python
-def two_pointers_merge(array1, array2):
+def merge_two_pointers(array1, array2):
     i = 0
     j = 0
     result = 0
@@ -59,16 +59,16 @@ def two_pointers_merge(array1, array2):
     return result
 ```
 
-### Two Pointers, Read/Write
+### Read/Write
 
 #### Use Case
 
-The problem asks you to modify an array in-place and return the new length.
+The problem asks you to modify an array in-place and return its new count.
 
 #### Template
 
 ```python
-def read_write(array):
+def read_write_two_pointers(array):
     write = 0
 
     for read in range(len(array)):
@@ -1257,7 +1257,7 @@ return dp(<initial arguments for the state variables>)
 > [!NOTE]
 > We can reduce the space complexity of a bottom-up dynamic programming algorithm whenever the recurrence is static (i.e., it doesn't change between inputs and it only cares about a static number of previous states). Simply replace the lookup table with variables to keep track of those previous states, one rolling variable per dp index you look back at. Additionally, add an aggregation `result` variable (initialized to the first valid base case value) if the answer is the maximum over all states rather than just the final state `dp[n - 1]`. This happens when the recurrence can produce values smaller than a previous state, meaning the peak may not be at the end.
 
-## Difference Array
+## Sweep Line
 
 ### Use Case
 
