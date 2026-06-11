@@ -1,4 +1,4 @@
-# Asymptotic Analysis
+# Computational Complexity
 
 ## Bachmann-Landau Notation
 
@@ -73,12 +73,16 @@ The following primitive operations are worst-case \\(O(1)\\):
 
 ### Iterative Loops Algorithms
 
-1. For every possible value of the outermost loop variable or recursive level, determine the cost of one iteration/level as a function of that variable
-2. Sum those costs and express the result as a summation matching the LHS of one of the following formulas, applying properties as needed to massage it into the right form
-3. Substitute the RHS of the matching formula to get a closed form, then apply Bachmann-Landau rules to simplify to asymptotic complexity
+1. Identify the **loop variant** of the outermost loop or recursion: the quantity that changes by a predictable amount each iteration/level and has known start and end values. For `for` loops, this is the loop variable itself; for `while` loops, find or invent it (e.g., the gap `right - left` in a two-pointer loop, the search space size in binary search); for recursion, it is the recursion level.
+2. For every possible value of the loop variant, determine the cost of one iteration/level as a function of that variant.
+3. Sum those costs and express the result as a summation matching the LHS of one of the following formulas, applying properties as needed to massage it into the right form
+4. Substitute the RHS of the matching formula to get a closed form, then apply Bachmann-Landau rules to simplify to asymptotic complexity
 
 > [!NOTE]
-> For step 2, if the upper limit does not match the standard formula (e.g. \\(\sum_{i=0}^{n-1}\\) instead of \\(\sum_{i=1}^{n}\\)), substitute the upper limit into the formula in place of \\(n\\).
+> A valid loop variant must change **monotonically by a predictable amount** every iteration and have a **known start and end**. If no such quantity exists for the inner loop because its progress carries over across outer iterations (e.g., sliding window), the per-iteration method gives a loose bound, so see instead [Amortized Time Complexity](#amortized-time-complexity) instead.
+
+> [!NOTE]
+> For step 2, for fixed-limit formulas, if the upper limit does not match the standard formula (e.g. \\(\sum_{i=0}^{n-1}\\) instead of \\(\sum_{i=1}^{n}\\)), substitute the upper limit into the formula in place of \\(n\\). However, if the lower limit doesn't match the fixed-limit formula, there are two approaches. If the lower limit is larger than that of the fixed formula, then your sum is missing terms compared to the formula's sum, so you compute the full sum and subtract the prefix you don't want (e.g., \\(\sum_{i=3}^{n} i = \sum_{i=1}^{n} i - \sum_{i=1}^{2} i = \frac{n(n+1)}{2} - 3\\)). If the lower limit is smaller than that of the fixed formula, then your sum has extra terms compared to the formula's sum, so you compute the formula's sum and add the extras manually (e.g., \\(\sum_{i=0}^{n} i = 0 + \sum_{i=1}^{n} i = \frac{n(n+1)}{2}\\)).
 
 #### Property (big O and summation)
 
@@ -309,6 +313,15 @@ $$
 | Initialize | worst-case \\(O(n)\\) |
 | Lookup    | worst-case \\(O(\log n)\\), but amortized \\(O(\alpha(n))\\) |
 | Merge    | worst-case \\(O(\log n)\\), but amortized \\(O(\alpha(n))\\) |
+
+## Amortized Time Complexity (Aggregate Method)
+
+1. Identify the quantity whose movement drives the inner loop's cost (e.g., a pointer, a counter, a stack's size).
+2. Verify the quantity is **monotonic** (only moves one direction) and **globally bounded** (cannot exceed some value \\(B\\) over the entire run).
+3. Conclude the inner loop body executes at most \\(B\\) times *in total across all outer iterations*, so total cost is \\(O(outer loop cost) + O(B \cdot inner body cost)\\).
+
+> [!NOTE]
+> Use aggregate analysis instead of per-iteration summation when the algorithm involves a nested loop whose progress variable **persists across outer iterations** and moves monotonically toward a global bound.
 
 ## Worst-case Space Complexity
 
