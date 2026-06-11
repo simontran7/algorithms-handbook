@@ -79,7 +79,11 @@ The following primitive operations are worst-case \\(O(1)\\):
 4. Substitute the RHS of the matching formula to get a closed form, then apply Bachmann-Landau rules to simplify to asymptotic complexity
 
 > [!NOTE]
-> A valid loop variant must change **monotonically by a predictable amount** every iteration and have a **known start and end**. If no such quantity exists for the inner loop because its progress carries over across outer iterations (e.g., sliding window), the per-iteration method gives a loose bound, so see instead [Amortized Time Complexity](#amortized-time-complexity) instead.
+> Use **amortized analysis** when an operation is sometimes cheap and sometimes expensive. To check, look for a resource that each expensive iteration uses up (e.g., a pointer moving forward, an element popped off a stack) and verify both criteria:
+> 1. Capped: over the entire run, there is a hard limit \(B\) on how much can ever be spent.
+> 2. Stays spent: the resource never gets refilled, or each step refills at most a constant amount (e.g., one push per loop iteration).
+>
+> If both hold, the expensive code runs at most \(B\) times total, no matter how those runs are spread out across iterations. So,  count its cost once, globally, instead of multiplying it by the outer loop.
 
 > [!NOTE]
 > For step 2, for fixed-limit formulas, if the upper limit does not match the standard formula (e.g. \\(\sum_{i=0}^{n-1}\\) instead of \\(\sum_{i=1}^{n}\\)), substitute the upper limit into the formula in place of \\(n\\). However, if the lower limit doesn't match the fixed-limit formula, there are two approaches. If the lower limit is larger than that of the fixed formula, then your sum is missing terms compared to the formula's sum, so you compute the full sum and subtract the prefix you don't want (e.g., \\(\sum_{i=3}^{n} i = \sum_{i=1}^{n} i - \sum_{i=1}^{2} i = \frac{n(n+1)}{2} - 3\\)). If the lower limit is smaller than that of the fixed formula, then your sum has extra terms compared to the formula's sum, so you compute the formula's sum and add the extras manually (e.g., \\(\sum_{i=0}^{n} i = 0 + \sum_{i=1}^{n} i = \frac{n(n+1)}{2}\\)).
@@ -318,10 +322,7 @@ $$
 
 1. Identify the quantity whose movement drives the inner loop's cost (e.g., a pointer, a counter, a stack's size).
 2. Verify the quantity is **monotonic** (only moves one direction) and **globally bounded** (cannot exceed some value \\(B\\) over the entire run).
-3. Conclude the inner loop body executes at most \\(B\\) times *in total across all outer iterations*, so total cost is \\(O(outer loop cost) + O(B \cdot inner body cost)\\).
-
-> [!NOTE]
-> Use aggregate analysis instead of per-iteration summation when the algorithm involves a nested loop whose progress variable **persists across outer iterations** and moves monotonically toward a global bound.
+3. Conclude the inner loop body executes at most \\(B\\) times *in total across all outer iterations*, so total cost is \\(O(\text{outer loop cost}) + O(B \cdot \text{inner body cost})\\).
 
 ## Worst-case Space Complexity
 
