@@ -1,4 +1,4 @@
-# [NeetCode 150](https://neetcode.io/roadmap) Solutions
+# [NeetCode 150](https://neetcode.io/roadmap)
 
 ## Arrays and Hashing Problems
 
@@ -1062,3 +1062,44 @@ Let \\(l_1\\) be the length of `s1`, and  \\(l_2\\) be the length of `s2`. Then
 
 - Time Complexity: worst-case \\(O(l_2)\\)
 - Space Complexity: worst-case \\(O(1)\\)
+
+### [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/description/)
+
+#### Solution
+
+```python
+from collections import Counter
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        left = 0
+        required = Counter(t)
+        current = dict()
+        satisfied = 0    
+        result = ""
+
+        for right in range(len(s)):
+            current[s[right]] = current.get(s[right], 0) + 1
+            if s[right] in required and current[s[right]] == required[s[right]]:
+                satisfied += 1
+
+            while satisfied == len(required):
+                window = s[left:right + 1]
+                if not result or len(window) < len(result):
+                    result = window
+
+                current[s[left]] -= 1
+                if s[left] in required and current[s[left]] < required[s[left]]:
+                    satisfied -= 1
+                    
+                left += 1
+
+        return result
+```
+
+#### Complexity Analysis
+
+Let \\(s\\) and \\(t\\) be the length of the strings `s` and `t` respectively. Then:
+
+- Time Complexity: \\(O(s + t)\\)
+- Space Complexity: \\(O(s + t)\\)
