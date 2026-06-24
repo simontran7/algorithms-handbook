@@ -472,20 +472,20 @@ Maximum or minimum values in a sliding window or some ranges.
 from collections import deque
 
 def monotonic_non_increasing_deque(array, k):
+    mono_deque = deque()
     result = []
-    dq = deque()
 
     for i in range(len(array)):
-        while dq and array[dq[-1]] < array[i]:
-            dq.pop()
+        while mono_deque and array[mono_deque[-1]] < array[i]:
+            mono_deque.pop()
 
-        dq.append(i)
+        mono_deque.append(i)
 
-        if dq[0] <= i - k:
-            dq.popleft()
+        if mono_deque[0] <= i - k:
+            mono_deque.popleft()
 
         if i >= k - 1:
-            result.append(array[dq[0]])
+            result.append(array[mono_deque[0]])
 
     return result
 ```
