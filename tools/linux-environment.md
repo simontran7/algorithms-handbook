@@ -2,7 +2,8 @@
 
 ## Bash Scripting
 
-TO WRITE
+> [!NOTE]
+> Use long form flags in scripts ([source](https://matklad.github.io/2025/03/21/use-long-options-in-scripts.html)).
 
 ## Regular Expressions (PCRE)
 
@@ -56,7 +57,6 @@ The **lowercase** version matches something, and the **uppercase** version match
 > [!NOTE]
 > By default, quantifiers are **greedy** (i.e., they match as much as possible). Append `?` to make them **lazy** (i.e., match as little as possible): `*?`, `+?`, `??`, `{n, m}?`.
 
-
 ### Anchors
 
 - `^`: anchors the match to the start of the string (or start of the line in multiline mode)
@@ -67,7 +67,6 @@ The **lowercase** version matches something, and the **uppercase** version match
 > [!NOTE]
 > Using `^<pattern>$` forces the entire string to match the pattern, instead of letting the regex match a substring somewhere in the middle.
 
-
 ### Groups and Backreferences
 
 - `(<pattern>)`: capturing group (i.e., records what was matched); referenced by position with `\1`, `\2`, … (within the pattern) or `$1`, `$2`, … (in a replacement string)
@@ -76,7 +75,6 @@ The **lowercase** version matches something, and the **uppercase** version match
 
 > [!NOTE]
 > `(\w+) \1` matches a repeated word like `hello hello`, because `\1` must match whatever `(\w+)` captured.
-
 
 ### Lookarounds
 
@@ -95,10 +93,10 @@ The **lowercase** version matches something, and the **uppercase** version match
 
 ## Text Processing
 
-- Search and replace across several files
+- Search for a pattern recursively
 
 ```shell
-rg --files-with-matches '<old text>' | xargs sed -i 's/<old text>/<new text>/g'
+grep -rnEI --color=auto --exclude-dir={.git,target} '<pattern>' .
 ```
 
 - Search and replace a single file
@@ -107,3 +105,8 @@ rg --files-with-matches '<old text>' | xargs sed -i 's/<old text>/<new text>/g'
 sed -i 's/<old text>/<new text>/g' <file to search>
 ```
 
+- Search and replace across several files
+
+```shell
+grep -rIEl '<old text>' . | xargs sed -i 's/<old text>/<new text>/g'
+```

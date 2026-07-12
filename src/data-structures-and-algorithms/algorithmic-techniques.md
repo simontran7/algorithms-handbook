@@ -81,7 +81,7 @@ def read_write_two_pointers(array):
 
 ## Sliding Window
 
-### Variable Sliding Window
+### Variable 
 
 #### Use Case
 
@@ -131,7 +131,7 @@ def variable_sliding_window_min(array):
     return result if result != math.inf else -1
 ```
 
-### Fixed Sliding Window
+### Fixed 
 
 #### Use Case
 
@@ -313,51 +313,89 @@ def prefix_state(array, target_state):
         return result # for shortest subarray, do this instead `return result if result != math.inf else 0`
 ```
 
-## Fast and Slow Pointers (Floyd's Cycle Detection)
+## In-Place Reversal 
 
-### Use Case
+#### Use Case
 
-- Detect cycles in linked list
-- Find middle of a linked list
+Reverse in-place the pointers in a linked list.
 
-### Usage
+#### Usage
+
+```python
+def in_place_reversal(head):
+    previous = None
+    current = head
+
+    while current:
+        temp = current.next
+        current.next = previous
+
+        previous = current
+        current = temp
+```
+
+
+## Fast and Slow Pointers
+
+### Dynamic
+
+#### Use Case
+
+Detect cycles in a linked list.
+
+#### Usage
 
 ```python
 def fast_and_slow_pointers(head):
-    fast = head
     slow = head
+    fast = head
     result = <initial value>
 
     while fast and fast.next:
-        # Some logic
-
         fast = fast.next.next
         slow = slow.next
+        # Optionally to detect cycle: `if fast == slow: break`
+    
+    # `slow` is at midpoint
+
+    return result
 ```
 
-## Reversing a Linked List
+### Fixed
 
-### Use Case
+#### Use Case
 
-- The problem largely involves reversing pointers in a linked list
-- You need a subroutine which involves classically reversing pointers in a linked list
+Find the $k^\text{th}$ node from the end of a linked list.
 
-### Usage
+#### Usage
 
 ```python
-def reverse_linked_list(head):
-    prev_node = None
-    curr_node = head
+def fixed_gap(head, k):
+    slow = head
+    fast = head
 
-    while curr_node:
-        next_node = curr_node.next
-        curr_node.next = prev_node
-        prev_node = curr_node
-        curr_node = next_node
+    # Advance fast by `k` steps
+    # so that when `fast` is `None`,
+    # `slow` will be `k` step(s) away from `None`
+    # i.e., the `k`th last node
+    for _ in range(k):
+        fast = fast.next
+
+    while fast:
+        fast = fast.next
+        slow = slow.next
+
+    # ... involving `slow` is the `k`th last node
 ```
 
 > [!NOTE]
-> To reduce edge cases, whenever you need to return the original head of the linked list, instead of returning the head node directly, create a **dummy node**, set it as the head of the linked list `dummy = ListNode(0, head)`, and return `dummy.next`.
+> Whenever you don't know what the final head will be (e.g., the head might be deleted, or a new node might be inserted before the current head, or you're building a new linked list and the head may be either of the given current heads), use a **dummy node**:
+> ```python
+> dummy = ListNode(0, <given head of the linked list>) # or `None` if we are given more than one linked list's head
+> current = dummy
+> # ...
+> return dummy.next # to return the actual head of the linked list
+> ```
 
 ## Stack and Queue
 
@@ -510,7 +548,7 @@ def recursive_preorder_dfs(root):
 
     # Additional base cases
 
-    # Some logic involving the current node and the current result
+    # ... involving the current node and the current result
 
     recursive_preorder_dfs(root.left)
     recursive_preorder_dfs(root.right)
@@ -532,7 +570,7 @@ def iterative_preorder_dfs(root):
 
 	    # Additional base cases
 
-        # Some logic involving the popped node and the result
+        # ... involving the popped node and the result
 
 	    if node.right:
             stack.append(node.right)
@@ -725,7 +763,7 @@ def matrix_iterative_dfs(matrix):
 
 #### Use Case
 
-Distance in a graph.
+Determine the distance in a graph.
 
 #### Usage
 
