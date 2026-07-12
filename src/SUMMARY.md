@@ -4,7 +4,6 @@
 
 - [Computational Complexity](./data-structures-and-algorithms/computational-complexity.md)
 - [Algorithmic Techniques](./data-structures-and-algorithms/algorithmic-techniques.md)
-- [NeetCode 150](./data-structures-and-algorithms/neetcode-150.md)
 
 # Computer Architecture
 
