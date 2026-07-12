@@ -13,8 +13,6 @@
 - [Multiprocessor Systems](./computer-architecture/multiprocessor-systems.md)
 - [Assembly](./computer-architecture/assembly.md)
 
-# Operating Systems
-
 # Tools
 
 - [Linux Environment](./tools/linux-environment.md)
