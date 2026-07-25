@@ -38,6 +38,6 @@ Popping from either end reads off the head or tail node, then repoints the head/
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup front/back | worst-case \(O(1)\) |
-| Add to front/back | worst-case \(O(1)\) |
-| Remove from front/back | worst-case \(O(1)\) |
+| Lookup front/back | worst-case \\(O(1)\\) |
+| Add to front/back | worst-case \\(O(1)\\) |
+| Remove from front/back | worst-case \\(O(1)\\) |

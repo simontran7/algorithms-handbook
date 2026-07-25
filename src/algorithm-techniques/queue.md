@@ -15,6 +15,16 @@ trait Queue<T> {
 
 Processing elements in a FIFO order.
 
+## Complexity Analysis
+
+A queue is typically backed by a doubly linked list or a circular buffer, both of which support cheap operations at both ends:
+
+| Operation | Time Complexity |
+| --- | --- |
+| Lookup front | worst-case \\(O(1)\\) |
+| Enqueue | worst-case \\(O(1)\\) |
+| Dequeue | worst-case \\(O(1)\\) |
+
 ## API
 
 ```cpp

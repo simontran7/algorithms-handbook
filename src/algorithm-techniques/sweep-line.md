@@ -37,6 +37,12 @@ public:
 };
 ```
 
+#### Complexity Analysis
+
+Let \\(n\\) be the number of trips and \\(k\\) be the maximum end position across all trips. Then:
+- Time Complexity: worst-case \\(O(n + k)\\)
+- Space Complexity: worst-case \\(O(k)\\)
+
 ### [LeetCode 2021. Brightest Position on Street](https://leetcode.com/problems/brightest-position-on-street/description/)
 
 ```cpp
@@ -67,3 +73,9 @@ public:
     }
 };
 ```
+
+#### Complexity Analysis
+
+Let \\(n\\) be the number of lights. Then:
+- Time Complexity: worst-case \\(O(n \log n)\\)
+- Space Complexity: worst-case \\(O(n)\\)

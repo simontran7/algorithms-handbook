@@ -15,6 +15,16 @@ trait Stack<T> {
 
 Elements in the input interacting with each other, with a LIFO order.
 
+## Complexity Analysis
+
+A stack is typically backed by a dynamic array, so pushing/popping only ever touches the end, which is where a dynamic array is cheapest:
+
+| Operation | Time Complexity |
+| --- | --- |
+| Lookup top | worst-case \\(O(1)\\) |
+| Push | worst-case \\(O(n)\\), but amortized \\(O(1)\\) |
+| Pop | worst-case \\(O(1)\\) |
+
 ## API
 
 ```cpp
@@ -40,4 +50,4 @@ stack.pop();
 ```
 
 > [!NOTE]
-> We often use the stack to store the result and convert it to a string. In C++, `std::string` itself supports `push_back` / `pop_back` / `back`, so it can serve as **both the stack and the result**.
+> We often use the stack to store the result and convert it to a string. In C++, `std::string` itself supports `push_back` / `pop_back` / `back`, so it can serve as the stack *and* the result.

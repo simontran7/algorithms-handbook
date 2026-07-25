@@ -33,7 +33,7 @@ Some of its notable components:
 
 The **memory unit** stores both program instructions and program data, positioned close to the processing unit (PU) to reduce the time required for calculations. Its size varies depending on the system.
 
-In modern computers, the memory unit is typically implemented as **random access memory (RAM)**. In RAM, every storage location (address) can be accessed directly in constant time. Conceptually, RAM can be viewed as an array of addresses. Since the smallest addressable unit is one byte, each address corresponds to a single byte of memory. The address space spans from \(0\) up to \(2^{\text{word}} - 1\), where the word depends on the ISA.
+In modern computers, the memory unit is typically implemented as **random access memory (RAM)**. In RAM, every storage location (address) can be accessed directly in constant time. Conceptually, RAM can be viewed as an array of addresses. Since the smallest addressable unit is one byte, each address corresponds to a single byte of memory. The address space spans from \\(0\\) up to \\(2^{\text{word}} - 1\\), where the word depends on the ISA.
 
 ### Input and Output (I/O) Unit
 

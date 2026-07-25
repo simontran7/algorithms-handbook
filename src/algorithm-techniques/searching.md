@@ -37,6 +37,12 @@ int binary_search(const std::vector<int>& array, int target) {
 }
 ```
 
+#### Complexity Analysis
+
+Let \\(n\\) be the length of the array. Then:
+- Time Complexity: worst-case \\(O(\log n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
+
 ### Boundary Convergence On an Array
 
 #### Use Case
@@ -86,6 +92,12 @@ int upper_bound(const std::vector<int>& array, int target) {
     return low;
 }
 ```
+
+#### Complexity Analysis
+
+Let \\(n\\) be the length of the array. Then, for `lower_bound()`, `upper_bound()`, and the `find_*()` helpers built on them:
+- Time Complexity: worst-case \\(O(\log n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 > [!NOTE]
 > If you want the neighbouring value to a target, then the template requires little to no changes, and then use it as follows accordingly. Otherwise, you likely need to tweak the if condition, and set `high = array.size() - 1` (in the pure `lower_bound()` and `upper_bound()`, we kept `high = array.size()` because an insertion point that goes beyond the last element of the array is valid).
@@ -148,14 +160,14 @@ int find_ge(const std::vector<int>& array, int target) {
 
 You're trying to find a **maximum** or **minimum** value, and:
 
-- You can verify (usually with a greedy algorithm) in $O(n)$ time (or faster) whether a given candidate `x` is a valid solution
+- You can verify (usually with a greedy algorithm) in \\(O(n)\\) time (or faster) whether a given candidate `x` is a valid solution
 - The solution space has to be structured so that all valid answers are grouped together on one side. That is:
     - If `x` is a valid solution:
-        - For a maximum, all values $ \le x$ are also valid.
-        - For a minimum, all values $\ge x$ are also valid.
+        - For a maximum, all values \\(\le x\\) are also valid.
+        - For a minimum, all values \\(\ge x\\) are also valid.
     - If `x` is not a valid solution:
-        - For a maximum, all values $\gt x$ are also invalid.
-        - For a minimum, all values $\lt x$ are also invalid.
+        - For a maximum, all values \\(\gt x\\) are also invalid.
+        - For a minimum, all values \\(\lt x\\) are also invalid.
 
 #### Template
 
@@ -204,3 +216,9 @@ int binary_search_maximum(const std::vector<int>& array) {
     return high;
 }
 ```
+
+#### Complexity Analysis
+
+Let \\(k\\) be the size of the solution space (`high - low`) and \\(f(n)\\) be the time complexity of `is_valid()`. Then:
+- Time Complexity: worst-case \\(O(f(n) \log k)\\)
+- Space Complexity: worst-case \\(O(1)\\), plus whatever `is_valid()` itself uses

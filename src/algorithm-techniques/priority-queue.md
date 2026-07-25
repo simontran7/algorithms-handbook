@@ -89,11 +89,11 @@ public:
 
 ## Binary Heap
 
-A binary heap is a complete binary tree (every level fully filled except possibly the last, filled left to right) satisfying the **heap property**: every parent is \(\ge\) its children (max-heap) or \(\le\) its children (min-heap). Because the tree is always complete, it can be stored implicitly in an array with no pointers: for a node at index \(i\), its children sit at \(2i + 1\) and \(2i + 2\), and its parent at \(\lfloor (i - 1) / 2 \rfloor\).
+A binary heap is a complete binary tree (every level fully filled except possibly the last, filled left to right) satisfying the **heap property**: every parent is \\(\ge\\) its children (max-heap) or \\(\le\\) its children (min-heap). Because the tree is always complete, it can be stored implicitly in an array with no pointers: for a node at index \\(i\\), its children sit at \\(2i + 1\\) and \\(2i + 2\\), and its parent at \\(\lfloor (i - 1) / 2 \rfloor\\).
 
 ### Lookup
 
-The maximum (or minimum) is always at the root, so peeking at the top is just reading index \(0\) of the array.
+The maximum (or minimum) is always at the root, so peeking at the top is just reading index \\(0\\) of the array.
 
 ### Insertion
 
@@ -107,10 +107,10 @@ Swap the root with the last element in the array and shrink the array by one, th
 
 | Operation | Time Complexity |
 | --- | --- |
-| Initialize | worst-case \(O(n)\) |
-| Lookup min/max | worst-case \(O(1)\) |
-| Add    | worst-case \(O(\log n)\) |
-| Remove | worst-case \(O(\log n)\) |
+| Initialize | worst-case \\(O(n)\\) |
+| Lookup min/max | worst-case \\(O(1)\\) |
+| Add    | worst-case \\(O(\log n)\\) |
+| Remove | worst-case \\(O(\log n)\\) |
 
 ## API
 

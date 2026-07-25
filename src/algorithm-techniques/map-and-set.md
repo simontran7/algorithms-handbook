@@ -55,12 +55,12 @@ Hash the key to find its bucket, then scan it for a matching entry and remove it
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case \(O(n)\), but average \(O(1)\) |
-| Add | worst-case \(O(n)\), but amortized \(O(1)\) |
-| Remove | worst-case \(O(n)\), but average \(O(1)\) |
+| Lookup | worst-case \\(O(n)\\), but average \\(O(1)\\) |
+| Add | worst-case \\(O(n)\\), but amortized \\(O(1)\\) |
+| Remove | worst-case \\(O(n)\\), but average \\(O(1)\\) |
 
 > [!NOTE]
-> The worst case (\(O(n)\)) happens when every key collides into the same bucket (e.g., a bad hash function), degrading the bucket into a plain list that must be scanned linearly. The average case assumes a good hash function spreads keys roughly evenly across buckets, keeping each bucket's list short and close to constant size.
+> The worst case (\\(O(n)\\)) happens when every key collides into the same bucket (e.g., a bad hash function), degrading the bucket into a plain list that must be scanned linearly. The average case assumes a good hash function spreads keys roughly evenly across buckets, keeping each bucket's list short and close to constant size.
 
 ## API
 

@@ -35,7 +35,7 @@ A hard drive consists of several flat, circular **platters**. Each platter has a
 <img src="images/sector.png" width="200">
 <img src="images/cylinder.png" width="400">
 
-To read or write data, the mechanical **arms**, all attached to an **actuator**, where each arm with a **read/write head** at its tip, moves (i.e., extending or retracting) in unison across the platter to position the head over the cylinder containing the target sector (i.e., the sector holding the desired data). This step introduces a performance metric called **seek time**, where the typical average seek time is 3 to 5 ms. Then, the platters spins in counter-clockwise so that the target sector sits under the head. This step also introduces a performance metric called **rotational latency**, where the average rotational latency (in seconds) is found by \(\frac{1}{2} \times \frac{1}{\text{RPM}} \times \frac{60 \text{ seconds}}{1 \text{ min}}\). Lastly, the data is read, where this step introduces a last performance metric called **transfer time**, calculated by \(\frac{1}{\text{RPM}} \times \frac{1}{\text{average sectors per track}} \times \frac{60 \text{ seconds}}{1 \text{ min}}\)
+To read or write data, the mechanical **arms**, all attached to an **actuator**, where each arm with a **read/write head** at its tip, moves (i.e., extending or retracting) in unison across the platter to position the head over the cylinder containing the target sector (i.e., the sector holding the desired data). This step introduces a performance metric called **seek time**, where the typical average seek time is 3 to 5 ms. Then, the platters spins in counter-clockwise so that the target sector sits under the head. This step also introduces a performance metric called **rotational latency**, where the average rotational latency (in seconds) is found by \\(\frac{1}{2} \times \frac{1}{\text{RPM}} \times \frac{60 \text{ seconds}}{1 \text{ min}}\\). Lastly, the data is read, where this step introduces a last performance metric called **transfer time**, calculated by \\(\frac{1}{\text{RPM}} \times \frac{1}{\text{average sectors per track}} \times \frac{60 \text{ seconds}}{1 \text{ min}}\\)
 
 <img src="images/arms.png" width="300">
 <img src="images/actuator.png" width="100">
@@ -79,12 +79,12 @@ Each cache line consists of three sections: the **valid bit**, the **tag**, and 
 <img src="images/cache-organization.png" width="500">
 
 > [!NOTE]
-> For caches employing the write-back write hit policy, then it also contains a **dirtiness bit**. The dirtiness bit is \(1\) when the cache line is dirty, and \(0\) when it's clean.
+> For caches employing the write-back write hit policy, then it also contains a **dirtiness bit**. The dirtiness bit is \\(1\\) when the cache line is dirty, and \\(0\\) when it's clean.
 
 A cache memory address is split into three fields:
-- **Block offset**: Tells _which_ starting byte inside a data block the CPU wants. The number of bits \(b\) allocated to the block offset field is \(\log_2 (B)\), where \(B\) is the data block size.
-- **Set index**: Tells _which_ set in the cache to look in. The number of bits \(s\) allocated to the set index field is \(\log_2 (S)\), where \(S\) is the total sets.
-- **Tag**: Tells _which_ specific data block the CPU wants to access in the cache. The number of bits \(t\) allocated to the tag field is \(w - (s + b)\), where \(w\) is word size.
+- **Block offset**: Tells _which_ starting byte inside a data block the CPU wants. The number of bits \\(b\\) allocated to the block offset field is \\(\log_2 (B)\\), where \\(B\\) is the data block size.
+- **Set index**: Tells _which_ set in the cache to look in. The number of bits \\(s\\) allocated to the set index field is \\(\log_2 (S)\\), where \\(S\\) is the total sets.
+- **Tag**: Tells _which_ specific data block the CPU wants to access in the cache. The number of bits \\(t\\) allocated to the tag field is \\(w - (s + b)\\), where \\(w\\) is word size.
 
 <img src="images/cache-address.png" width="300">
 
@@ -157,7 +157,7 @@ A **fully-associative cache** is a cache where a memory blocks are free to be st
 
 To address this inefficiency, caches impose restrictions on where specific memory blocks can reside. However, it does bring along a tradeoff. Since the cache is dramatically smaller than main memory, multiple memory addresses must inevitably map to the same cache locations, a phenomenon called **cache aliasing**.
 
-A **set-associative cache** is a cache where a memory block maps to a specific **set** (i.e., a compartment of the cache), according to the index field encoded in the memory block's address. Each of the sets contains \(N\) cache lines, where we typically specify a cache as **\(N\)-way set-associative**. The cache hardware uses the index field of the requested memory address to select a set of the cache, then within that set, it will search all \(N\) cache lines in parallel.
+A **set-associative cache** is a cache where a memory block maps to a specific **set** (i.e., a compartment of the cache), according to the index field encoded in the memory block's address. Each of the sets contains \\(N\\) cache lines, where we typically specify a cache as **\\(N\\)-way set-associative**. The cache hardware uses the index field of the requested memory address to select a set of the cache, then within that set, it will search all \\(N\\) cache lines in parallel.
 
 A **direct-mapped cache** maps each memory block to exactly one specific cache line based on the index field encoded in the memory block's address. No searching is needed, as the hardware directly computes which single cache line to check.
 

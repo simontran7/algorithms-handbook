@@ -32,3 +32,9 @@ std::vector<int> monotonic_non_increasing_deque(const std::vector<int>& array, i
     return result;
 }
 ```
+
+### Complexity Analysis
+
+Let \\(n\\) be the length of the array. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(k)\\)

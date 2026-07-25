@@ -53,6 +53,12 @@ n << k
 n >> k
 ```
 
+### Complexity Analysis
+
+Every bitwise operator (`|`, `&`, `^`, `<<`, `>>`) works on a fixed-width machine word, so each is:
+- Time Complexity: worst-case \\(O(1)\\)
+- Space Complexity: worst-case \\(O(1)\\)
+
 > [!NOTE]
 > Bitwise operators have low precedence, and therefore happens later in evaluation order, so make sure to use parentheses to clearly define your intended grouping.
 
@@ -80,6 +86,15 @@ int mask = (1 << 5) | (1 << 3);
 ```
 
 3. Retrieve the bits via `n <operator> mask`.
+
+### Complexity Analysis
+
+Constructing and applying a bit mask is a fixed number of \\(O(1)\\) bitwise operations, so:
+- Time Complexity: worst-case \\(O(1)\\)
+- Space Complexity: worst-case \\(O(1)\\)
+
+> [!NOTE]
+> When a bit mask is used to represent a **set** of up to \\(k\\) items (e.g., in backtracking or DP over subsets), it replaces an \\(O(k)\\)-space hash set with a single integer, and set operations (add/remove/check membership) drop from whatever the set data structure offers to \\(O(1)\\). But enumerating *all* subsets of \\(k\\) items is still \\(O(2^k)\\), since there are that many masks.
 
 > [!NOTE]
 > In C++, shifting by the type's width or more is **undefined behavior** (e.g., `1 << 32` on an `int`), as is left-shifting into the sign bit — use `1LL << k` when the mask may exceed 31 bits, or an `unsigned` type. Right shift on signed negative values is implementation-defined pre-C++20 (arithmetic shift in practice). 

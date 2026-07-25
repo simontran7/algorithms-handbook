@@ -22,3 +22,9 @@ ListNode* reverse_list(ListNode* head) {
     return previous;
 }
 ```
+
+## Complexity Analysis
+
+Let \\(n\\) be the number of nodes in the linked list. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\)

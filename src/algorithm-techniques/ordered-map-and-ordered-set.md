@@ -38,7 +38,7 @@ An ordered map/set is a superset of the [Map and Set](/notes/algorithm-technique
 
 ## AVL Tree
 
-An AVL tree is a self-balancing binary search tree that enforces a strict invariant: for every node, the heights of its left and right subtrees differ by at most \(1\) (its **balance factor**). This tight balance keeps the tree close to perfectly balanced, guaranteeing \(O(\log n)\) height at all times, at the cost of a **rotation** (a restructuring that shifts nodes around a pivot to restore the height invariant) after nearly every insertion or deletion.
+An AVL tree is a self-balancing binary search tree that enforces a strict invariant: for every node, the heights of its left and right subtrees differ by at most \\(1\\) (its **balance factor**). This tight balance keeps the tree close to perfectly balanced, guaranteeing \\(O(\log n)\\) height at all times, at the cost of a **rotation** (a restructuring that shifts nodes around a pivot to restore the height invariant) after nearly every insertion or deletion.
 
 ### Lookup
 
@@ -46,23 +46,23 @@ Standard binary search tree traversal: at each node, go left if the target is sm
 
 ### Insertion
 
-Insert like a normal binary search tree (walk down to the correct empty spot), then walk back up from the new node to the root, updating each ancestor's height and checking its balance factor along the way. The moment a node's balance factor reaches \(\pm 2\), perform the appropriate rotation there (a single rotation for the outside cases, a double rotation for the inside cases) to restore balance. At most one rebalancing point is ever needed for an insertion.
+Insert like a normal binary search tree (walk down to the correct empty spot), then walk back up from the new node to the root, updating each ancestor's height and checking its balance factor along the way. The moment a node's balance factor reaches \\(\pm 2\\), perform the appropriate rotation there (a single rotation for the outside cases, a double rotation for the inside cases) to restore balance. At most one rebalancing point is ever needed for an insertion.
 
 ### Deletion
 
-Delete like a normal binary search tree (if the node has two children, swap its value with its in-order predecessor or successor first, then remove the resulting leaf/single-child node), then walk back up updating heights and rotating wherever a balance factor hits \(\pm 2\). Unlike insertion, deletion can require rebalancing at multiple points along the path back to the root.
+Delete like a normal binary search tree (if the node has two children, swap its value with its in-order predecessor or successor first, then remove the resulting leaf/single-child node), then walk back up updating heights and rotating wherever a balance factor hits \\(\pm 2\\). Unlike insertion, deletion can require rebalancing at multiple points along the path back to the root.
 
 ### Complexity Analysis
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case \(O(\log n)\) |
-| Add | worst-case \(O(\log n)\) |
-| Remove | worst-case \(O(\log n)\) |
+| Lookup | worst-case \\(O(\log n)\\) |
+| Add | worst-case \\(O(\log n)\\) |
+| Remove | worst-case \\(O(\log n)\\) |
 
 ## Red-Black Tree
 
-A red-black tree is a self-balancing binary search tree that trades the AVL tree's strict height balance for a looser set of invariants, tracked by coloring each node red or black: the root is black, a red node never has a red child, and every path from a node down to any of its descendant null leaves passes through the same number of black nodes. Together these guarantee the tree's height never exceeds about \(2 \log(n + 1)\), not as tight as an AVL tree, but cheaper to maintain, since fewer rotations are needed on average.
+A red-black tree is a self-balancing binary search tree that trades the AVL tree's strict height balance for a looser set of invariants, tracked by coloring each node red or black: the root is black, a red node never has a red child, and every path from a node down to any of its descendant null leaves passes through the same number of black nodes. Together these guarantee the tree's height never exceeds about \\(2 \log(n + 1)\\), not as tight as an AVL tree, but cheaper to maintain, since fewer rotations are needed on average.
 
 ### Lookup
 
@@ -80,9 +80,9 @@ Delete like a normal binary search tree. If a black node is removed, its absence
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case \(O(\log n)\) |
-| Add | worst-case \(O(\log n)\) |
-| Remove | worst-case \(O(\log n)\) |
+| Lookup | worst-case \\(O(\log n)\\) |
+| Add | worst-case \\(O(\log n)\\) |
+| Remove | worst-case \\(O(\log n)\\) |
 
 ## B-Tree
 
@@ -104,12 +104,12 @@ Locate the key. If it's in a leaf, remove it directly, then rebalance if the lea
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case \(O(\log n)\) |
-| Add | worst-case \(O(\log n)\) |
-| Remove | worst-case \(O(\log n)\) |
+| Lookup | worst-case \\(O(\log n)\\) |
+| Add | worst-case \\(O(\log n)\\) |
+| Remove | worst-case \\(O(\log n)\\) |
 
 > [!NOTE]
-> A B-tree's \(O(\log n)\) has a much larger logarithm base (the branching factor) than a binary tree's, so in practice its height, and therefore the number of node accesses per operation, is far smaller. This is precisely why B-trees are the standard choice for on-disk structures like database indexes, where minimizing the number of expensive disk reads matters more than the constant-factor cost of scanning within a node.
+> A B-tree's \\(O(\log n)\\) has a much larger logarithm base (the branching factor) than a binary tree's, so in practice its height, and therefore the number of node accesses per operation, is far smaller. This is precisely why B-trees are the standard choice for on-disk structures like database indexes, where minimizing the number of expensive disk reads matters more than the constant-factor cost of scanning within a node.
 
 ## Trie (Prefix Tree)
 
@@ -131,9 +131,9 @@ Walk down to the node for the target key as in a lookup, then unmark it as the e
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case \(O(m)\), where \(m\) is the length of the key |
-| Add | worst-case \(O(m)\), where \(m\) is the length of the key |
-| Remove | worst-case \(O(m)\), where \(m\) is the length of the key |
+| Lookup | worst-case \\(O(m)\\), where \\(m\\) is the length of the key |
+| Add | worst-case \\(O(m)\\), where \\(m\\) is the length of the key |
+| Remove | worst-case \\(O(m)\\), where \\(m\\) is the length of the key |
 
 ## API
 
