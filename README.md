@@ -1,6 +1,6 @@
 # notes
 
-developer notes
+programming notes
 
 ## Learning Roadmap
 
