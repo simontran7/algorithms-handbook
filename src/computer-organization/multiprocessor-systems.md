@@ -163,7 +163,7 @@ There are four possible ordering constraints between memory operations, where X 
 
 A memory model is defined by which of these it enforces. Relaxing a constraint means the hardware is free to reorder those operations for performance.
 
-**Sequential Consistency (SC)**
+#### Sequential Consistency (SC)
 
 Defined by Lamport (1976), sequential consistency is the ideal model that enforces all four orderings. It makes two guarantees: all memory operations across all cores appear to execute in some single global sequential order, and each individual core's operations appear in that global order in the same order they appear in the program (program order). The result is that the system behaves as if all cores are sharing a single memory with no caches or buffers, like a switch that picks one core at a time, completes its memory operation atomically, then picks another.
 
@@ -172,11 +172,11 @@ In practice, no modern high-performance CPU implements sequential consistency fu
 > [!NOTE]
 > The switch can pick any core at any time, so instructions from different cores freely interleave in the global order. What it cannot do is violate a single core's program order. P0's stores and loads must appear in the global sequence in the same order they appear in P0's program, and likewise for every other core.
 
-**x86 Total Store Order (x86-TSO)**
+##### x86 Total Store Order (x86-TSO)
 
 Total Store Order enforces W→W, R→R, and R→W, but **relaxes** W→R. This means a write sitting in the store buffer can be bypassed by a subsequent read to a different address, so the core reads from its cache while the write has not committed yet. Once a write does reach L1, invalidations are broadcast to all other cores and processed promptly, so while a write may be delayed in the store buffer, once it lands, all cores observe it at the same time. There is a single coherent global order of writes that every core agrees on. TSO is strict enough that most concurrent code works correctly on x86 without explicit memory fences.
 
-**ARM Relaxed Memory Model**
+#### ARM Relaxed Memory Model
 
 Can relax all four orderings, making it the weakest common model. Cores can observe writes from other cores in a different order than they occurred, and even two cores can disagree on the order in which writes became visible. Correct concurrent code on ARM requires explicit memory fences at every synchronization point.
 

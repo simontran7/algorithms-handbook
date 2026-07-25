@@ -28,7 +28,7 @@ A **thread** is
 
 Threads and processes share similarities:
 - Both have their own logical control flow.
-- Both can run concurrently.
+- Both can run concurrently
 - Both are context switched
 
 And differ in two areas:

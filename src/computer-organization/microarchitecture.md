@@ -33,7 +33,7 @@ Some of its notable components:
 
 The **memory unit** stores both program instructions and program data, positioned close to the processing unit (PU) to reduce the time required for calculations. Its size varies depending on the system.
 
-In modern computers, the memory unit is typically implemented as **random access memory (RAM)**. In RAM, every storage location (address) can be accessed directly in constant time. Conceptually, RAM can be viewed as an array of addresses. Since the smallest addressable unit is one byte, each address corresponds to a single byte of memory. The address space spans from \\(0\\) up to \\(2^{\text{word}} - 1\\), where the word depends on the ISA.
+In modern computers, the memory unit is typically implemented as **random access memory (RAM)**. In RAM, every storage location (address) can be accessed directly in constant time. Conceptually, RAM can be viewed as an array of addresses. Since the smallest addressable unit is one byte, each address corresponds to a single byte of memory. The address space spans from \(0\) up to \(2^{\text{word}} - 1\), where the word depends on the ISA.
 
 ### Input and Output (I/O) Unit
 
@@ -185,6 +185,8 @@ NOPs delay the `add` until the `mov` has fully completed, preventing overlapping
 A more efficient solution is **operand forwarding**. Instead of stalling with NOPs, the CPU can forward the result of the `mov` instruction directly from the pipeline stage where it becomes available to the stage where the `add` needs it. This allows the `add rax, 2` instruction to execute immediately once the loaded value is ready, without waiting for the `mov` to finish its write-back.
 
 By using operand forwarding, the processor eliminates unnecessary bubbles, keeps the pipeline full, and executes both instructions efficiently.
+
+<img src="images/operand-forwarding.png" width="500">
 
 A **control hazard** is a hazard when the pipeline doesn't know which instruction to fetch next because it's waiting for the outcome of a conditional branch instruction. This can cause the pipeline to make a wrong guess, requiring it to flush the incorrectly fetched instructions and restart, which slows down performance. To address control hazards, many NOPs can be inserted by the compiler or assembler until the processor is sure that the branch is taken. Another solution involves **eager execution**, which execute both sides of the branch at the same time, and when the condition is finally known, it just chooses the right result. In x86, we see this through `cmov`. However, it brings some safety downsides, such as if one branch does something with side effects (like writing to memory or calling a function), you can't execute it speculatively without changing program behaviour, or if one branch dereferences a pointer that might be invalid, executing it early could cause a crash, and of course, inefficiency, as it also wastes work when one path's results are thrown away. The most interesting solution is **branch prediction**, which involves a **branch predictor**, that predicts which way a branch will go, based on previous executions.
 

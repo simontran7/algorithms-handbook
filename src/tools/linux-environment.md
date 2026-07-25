@@ -1,8 +1,83 @@
 # Linux Environment
 
-## Bash Scripting
+## Navigation & Filesystem
 
-TO WRITE
+> [!NOTE]
+> If we do not specify a path name to a command, the working directory will be assumed
+
+> [!NOTE]
+> Special path names
+> - `.`: current directory
+> - `..`: parent directory
+> - `~`: home directory
+
+- print the name of the current working directory
+
+```bash
+pwd
+```
+
+- change directories
+
+```bash
+cd <directory>
+```
+
+- list contents of directory(s)
+
+```bash
+ls <directory 1> <...> <directory N>` 
+```
+
+| Option | Meaning |
+|--------|---------|
+| `-a` | displays dot files |
+| `-l` | displays in a detailed format |
+
+- display directory structure in a tree format
+
+```bash
+tree 
+```
+
+tree, find, locate, pushd / popd, stat
+
+## Files & Directory Management
+
+- Creating a directory
+
+```bash
+mkdir <folder>
+```
+
+- Copying files
+
+```bash
+cp <source> <destination>
+```
+
+- Moving files and directories
+
+```bash
+mv <source> <destination>
+```
+
+> [!WARNING]
+> Moving a file to the *same* directory under a different name renames it.
+
+- Removing files
+
+```bash
+rm <file>
+```
+
+- Remove a directory
+
+```bash
+rm -r <directory>
+```
+
+cp, mv, rm, mkdir, rmdir, touch, ln (hard/symbolic links), rsync, tar, zip, unzip
 
 ## Regular Expressions (PCRE)
 
@@ -56,7 +131,6 @@ The **lowercase** version matches something, and the **uppercase** version match
 > [!NOTE]
 > By default, quantifiers are **greedy** (i.e., they match as much as possible). Append `?` to make them **lazy** (i.e., match as little as possible): `*?`, `+?`, `??`, `{n, m}?`.
 
-
 ### Anchors
 
 - `^`: anchors the match to the start of the string (or start of the line in multiline mode)
@@ -67,7 +141,6 @@ The **lowercase** version matches something, and the **uppercase** version match
 > [!NOTE]
 > Using `^<pattern>$` forces the entire string to match the pattern, instead of letting the regex match a substring somewhere in the middle.
 
-
 ### Groups and Backreferences
 
 - `(<pattern>)`: capturing group (i.e., records what was matched); referenced by position with `\1`, `\2`, … (within the pattern) or `$1`, `$2`, … (in a replacement string)
@@ -76,7 +149,6 @@ The **lowercase** version matches something, and the **uppercase** version match
 
 > [!NOTE]
 > `(\w+) \1` matches a repeated word like `hello hello`, because `\1` must match whatever `(\w+)` captured.
-
 
 ### Lookarounds
 
@@ -93,17 +165,154 @@ The **lowercase** version matches something, and the **uppercase** version match
 > [!NOTE]
 > Lookbehind patterns in PCRE must be *fixed-width* (you can't use `*` or `+` inside them). Lookaheads have no such restriction.
 
-## Text Processing
+## Text Manipulation
 
-- Search and replace across several files
+### Viewing
 
-```shell
-rg --files-with-matches '<old text>' | xargs sed -i 's/<old text>/<new text>/g'
+- Print the entire file to the screen
+
+```bash
+cat <file>
 ```
+
+- Page through the file interactively (`space` for next page, `q` to quit)
+
+```bash
+less <file>
+```
+
+- Show the first \(n\) lines
+
+```bash
+head -n <n> <file>
+```
+
+- Show the last \(n\) lines
+
+```bash
+tail -n <n> <file>
+```
+
+> [!NOTE]
+> `less` is used in preference to `cat` for long files, since `cat` dumps the whole file at once, scrolling past the top of the window and leaving it unreadable.
+
+> [!NOTE]
+> Inside `less`, type `/<pattern>` to search forward for `<pattern>`, then `n` to jump to the next match.
+
+### Text Processing
+
+- Search a file for a keyword or pattern (case-sensitive by default)
+
+```bash
+grep '<pattern>' <file>
+```
+
+| Option | Meaning |
+|--------|---------|
+| `-i` | ignore case |
+| `-v` | print non-matching lines |
+| `-n` | prefix matches with the line number |
+| `-c` | print only the count of matching lines |
+
+> [!NOTE]
+> Options can be combined (e.g., `grep -ivc '<pattern>' <file>`).
+
+- Search for a pattern recursively
+
+```bash
+grep -rnEI --color=auto --exclude-dir={.git,target} '<pattern>' .
+```
+
+- Count lines, words, or characters in a file
+
+```bash
+wc <file>
+```
+
+| Option | Meaning |
+|--------|---------|
+| `-l` | count lines |
+| `-w` | count words |
+| `-c` | count characters |
 
 - Search and replace a single file
 
-```shell
+```bash
 sed -i 's/<old text>/<new text>/g' <file to search>
 ```
 
+- Search and replace across several files
+
+```bash
+grep -rIEl '<old text>' . | xargs sed -i 's/<old text>/<new text>/g'
+```
+
+wk, cut, sort, uniq, tr, wc, column, paste, join
+
+### Diffing
+
+diff, comm, patch
+
+## I/O Redirection & Piping
+
+Every process has three default streams: **standard input** (stdin, defaults to the keyboard), **standard output** (stdout, defaults to the screen), and **standard error** (stderr, also defaults to the screen). 
+
+- redirect stdout to `file` (overwriting `file` if it exists)
+
+```bash
+<command> > <file>
+```
+
+- append stdout to `file
+
+```bash
+<command> >> <file>
+```
+
+- redirect stdin to come from `file` instead of the keyboard
+
+```bash
+<command> < file
+```
+
+- pipe stdout of `command 1` into stdin of `command 2`
+
+```bash
+<command 1> | <command 2> | <...> | <command N>
+```
+
+## Permissions & Ownership
+
+chmod, chown, chgrp, umask, sudo, su, getfacl, setfacl, rwx permission bits plus special bits: setuid, setgid, and the sticky bit.
+
+## Process Management
+
+ps, top / htop, kill, killall, jobs, bg / fg, nohup, & (job control), systemctl (services)
+
+## Shell Scripting & Environment
+
+Variables, export, .bashrc / .bash_profile, alias, control flow (if, for, while), functions, exit codes
+($?)
+
+> [!NOTE]
+> Use long form flags in scripts ([source](https://matklad.github.io/2025/03/21/use-long-options-in-scripts.html)).
+
+## Archiving & Compression
+
+tar, gzip / gunzip, bzip2, xz, zip, unzip
+
+## Package Management
+
+apt (Debian/Ubuntu)
+
+## Users & Groups
+
+whoami, id, useradd, usermod, passwd, groups, plus the /etc/passwd and /etc/shadow files
+
+## Disk & System Info
+
+df, du, free, uname, lsblk, mount / umount, uptime
+
+## Networking
+
+ping, curl, wget, ssh, scp, netstat / ss, ip / ifconfig, dig / nslookup, traceroute

@@ -2,18 +2,19 @@
 
 # Data Structures and Algorithms
 
-- [Computational Complexity](./data-structures-and-algorithms/computational-complexity.md)
-- [Algorithmic Techniques](./data-structures-and-algorithms/algorithmic-techniques.md)
+- [Complexity Analysis](./data-structures-and-algorithms/complexity-analysis.md)
+- [Sorting](./data-structures-and-algorithms/sorting.md)
 
-# Computer Architecture
+# Computer Organization
 
-- [Data Representation](./computer-architecture/data-representation.md)
-- [Microarchitecture](./computer-architecture/microarchitecture.md)
-- [Memory](./computer-architecture/memory.md)
-- [Multiprocessor Systems](./computer-architecture/multiprocessor-systems.md)
-- [Assembly](./computer-architecture/assembly.md)
+- [Data Representation](./computer-organization/data-representation.md)
+- [Microarchitecture](./computer-organization/microarchitecture.md)
+- [Physical Memory](./computer-organization/physical-memory.md)
+- [Multiprocessor Systems](./computer-organization/multiprocessor-systems.md)
+- [Assembly](./computer-organization/assembly.md)
 
 # Tools
 
 - [Linux Environment](./tools/linux-environment.md)
 - [Git](./tools/git.md)
+- [GDB](./tools/gdb.md)

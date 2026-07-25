@@ -64,6 +64,36 @@ git commit
 git commit --amend -m "<new commit message>"
 ```
 
+- Squashing commits
+
+```text
+git rebase -i <remote>/<branch>
+```
+
+Your text editor will pop up with a file looking as follows:
+
+```
+pick <hash> <message>
+pick <hash> <message>
+pick <hash> <message>
+...
+squash <hash> <message>
+```
+
+Change all the `pick` to squash except the first line as follows:
+
+```
+pick <hash> <message>
+squash <hash> <message>
+squash <hash> <message>
+...
+squash <hash> <message>
+```
+
+Save and close the file. 
+
+Then, another text editor window will open which will let you combine the commit messages from all of the commits into a single commit message.
+
 ## Branching
 
 - Display local branches
