@@ -9,7 +9,7 @@ programming notes
 - [x] [Git](https://github.com/k88hudson/git-flight-rules)
 - [ ] Data Structures & Algorithms
     - [ ] [MIT 6.006 introduction to algorithms course](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/)
-    - [ ] [Leetcode interview crash course](https://leetcode.com/explore/interview/card/leetcodes-interview-crash-course-data-structures-and-algorithms/?vacRef=homebanner)
+    - [x] [Leetcode interview crash course](https://leetcode.com/explore/interview/card/leetcodes-interview-crash-course-data-structures-and-algorithms/?vacRef=homebanner)
     - [ ] [Leetcode Learn Explore Cards](https://leetcode.com/explore/learn/)
 - [ ] [Low-level Programming](https://beej.us/guide/bgc/html/)
 - [ ] Operating Systems
