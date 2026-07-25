@@ -4,11 +4,11 @@
 
 ### Behaviour
 
-If _any_ bit is `1`, then the result will be `1`. Otherwise, the result is `0`.
+If *any* bit is `1`, then the result will be `1`. Otherwise, the result is `0`.
 
 ### Syntax
 
-```rust
+```cpp
 a | b
 ```
 
@@ -16,11 +16,11 @@ a | b
 
 ### Behaviour
 
-If _all_ bits are `1`, then the result will be `1`. Otherwise, the result is `0`.
+If *all* bits are `1`, then the result will be `1`. Otherwise, the result is `0`.
 
 ### Syntax
 
-```rust
+```cpp
 a & b
 ```
 
@@ -32,7 +32,7 @@ If the count of `1` is odd, then the result will be `1`. Otherwise, the result i
 
 ### Syntax
 
-```rust
+```cpp
 a ^ b
 ```
 
@@ -45,11 +45,11 @@ a ^ b
 
 ### Syntax
 
-```rust
+```cpp
 n << k
 ```
 
-```rust
+```cpp
 n >> k
 ```
 
@@ -58,7 +58,7 @@ n >> k
 
 ## Bit Mask
 
-### Signal
+### Use Case
 
 - Isolate bit(s) in a bit field.
 - A memory efficient set data structure used backtracking or dynamic programming problems.
@@ -68,16 +68,23 @@ n >> k
 1. Select the bitwise operator based on your use case.
 2. Construct a bit mask.
 
-```rust
+```cpp
 // set
-let mask = 1 << k;
+int mask = 1 << k;
 
 // k lower bits
-let mask = (1 << k) - 1;
+int mask = (1 << k) - 1;
 
 // range of bits
-let mask = (1 << 5) | (1 << 3);
+int mask = (1 << 5) | (1 << 3);
 ```
 
 3. Retrieve the bits via `n <operator> mask`.
 
+> [!NOTE]
+> In C++, shifting by the type's width or more is **undefined behavior** (e.g., `1 << 32` on an `int`), as is left-shifting into the sign bit — use `1LL << k` when the mask may exceed 31 bits, or an `unsigned` type. Right shift on signed negative values is implementation-defined pre-C++20 (arithmetic shift in practice). 
+
+> [!NOTE]
+> Useful built-ins: 
+> - `__builtin_popcount(n)`: count set bits
+> - `__builtin_ctz(n)`: count trailing zeros

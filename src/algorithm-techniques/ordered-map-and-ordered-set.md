@@ -2,31 +2,35 @@
 
 ## Interface
 
-```rust
-trait OrderedMap<K: Ord, V> {
-    fn new() -> Self;
-    fn get(&self, key: K) -> V;
-    fn add(&mut self, key: K, value: V);
-    fn remove(&mut self, key: K) -> V;
-    fn min(&self) -> (K, V);
-    fn max(&self) -> (K, V);
-    fn range(&self, start: K, end: K) -> impl Iterator<Item = (K, V)>;
-}
+### Ordered Map
 
+```
+trait OrderedMap<K: Ord, V> {
+    func get(&self, key: K) -> V;
+    func add(&mut self, key: K, value: V);
+    func remove(&mut self, key: K) -> V;
+    func min(&self) -> (K, V);
+    func max(&self) -> (K, V);
+    func range(&self, start: K, end: K) -> impl Iterator<Item = (K, V)>;
+}
+```
+
+### Oredered Set
+
+```
 trait OrderedSet<T: Ord> {
-    fn new() -> Self;
-    fn add(&mut self, item: T);
-    fn contains(&self, item: T) -> bool;
-    fn remove(&mut self, item: T);
-    fn min(&self) -> T;
-    fn max(&self) -> T;
-    fn range(&self, start: T, end: T) -> impl Iterator<Item = T>;
+    func add(&mut self, item: T);
+    func contains(&self, item: T) -> bool;
+    func remove(&mut self, item: T);
+    func min(&self) -> T;
+    func max(&self) -> T;
+    func range(&self, start: T, end: T) -> impl Iterator<Item = T>;
 }
 ```
 
 ## Use Case
 
-An ordered map/set is a superset of the [Map and Set](/notes/data-structures-and-algorithms/map-and-set) ADT: it supports everything a regular map/set does, as well as operations that depend on keys being sorted:
+An ordered map/set is a superset of the [Map and Set](/notes/algorithm-techniques/map-and-set) ADT: it supports everything a regular map/set does, as well as operations that depend on keys being sorted:
 
 - Iterating over keys in sorted order without sorting them yourself
 - Finding the minimum or maximum key
@@ -130,3 +134,140 @@ Walk down to the node for the target key as in a lookup, then unmark it as the e
 | Lookup | worst-case \(O(m)\), where \(m\) is the length of the key |
 | Add | worst-case \(O(m)\), where \(m\) is the length of the key |
 | Remove | worst-case \(O(m)\), where \(m\) is the length of the key |
+
+## API
+
+## API
+
+### Ordered Map
+
+```cpp
+#include <map>
+
+// Create an empty ordered map
+std::map<int, int> ordered_map;
+
+// Get the value for a key (inserts default if absent!)
+ordered_map[key];
+
+// Get the value for a key without inserting
+ordered_map.at(key);
+
+// Check if a key exists
+ordered_map.count(key);
+
+// Add / update a key-value pair
+ordered_map[key] = value;
+
+// Remove a key
+ordered_map.erase(key);
+
+// Get the number of entries
+ordered_map.size();
+
+// Check if the ordered map is empty
+ordered_map.empty();
+
+// Get the minimum key-value pair
+*ordered_map.begin();       // .first is the key, .second is the value
+
+// Get the maximum key-value pair
+*ordered_map.rbegin();
+
+// Get an iterator to the first entry with key >= `target`
+ordered_map.lower_bound(target);
+
+// Get an iterator to the first entry with key > `target`
+ordered_map.upper_bound(target);
+
+// Range query: iterate over all entries with start <= key < end
+for (auto it = ordered_map.lower_bound(start); it != ordered_map.lower_bound(end); ++it) {
+    // it->first is the key, it->second is the value
+}
+
+// Iterate over all entries in sorted key order
+for (const auto& [key, value] : ordered_map) {
+    // ...
+}
+```
+
+### Ordered Set
+
+```cpp
+#include <set>
+
+// Create an empty ordered set
+std::set<int> ordered_set;
+
+// Add an element
+ordered_set.insert(element);
+
+// Check if an element exists
+ordered_set.count(element);
+
+// Remove an element
+ordered_set.erase(element);
+
+// Get the number of elements
+ordered_set.size();
+
+// Check if the ordered set is empty
+ordered_set.empty();
+
+// Get the minimum element
+*ordered_set.begin();
+
+// Get the maximum element
+*ordered_set.rbegin();
+
+// Get an iterator to the first element >= `target`
+ordered_set.lower_bound(target);
+
+// Get an iterator to the first element > `target`
+ordered_set.upper_bound(target);
+
+// Range query: iterate over all elements with start <= element < end
+for (auto it = ordered_set.lower_bound(start); it != ordered_set.lower_bound(end); ++it) {
+    // *it is the element
+}
+
+// Iterate over all elements in sorted order
+for (int element : ordered_set) {
+    // ...
+}
+```
+
+> [!NOTE]
+> `lower_bound`/`upper_bound` return **iterators**, which may be `end()` if no such element exists — always check before dereferencing: `auto it = ordered_set.lower_bound(target); if (it != ordered_set.end()) { ... }`. To find the rightmost element `< target`, use `lower_bound` and step back: `if (it != ordered_set.begin()) { int value = *prev(it); }`.
+
+> [!NOTE]
+> For duplicate elements, use a `std::multiset` (bag ADT). `std::multiset` also doubles as a "sorted sliding window", where `*ms.begin()` and `*ms.rbegin()` give the window's min and max simultaneously. However, a footgun is `multiset.erase(value)`, which removes *all* copies of `value`. to remove just one, erase by iterator: `multiset.erase(multiset.find(value))`. 
+
+### `TrieSet`
+
+```cpp
+class TrieNode {
+public:
+    int data;
+    std::unordered_map<char, TrieNode*> children;
+
+    TrieNode() : data(0) {}
+};
+
+TrieNode* from(const std::vector<std::string>& words) {
+    TrieNode* root = new TrieNode();
+
+    for (const std::string& word : words) {
+        TrieNode* current = root;
+        for (char c : word) {
+            if (!current->children.count(c)) {
+                current->children[c] = new TrieNode();
+            }
+            current = current->children[c];
+        }
+        // Some logic (you have a full word at `current`).
+    }
+
+    return root;
+}
+```s

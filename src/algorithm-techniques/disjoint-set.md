@@ -2,11 +2,11 @@
 
 ## Interface
 
-```rust
+```
 trait DisjointSet {
-    fn new(n: usize) -> Self;
-    fn union(&mut self, x: usize, y: usize) -> bool;
-    fn find(&mut self, x: usize) -> usize;
+    func new(n: usize) -> Self;
+    func union(&mut self, x: usize, y: usize) -> bool;
+    func find(&mut self, x: usize) -> usize;
 }
 ```
 
@@ -38,3 +38,50 @@ Find the representative of each of the two elements. If they're already the same
 
 > [!NOTE]
 > \(\alpha(n)\) is the inverse Ackermann function, which grows so slowly that it's less than \(5\) for any \(n\) that could ever fit in memory. So in practice, both operations are effectively \(O(1)\).
+
+## Template
+
+```cpp
+class DisjointSet {
+private:
+    std::vector<int> parent;
+    std::vector<int> rank_;
+
+public:
+    DisjointSet(int n) : parent(n), rank_(n, 0) {
+        std::iota(parent.begin(), parent.end(), 0);
+    }
+
+    int find(int x) {
+        while (parent[x] != x) {
+            parent[x] = parent[parent[x]];
+            x = parent[x];
+        }
+        return x;
+    }
+
+    bool unite(int x, int y) {
+        int x_rep = find(x);
+        int y_rep = find(y);
+
+        if (x_rep == y_rep) {
+            return false;
+        }
+
+        if (rank_[x_rep] < rank_[y_rep]) {
+            parent[x_rep] = y_rep;
+        } else if (rank_[x_rep] > rank_[y_rep]) {
+            parent[y_rep] = x_rep;
+        } else {
+            parent[y_rep] = x_rep;
+            rank_[x_rep]++;
+        }
+
+        return true;
+    }
+};
+```
+
+> [!NOTE]
+> Sometimes, you may need to augment the Disjoint Set to a relational Disjoint Set by storing extra data along parent pointers to propagate edge weights or relations.
+

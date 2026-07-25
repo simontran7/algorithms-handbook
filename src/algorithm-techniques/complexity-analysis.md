@@ -181,6 +181,13 @@ $$
 \sum_{k=0}^{L} W(k) \cdot b^k
 $$
 
+> [!NOTE]
+> Common values of \(E\) in the classic graph algorithms worst-case time complexity formulas:
+> - Complete graph: \(E = \binom{n}{2} = \frac{N(N - 1)}{2}\)
+> - Tree: \(E = V − 1\)
+> - Dense graph: \(E = O(V^2)\)
+> - Sparse graph: \(E =O(V)\)
+
 ## Amortized Time Complexity (Aggregate Method)
 
 1. Identify the quantity whose movement drives the inner loop's cost (e.g., a pointer, a counter, a stack's size).

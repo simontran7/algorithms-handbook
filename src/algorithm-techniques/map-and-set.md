@@ -1,41 +1,57 @@
 # Map and Set
 
-## Map
+## Interface
 
-### Interface
+### Map
 
 ```
 trait Map<K, V> {
-    fn new() -> Self;
-    fn get(&self, key: K) -> V;
-    fn add(&mut self, key: K, value: V);
-    fn remove(&mut self, key: K) -> V;
+    func get(&self, key: K) -> V;
+    func add(&mut self, key: K, value: V)
+    func remove(&mut self, key: K) -> V;
+}
+```
+
+### Set
+
+```
+trait Set<T> {
+    func add(&mut self, item: T);
+    func contains(&self, item: T) -> Bool;
+    func remove(&mut self, item: T);
 }
 ```
 
 ### Use Case
 
+### Map
+
 - Track elements seen so far for uniqueness (with any extra info stored as the value)
 - Frequency counting
 - Basic mapping
 
-### Hash Table
+### Set
+
+- Track elements seen so far for uniqueness
+- Store a chunk (or all) of the input for fast lookups
+
+## Hash Table
 
 A hash table stores entries in an array of **buckets**. To find where a key lives, a **hash function** converts the key into an integer, which is then reduced (usually via modulo) to an index into the bucket array. Since different keys can hash to the same bucket (a **collision**), each bucket typically holds a small list of entries rather than a single one (**chaining**). As more entries are added, the ratio of entries to buckets (the **load factor**) grows; once it crosses a threshold, the table **resizes** (allocates a bigger bucket array and re-hashes every existing entry into it) to keep buckets small and lookups fast.
 
-#### Lookup
+### Lookup
 
 Hash the key to find its bucket, then scan that bucket's (usually short) list for an entry with a matching key.
 
-#### Insertion
+### Insertion
 
 Hash the key to find its bucket, check whether an entry with that key already exists (update it if so), otherwise append a new entry to the bucket. If this insertion pushes the load factor over the resize threshold, trigger a resize first.
 
-#### Deletion
+### Deletion
 
 Hash the key to find its bucket, then scan it for a matching entry and remove it.
 
-#### Complexity Analysis
+### Complexity Analysis
 
 | Operation | Time Complexity |
 | --- | --- |
@@ -46,44 +62,73 @@ Hash the key to find its bucket, then scan it for a matching entry and remove it
 > [!NOTE]
 > The worst case (\(O(n)\)) happens when every key collides into the same bucket (e.g., a bad hash function), degrading the bucket into a plain list that must be scanned linearly. The average case assumes a good hash function spreads keys roughly evenly across buckets, keeping each bucket's list short and close to constant size.
 
-## Set
+## API
 
-### Interface
+### Map
 
-```
-trait Set<T> {
-    fn new() -> Self;
-    fn add(&mut self, item: T);
-    fn contains(&self, item: T) -> bool;
-    fn remove(&mut self, item: T);
+```cpp
+#include <unordered_map>
+
+// Create an empty map
+std::unordered_map<K, V> m;
+
+// Create a map with initial values
+std::unordered_map<K, V> m = {
+    {<key 1>, <value 1>},
+    {<key 2>, <value 2>}
+};
+
+// Get number of entries
+m.size();
+
+// Check if the map is empty
+m.empty();
+
+// Add new entry or update current entry
+m[<key>] = <value>;
+
+// Remove an entry
+m.erase(<key>);
+
+// Remove all entries
+m.clear();
+
+// Get value
+// Note: throws std::out_of_range if the key isn't found, unlike operator[] which default-constructs and inserts it
+m.at(<key>);
+
+// Check if key exists (C++20)
+m.contains(<key>);
+
+// Iterate all entries
+for (const auto& [key, value] : my_map) {
+    // ...
 }
 ```
 
-### Use Case
+### Set
 
-- Track elements seen so far for uniqueness
-- Store a chunk (or all) of the input for fast lookups
+```cpp
+#include <unordered_set>
 
-### Hash Table
+// Create an empty set
+std::unordered_set<T> s;
 
-A set is implemented the same way as a map, just without a value attached to each key: each bucket holds the raw elements themselves instead of key-value pairs. Everything about hashing, collisions, and resizing works identically; see [Map](#map) above.
+// Check if a set contains an element 
+s.contains(<element>);
 
-#### Lookup
+// Get the number of elements
+s.size();
 
-Hash the element to find its bucket, then scan that bucket for a match.
+// Check if the set is empty
+s.empty();
 
-#### Insertion
+// Add an element
+s.insert(<element>);
 
-Hash the element to find its bucket, add it if it isn't already present, triggering a resize first if needed.
+// Remove an element
+s.erase(<element>);
 
-#### Deletion
-
-Hash the element to find its bucket, then scan it for a match and remove it.
-
-#### Complexity Analysis
-
-| Operation | Time Complexity |
-| --- | --- |
-| Lookup | worst-case \(O(n)\), but average \(O(1)\) |
-| Add | worst-case \(O(n)\), but amortized \(O(1)\) |
-| Remove | worst-case \(O(n)\), but average \(O(1)\) |
+// Remove all elements
+s.clear();
+```
