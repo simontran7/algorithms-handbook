@@ -107,10 +107,10 @@ Swap the root with the last element in the array and shrink the array by one, th
 
 | Operation | Time Complexity |
 | --- | --- |
-| Initialize | worst-case \\(O(n)\\) |
+| Heapify | worst-case \\(O(n)\\) |
 | Lookup min/max | worst-case \\(O(1)\\) |
-| Add    | worst-case \\(O(\log n)\\) |
-| Remove | worst-case \\(O(\log n)\\) |
+| Insertion    | worst-case \\(O(\log n)\\) |
+| Deletion | worst-case \\(O(\log n)\\) |
 
 ## API
 

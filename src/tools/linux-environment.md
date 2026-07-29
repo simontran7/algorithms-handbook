@@ -17,37 +17,30 @@
 pwd
 ```
 
-- change directories
+- Change directory
 
 ```bash
 cd <directory>
 ```
 
-- list contents of directory(s)
+- list contents (including dot files) of directory(s) in detailed format
 
 ```bash
-ls <directory 1> <...> <directory N>` 
+ls -al <directory 1> <...> <directory N>` 
 ```
-
-| Option | Meaning |
-|--------|---------|
-| `-a` | displays dot files |
-| `-l` | displays in a detailed format |
-
-- display directory structure in a tree format
-
-```bash
-tree 
-```
-
-tree, find, locate, pushd / popd, stat
 
 ## Files & Directory Management
 
-- Creating a directory
+- Create a file
 
 ```bash
-mkdir <folder>
+touch <file>
+```
+
+- Creating a directory, while creating missing parents automatically
+
+```bash
+mkdir -p <folder>
 ```
 
 - Copying files
@@ -77,7 +70,35 @@ rm <file>
 rm -r <directory>
 ```
 
-cp, mv, rm, mkdir, rmdir, touch, ln (hard/symbolic links), rsync, tar, zip, unzip
+- ln (hard/symbolic links)
+
+## I/O Redirection & Piping
+
+Every process has three default streams: **standard input** (stdin, defaults to the keyboard), **standard output** (stdout, defaults to the screen), and **standard error** (stderr, also defaults to the screen). 
+
+- redirect stdout to `file` (overwriting `file` if it exists)
+
+```bash
+<command> > <file>
+```
+
+- append stdout to `file
+
+```bash
+<command> >> <file>
+```
+
+- redirect stdin to come from `file` instead of the keyboard
+
+```bash
+<command> < file
+```
+
+- pipe stdout of `command 1` into stdin of `command 2`
+
+```bash
+<command 1> | <command 2> | <...> | <command N>
+```
 
 ## Regular Expressions (PCRE)
 
@@ -167,8 +188,6 @@ The **lowercase** version matches something, and the **uppercase** version match
 
 ## Text Manipulation
 
-### Viewing
-
 - Print the entire file to the screen
 
 ```bash
@@ -199,41 +218,17 @@ tail -n <n> <file>
 > [!NOTE]
 > Inside `less`, type `/<pattern>` to search forward for `<pattern>`, then `n` to jump to the next match.
 
-### Text Processing
-
-- Search a file for a keyword or pattern (case-sensitive by default)
-
-```bash
-grep '<pattern>' <file>
-```
-
-| Option | Meaning |
-|--------|---------|
-| `-i` | ignore case |
-| `-v` | print non-matching lines |
-| `-n` | prefix matches with the line number |
-| `-c` | print only the count of matching lines |
-
-> [!NOTE]
-> Options can be combined (e.g., `grep -ivc '<pattern>' <file>`).
-
 - Search for a pattern recursively
 
 ```bash
 grep -rnEI --color=auto --exclude-dir={.git,target} '<pattern>' .
 ```
 
-- Count lines, words, or characters in a file
+- Count lines, words, and characters in a file
 
 ```bash
-wc <file>
+wc -lwc <file>
 ```
-
-| Option | Meaning |
-|--------|---------|
-| `-l` | count lines |
-| `-w` | count words |
-| `-c` | count characters |
 
 - Search and replace a single file
 
@@ -247,59 +242,24 @@ sed -i 's/<old text>/<new text>/g' <file to search>
 grep -rIEl '<old text>' . | xargs sed -i 's/<old text>/<new text>/g'
 ```
 
-wk, cut, sort, uniq, tr, wc, column, paste, join
-
-### Diffing
-
-diff, comm, patch
-
-## I/O Redirection & Piping
-
-Every process has three default streams: **standard input** (stdin, defaults to the keyboard), **standard output** (stdout, defaults to the screen), and **standard error** (stderr, also defaults to the screen). 
-
-- redirect stdout to `file` (overwriting `file` if it exists)
-
-```bash
-<command> > <file>
-```
-
-- append stdout to `file
-
-```bash
-<command> >> <file>
-```
-
-- redirect stdin to come from `file` instead of the keyboard
-
-```bash
-<command> < file
-```
-
-- pipe stdout of `command 1` into stdin of `command 2`
-
-```bash
-<command 1> | <command 2> | <...> | <command N>
-```
-
 ## Permissions & Ownership
 
-chmod, chown, chgrp, umask, sudo, su, getfacl, setfacl, rwx permission bits plus special bits: setuid, setgid, and the sticky bit.
+chmod, chown, sudo, su, rwx permission bits plus special bits: setuid, setgid, and the sticky bit.
 
 ## Process Management
 
-ps, top / htop, kill, killall, jobs, bg / fg, nohup, & (job control), systemctl (services)
+ps aux, htop, kill (SIGTERM vs SIGKILL) (job control: bf, fg, &)
 
 ## Shell Scripting & Environment
 
-Variables, export, .bashrc / .bash_profile, alias, control flow (if, for, while), functions, exit codes
-($?)
+env vs local Variables, .bashrc / .bash_profile, alias, exit codes ($?)
 
 > [!NOTE]
 > Use long form flags in scripts ([source](https://matklad.github.io/2025/03/21/use-long-options-in-scripts.html)).
 
 ## Archiving & Compression
 
-tar, gzip / gunzip, bzip2, xz, zip, unzip
+tar
 
 ## Package Management
 
@@ -307,12 +267,13 @@ apt (Debian/Ubuntu)
 
 ## Users & Groups
 
-whoami, id, useradd, usermod, passwd, groups, plus the /etc/passwd and /etc/shadow files
+whoami, `uname -a`, `etc/passwd` vs `/etc/shadow` distinction
 
 ## Disk & System Info
 
-df, du, free, uname, lsblk, mount / umount, uptime
+...
 
 ## Networking
 
-ping, curl, wget, ssh, scp, netstat / ss, ip / ifconfig, dig / nslookup, traceroute
+...
+

@@ -15,12 +15,12 @@ trait OrderedMap<K: Ord, V> {
 }
 ```
 
-### Oredered Set
+### Ordered Set
 
 ```
 trait OrderedSet<T: Ord> {
     func add(&mut self, item: T);
-    func contains(&self, item: T) -> bool;
+    func contains(&self, item: T) -> Bool;
     func remove(&mut self, item: T);
     func min(&self) -> T;
     func max(&self) -> T;
@@ -36,57 +36,13 @@ An ordered map/set is a superset of the [Map and Set](/notes/algorithm-technique
 - Finding the minimum or maximum key
 - Range queries: all keys/entries between a lower and upper bound
 
-## AVL Tree
-
-An AVL tree is a self-balancing binary search tree that enforces a strict invariant: for every node, the heights of its left and right subtrees differ by at most \\(1\\) (its **balance factor**). This tight balance keeps the tree close to perfectly balanced, guaranteeing \\(O(\log n)\\) height at all times, at the cost of a **rotation** (a restructuring that shifts nodes around a pivot to restore the height invariant) after nearly every insertion or deletion.
-
-### Lookup
-
-Standard binary search tree traversal: at each node, go left if the target is smaller, right if it's larger, until found or a null child is reached.
-
-### Insertion
-
-Insert like a normal binary search tree (walk down to the correct empty spot), then walk back up from the new node to the root, updating each ancestor's height and checking its balance factor along the way. The moment a node's balance factor reaches \\(\pm 2\\), perform the appropriate rotation there (a single rotation for the outside cases, a double rotation for the inside cases) to restore balance. At most one rebalancing point is ever needed for an insertion.
-
-### Deletion
-
-Delete like a normal binary search tree (if the node has two children, swap its value with its in-order predecessor or successor first, then remove the resulting leaf/single-child node), then walk back up updating heights and rotating wherever a balance factor hits \\(\pm 2\\). Unlike insertion, deletion can require rebalancing at multiple points along the path back to the root.
-
-### Complexity Analysis
-
-| Operation | Time Complexity |
-| --- | --- |
-| Lookup | worst-case \\(O(\log n)\\) |
-| Add | worst-case \\(O(\log n)\\) |
-| Remove | worst-case \\(O(\log n)\\) |
+## Binary Search Tree
 
 ## Red-Black Tree
 
-A red-black tree is a self-balancing binary search tree that trades the AVL tree's strict height balance for a looser set of invariants, tracked by coloring each node red or black: the root is black, a red node never has a red child, and every path from a node down to any of its descendant null leaves passes through the same number of black nodes. Together these guarantee the tree's height never exceeds about \\(2 \log(n + 1)\\), not as tight as an AVL tree, but cheaper to maintain, since fewer rotations are needed on average.
-
-### Lookup
-
-A red-black tree is still a binary search tree underneath, so lookup is identical to any BST: go left or right at each node based on comparison, until found or a null child is reached.
-
-### Insertion
-
-Insert like a normal binary search tree, coloring the new node red, then walk back up fixing any color violations. The fix-up is a case analysis based on the color of the node's **uncle** (its parent's sibling): if the uncle is red, recolor the parent, uncle, and grandparent and continue checking further up; if the uncle is black, perform a rotation (at most two) and recolor to resolve the violation locally.
-
-### Deletion
-
-Delete like a normal binary search tree. If a black node is removed, its absence creates a "double black" deficiency that's fixed by walking up and case-analyzing the sibling's color and its children's colors, resolving the deficiency through a combination of recoloring and rotation (at most three rotations).
-
-### Complexity Analysis
-
-| Operation | Time Complexity |
-| --- | --- |
-| Lookup | worst-case \\(O(\log n)\\) |
-| Add | worst-case \\(O(\log n)\\) |
-| Remove | worst-case \\(O(\log n)\\) |
-
 ## B-Tree
 
-A B-tree generalizes a binary search tree by letting each node hold multiple sorted keys (up to some maximum determined by the tree's **order**) and correspondingly more children, one more than it has keys. This wide branching factor keeps the tree very shallow, which matters most when each node access is expensive (e.g., a disk read in a database or filesystem index): a shallow tree means far fewer accesses to reach any key.
+A **B-tree** generalizes a binary search tree by letting each node hold *multiple* sorted keys (up to some maximum determined by the tree's **order**) and correspondingly more children, one more than it has keys. This wide branching factor keeps the tree very shallow, which matters most when each node access is expensive (e.g., a disk read in a database or filesystem index): a shallow tree means far fewer accesses to reach any key.
 
 ### Lookup
 
@@ -105,8 +61,8 @@ Locate the key. If it's in a leaf, remove it directly, then rebalance if the lea
 | Operation | Time Complexity |
 | --- | --- |
 | Lookup | worst-case \\(O(\log n)\\) |
-| Add | worst-case \\(O(\log n)\\) |
-| Remove | worst-case \\(O(\log n)\\) |
+| Insertion | worst-case \\(O(\log n)\\) |
+| Deletion | worst-case \\(O(\log n)\\) |
 
 > [!NOTE]
 > A B-tree's \\(O(\log n)\\) has a much larger logarithm base (the branching factor) than a binary tree's, so in practice its height, and therefore the number of node accesses per operation, is far smaller. This is precisely why B-trees are the standard choice for on-disk structures like database indexes, where minimizing the number of expensive disk reads matters more than the constant-factor cost of scanning within a node.
@@ -134,8 +90,6 @@ Walk down to the node for the target key as in a lookup, then unmark it as the e
 | Lookup | worst-case \\(O(m)\\), where \\(m\\) is the length of the key |
 | Add | worst-case \\(O(m)\\), where \\(m\\) is the length of the key |
 | Remove | worst-case \\(O(m)\\), where \\(m\\) is the length of the key |
-
-## API
 
 ## API
 
@@ -182,7 +136,7 @@ ordered_map.upper_bound(target);
 
 // Range query: iterate over all entries with start <= key < end
 for (auto it = ordered_map.lower_bound(start); it != ordered_map.lower_bound(end); ++it) {
-    // it->first is the key, it->second is the value
+    // key, value = it->first, it->second
 }
 
 // Iterate over all entries in sorted key order

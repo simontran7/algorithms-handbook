@@ -4,13 +4,15 @@
 
 - [Complexity Analysis](./algorithm-techniques/complexity-analysis.md)
 
+<!-- - [List](./algorithm-techniques/list.md) -->
 - [Stack](./algorithm-techniques/stack.md)
 - [Queue](./algorithm-techniques/queue.md)
+<!-- - [Deque](./algorithm-techniques/deque.md) -->
 - [Priority Queue](./algorithm-techniques/priority-queue.md)
 - [Ordered Map and Ordered Set](./algorithm-techniques/ordered-map-and-ordered-set.md)
 - [Map and Set](./algorithm-techniques/map-and-set.md)
 - [Disjoint Set](./algorithm-techniques/disjoint-set.md)
-<!-- Missing List, Deque, and Graph -->
+<!-- - [Graph](./algorithm-techniques/graph.md) -->
 
 - [Sorting](./algorithm-techniques/sorting.md)
 - [Searching](./algorithm-techniques/searching.md)
