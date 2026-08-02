@@ -41,7 +41,7 @@
 - [Monotonic Deque](./algorithm-techniques/monotonic-deque.md)
 - [Modular Arithmetic](./algorithm-techniques/modular-arithmetic.md)
 
-# Computer Organization
+# Systems Programming
 
 - [Data Representation](./computer-organization/data-representation.md)
 - [Microarchitecture](./computer-organization/microarchitecture.md)
