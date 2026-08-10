@@ -1,0 +1,16 @@
+# TO DO
+
+- [ ] [recursion](https://leetcode.com/explore/learn/card/recursion-ii/)
+- [ ] [binary tree](https://leetcode.com/explore/learn/card/data-structure-tree/)
+- [ ] [binary search tree](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/)
+- [ ] [n-ary tree](https://leetcode.com/explore/learn/card/n-ary-tree/)
+- [ ] [sorting](https://leetcode.com/explore/learn/card/sorting/)
+- [ ] quickselect
+- [ ] [Bellman-Ford Algorithm](https://leetcode.com/explore/learn/card/graph/622/single-source-shortest-path-algorithm/)
+- [ ] Floyd-Warshall Algorithm 
+- [ ] Segment Tree
+- [ ] Fenwick Tree (Binary Index Tree)          
+- [ ] Suffix Tree
+- [ ] String Matching Algorithms 
+    - [ ] Rabin Karp
+    - [ ] KMP

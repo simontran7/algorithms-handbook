@@ -17,13 +17,13 @@ These two metrics are influenced by two key factors:
 - The distance from the CPU plays a crucial role, as devices closer to the CPU's processing units can deliver data more quickly.
 - The underlying technology of the storage medium heavily influences performance. Registers and caches rely on extremely simple, compact circuits made of only a few logic gates, allowing signals to propagate almost instantly, while mechanical hard drives suffer from delays of 5-15 milliseconds due to the physical need to rotate and align read/write heads.
 
-**Takeaway**: The faster the device, the smaller its storage capacity, and vice versa.
-
 ### Primary Storage
 
 Primary storage devices, notably CPU registers, CPU caches, and main memory, consist of **random access memory (RAM)**, meaning the time required to access data remains constant regardless of the data's location within the device.
 
-Primary storage devices follows two main cell memory designs: **Static RAM (SRAM)**, which stores data in small electrical circuits and represents the fastest type of memory used to build registers and caches, and **Dynamic RAM (DRAM)**, which stores data using capacitors that hold electrical charges and must frequently refresh these charges to maintain stored values, making it ideal for implementing main memory.
+Primary storage devices follows two main cell memory designs: 
+- **Static RAM (SRAM)**: stores data in small electrical circuits and represents the fastest type of memory used to build registers and caches
+- **Dynamic RAM (DRAM)**: stores data using capacitors that hold electrical charges and must frequently refresh these charges to maintain stored values, making it ideal for implementing main memory.
 
 ### Secondary Storage
 
