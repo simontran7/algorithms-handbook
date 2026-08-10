@@ -1,7 +1,6 @@
 # Data Representation
 
-Computers are built around the idea of two states: "on" and "off". Transistors are the hardware building blocks of computers, as they can be set up to either be in an 
-"off" or "on" state. Just as transistors have two states, bits encode the two on/off states: 1 represents the "on" state, and 0 represents the "off" state!
+Computers are built around the idea of two states: "on" and "off". **Transistors** encode these two states on the hardware level, while bits encode the on/off states on the software level: 1 represents the "on" state, and 0 represents the "off" state!
 
 ## Number Systems
 
