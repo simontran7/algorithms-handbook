@@ -2,7 +2,7 @@
 
 ## Interface
 
-```rust
+```
 trait List<T> {
     fn new() -> Self;
     fn add_front(&mut self, item: T);
