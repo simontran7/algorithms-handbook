@@ -1,6 +1,6 @@
 # notes
 
-programming notes
+cs notes
 
 ## Installation
 
