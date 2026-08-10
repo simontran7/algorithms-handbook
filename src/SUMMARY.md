@@ -43,11 +43,11 @@
 
 # Systems
 
-- [Data Representation](./computer-organization/data-representation.md)
-- [Microarchitecture](./computer-organization/microarchitecture.md)
-- [Physical Memory](./computer-organization/physical-memory.md)
-- [Multiprocessor Systems](./computer-organization/multiprocessor-systems.md)
-- [Assembly](./computer-organization/assembly.md)
+- [Data Representation](./systems/data-representation.md)
+- [Microarchitecture](./systems/microarchitecture.md)
+- [Physical Memory](./systems/physical-memory.md)
+- [Multiprocessor Systems](./systems/multiprocessor-systems.md)
+- [Assembly](./systems/assembly.md)
 
 # Tools
 
