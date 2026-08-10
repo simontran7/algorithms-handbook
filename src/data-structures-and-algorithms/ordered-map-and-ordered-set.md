@@ -38,7 +38,11 @@ An ordered map/set is a superset of the [Map and Set](/notes/algorithm-technique
 
 ## Binary Search Tree
 
+...
+
 ## Red-Black Tree
+
+...
 
 ## B-Tree
 
@@ -69,7 +73,7 @@ Locate the key. If it's in a leaf, remove it directly, then rebalance if the lea
 
 ## Trie (Prefix Tree)
 
-A trie (prefix tree) stores string keys not as a whole, but character by character down a tree: each node holds a map from character to child node, and a path from the root spells out a prefix. A node is marked as the end of a complete key so lookups can distinguish a stored word from a prefix that just happens to lead through it. This structure is especially suited to string matching problems: autocomplete, spell checking, and prefix search all reduce to walking the trie a few characters at a time instead of scanning every stored string.
+A **trie (prefix tree)** stores string keys not as a whole, but character by character down a tree: each node holds a map from character to child node, and a path from the root spells out a prefix. A node is marked as the end of a complete key so lookups can distinguish a stored word from a prefix that just happens to lead through it. This structure is especially suited to string matching problems: autocomplete, spell checking, and prefix search all reduce to walking the trie a few characters at a time instead of scanning every stored string.
 
 ### Lookup
 

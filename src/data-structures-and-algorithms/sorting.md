@@ -6,8 +6,8 @@
 
 #### Complexity Analysis
 
-- Time Complexity: \\(O(N^2)\\)
-- Space Complexity: \\(O(1)\\)
+- Time Complexity: worst-case \\(O(N^2)\\)
+- Space Complexity: worst-case \\(O(1)\\)
 
 #### Code
 

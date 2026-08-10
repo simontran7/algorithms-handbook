@@ -4,10 +4,6 @@
 
 Given a connected, undirected, weighted graph, find a subset of edges that connects all vertices with no cycles and minimum total edge weight.
 
-## Use Case
-
-Determine the minimum/maximum cost to connect all vertices given weighted edges and no required path.
-
 ## Kruskal's Algorithm
 
 ### Template

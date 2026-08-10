@@ -1,7 +1,5 @@
 # Data Representation
 
-Computers are built around the idea of two states: "on" and "off". **Transistors** encode these two states on the hardware level, while bits encode the on/off states on the software level: 1 represents the "on" state, and 0 represents the "off" state!
-
 ## Number Systems
 
 ### Decimal System

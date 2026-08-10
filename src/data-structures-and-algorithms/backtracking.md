@@ -32,6 +32,9 @@ int backtrack(std::vector<int>& path /*, other state variables */) {
 }
 ```
 
+> [!NOTE]
+> Backtracking can be visualized as a tree, where each node represents the current state of the path during a recursive function call. The `backtrack()` calls explore different branches of this tree, building potential solutions along the way. The leaves of the tree correspond to base cases, often representing complete solutions, though not necessarily in every problem.
+
 ## Complexity Analysis
 
 Let \\(S\\) be number of possible states explored and \\(C\\) the cost of processing a single state. Then:
@@ -45,7 +48,4 @@ Let \\(S\\) be number of possible states explored and \\(C\\) the cost of proces
 > - Generic tree with branching factor \\(b\\) and depth \\(d\\): \\(b^d\\)
 
 > [!NOTE]
-> Backtracking can be visualized as a tree, where each node represents the current state of the path during a recursive function call. The `backtrack()` calls explore different branches of this tree, building potential solutions along the way. The leaves of the tree correspond to base cases, often representing complete solutions, though not necessarily in every problem.
-
-> [!NOTE]
-> Pass `path` by **reference** (`std::vector<int>&`), never by value, as copying it at every call would add an \\(O(n)\\) cost per node.
+> Pass `path` by **reference** (`std::vector<int>&`) because copying it at every call would add an \\(O(n)\\) cost per node.

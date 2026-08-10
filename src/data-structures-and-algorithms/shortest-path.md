@@ -54,6 +54,3 @@ std::vector<long long> dijkstras(const std::vector<std::vector<int>>& edges, int
 Let \\(V\\) be the number of vertices and \\(E\\) be the number of edges. Then:
 - Time Complexity: worst-case \\(O((V + E) \log V)\\)
 - Space Complexity: worst-case \\(O(V + E)\\)
-
-> [!NOTE]
-> With lazy deletion, the heap can hold up to \\(E\\) entries (one per edge relaxation), so each push/pop costs \\(O(\log E)\\). but since \\(E \le V^2\\), we have \\(\log E \le 2 \log V\\), so this simplifies to \\(O(\log V)\\). The space bound covers the adjacency list \\(O(V + E)\\), the distances array \\(O(V)\\), and the heap \\(O(E)\\).

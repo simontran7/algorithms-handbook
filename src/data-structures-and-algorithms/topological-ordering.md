@@ -4,11 +4,9 @@
 
 Given a directed acyclic graph, produce a linear ordering of its vertices such that for every edge \\((u, v)\\), \\(u\\) appears before \\(v\\).
 
-## Use Case
+## Kahn's Algorithm
 
-Problems involving prerequisites.
-
-## Template
+### Template
 
 ```cpp
 std::vector<int> kahns_algorithm(int n, const std::vector<std::vector<int>>& edges) {
@@ -46,7 +44,7 @@ std::vector<int> kahns_algorithm(int n, const std::vector<std::vector<int>>& edg
 }
 ```
 
-## Complexity Analysis
+### Complexity Analysis
 
 Let \\(V\\) be the number of vertices and \\(E\\) be the number of edges. Then:
 - Time Complexity: worst-case \\(O(V + E)\\)

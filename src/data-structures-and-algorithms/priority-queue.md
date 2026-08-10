@@ -112,7 +112,7 @@ Swap the root with the last element in the array and shrink the array by one, th
 | Insertion    | worst-case \\(O(\log n)\\) |
 | Deletion | worst-case \\(O(\log n)\\) |
 
-## API
+## C++ API
 
 ### Min Priority Queue
 

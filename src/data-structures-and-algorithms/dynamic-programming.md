@@ -8,7 +8,7 @@ Problems suitable for dynamic programming typically involve making decisions whe
 - Combinatorial problems
 - Feasability problems
 
-## Steps
+## Template
 
 ### Step 1: Define a function `dp()`
 

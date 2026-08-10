@@ -31,9 +31,3 @@ int prefix_state(std::vector<int>& array, int target_state) {
     return result; // for shortest subarray, do this instead `return result != std::numeric_limits<int>::max() ? result : 0`
 }
 ```
-
-## Complexity Analysis
-
-Let \\(n\\) be the length of the array. Then:
-- Time Complexity: worst-case \\(O(n)\\)
-- Space Complexity: worst-case \\(O(n)\\)

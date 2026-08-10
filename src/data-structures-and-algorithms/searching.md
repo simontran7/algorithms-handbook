@@ -198,7 +198,7 @@ int binary_search_minimum(const std::vector<int>& array) {
 int binary_search_maximum(const std::vector<int>& array) {
     auto is_valid = [&](int x) -> bool {
         // Some O(n) algorithm (usually also a greedy algorithm)
-        return /* boolean */;
+        return
     };
 
     int low = /* minimum possible answer */;

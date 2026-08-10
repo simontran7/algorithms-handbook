@@ -27,12 +27,6 @@ ListNode* dynamic_fast_and_slow_pointers(ListNode* head) {
 }
 ```
 
-### Complexity Analysis
-
-Let \\(n\\) be the number of nodes in the linked list. Then:
-- Time Complexity: worst-case \\(O(n)\\)
-- Space Complexity: worst-case \\(O(1)\\)
-
 ## Fixed
 
 ### Use Case
@@ -62,12 +56,6 @@ ListNode* fixed_gap_fast_and_slow_pointers(ListNode* head, int k) {
     // ... involving `slow` as the `k`th last node
 }
 ```
-
-### Complexity Analysis
-
-Let \\(n\\) be the number of nodes in the linked list. Then:
-- Time Complexity: worst-case \\(O(n)\\)
-- Space Complexity: worst-case \\(O(1)\\)
 
 > [!NOTE]
 > In order to reduce edge cases, and when your algorithm might modify the head, create a **sentinel head node**. This is because modifications at the head typically require a predecessor, yet the head has none, so the sentinel acts as that predecessor, reducing edge-case checks.

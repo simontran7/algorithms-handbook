@@ -27,9 +27,3 @@ std::vector<int> monotonic_decreasing_stack(const std::vector<int>& array) {
     return result;
 }
 ```
-
-### Complexity Analysis
-
-Let \\(n\\) be the length of the array. Then:
-- Time Complexity: worst-case \\(O(n)\\)
-- Space Complexity: worst-case \\(O(n)\\)

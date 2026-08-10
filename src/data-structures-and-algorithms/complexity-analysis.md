@@ -68,7 +68,7 @@ $$
 The following primitive operations are worst-case \\(O(1)\\):
 - Assigning a value to a variable
 - Accessing an element by index or field
-- Performing an arithmetic or comparison operation
+- Performing an arithmetic, comparison, or bitwise operation
 - Calling or returning from a function
 
 ### Iterative Loops Algorithms
@@ -77,13 +77,6 @@ The following primitive operations are worst-case \\(O(1)\\):
 2. For every possible value of the loop variant, determine the cost of one iteration/level as a function of that variant.
 3. Sum those costs and express the result as a summation matching the LHS of one of the following formulas, applying properties as needed to massage it into the right form
 4. Substitute the RHS of the matching formula to get a closed form, then apply Bachmann-Landau rules to simplify to asymptotic complexity
-
-> [!NOTE]
-> Use **amortized analysis** when an operation is sometimes cheap and sometimes expensive. To check, look for a resource that each expensive iteration uses up (e.g., a pointer moving forward, an element popped off a stack) and verify both criteria:
-> 1. Capped: over the entire run, there is a hard limit \\(B\\) on how much can ever be spent.
-> 2. Stays spent: the resource never gets refilled, or each step refills at most a constant amount (e.g., one push per loop iteration).
->
-> If both hold, the expensive code runs at most \\(B\\) times total, no matter how those runs are spread out across iterations. So,  count its cost once, globally, instead of multiplying it by the outer loop.
 
 > [!NOTE]
 > For step 2, for fixed-limit formulas, if the upper limit does not match the standard formula (e.g. \\(\sum_{i=0}^{n-1}\\) instead of \\(\sum_{i=1}^{n}\\)), substitute the upper limit into the formula in place of \\(n\\). However, if the lower limit doesn't match the fixed-limit formula, there are two approaches. If the lower limit is larger than that of the fixed formula, then your sum is missing terms compared to the formula's sum, so you compute the full sum and subtract the prefix you don't want (e.g., \\(\sum_{i=3}^{n} i = \sum_{i=1}^{n} i - \sum_{i=1}^{2} i = \frac{n(n+1)}{2} - 3\\)). If the lower limit is smaller than that of the fixed formula, then your sum has extra terms compared to the formula's sum, so you compute the formula's sum and add the extras manually (e.g., \\(\sum_{i=0}^{n} i = 0 + \sum_{i=1}^{n} i = \frac{n(n+1)}{2}\\)).
@@ -154,15 +147,7 @@ $$
 \sum_{i = 1}^{n} \log_2 i = O\left(\sum_{i = 1}^{n} \log_2 n\right) = O(n\log_2 n)
 $$
 
-### Recursive Algorithms
-
-#### Master Theorem Method
-
-$$
-T(n) = aT(\frac{n}{b}) + f(n)
-$$
-
-#### Recursion Tree Method
+### Recursive Algorithms (Recursion Tree Method)
 
 1. Draw out the recursion tree
 
@@ -183,13 +168,14 @@ $$
 
 ## Amortized Time Complexity (Aggregate Method)
 
-1. Identify the quantity whose movement drives the inner loop's cost (e.g., a pointer, a counter, a stack's size).
-2. Verify the quantity is **monotonic** (only moves one direction) and **globally bounded** (cannot exceed some value \\(B\\) over the entire run).
-3. Conclude the inner loop body executes at most \\(B\\) times *in total across all outer iterations*, so total cost is \\(O(\text{outer loop cost}) + O(B \cdot \text{inner body cost})\\).
+1. Identify the resource whose movement drives the inner loop's cost (e.g., a pointer, a counter, a stack's size).
+2. Verify the resource is **monotonic** (i.e., resource never gets refilled, or each step refills at most a constant amount) and **globally bounded** (i.e., cannot exceed some value \\(B\\) over the entire run).
+3. Conclude that the inner loop body executes at most \\(B\\) times *in total across all outer iterations*.
 
 ## Worst-case Space Complexity
 
 - Variable: \\(O(1)\\)
+- Integers: \\(O(1)\\)
 - Array based collection or pointer based collection: \\(O(n)\\), where \\(n\\) is the number of elements
 - Collection of collection: \\(O(\text{outer collection size} \times \text{inner collection size})\\)
 - Adjacency List: \\(O(V + E)\\), where \\(V\\) is the number of vertices, and \\(E\\) is the number of edges

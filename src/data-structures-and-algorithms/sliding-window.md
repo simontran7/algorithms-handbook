@@ -56,12 +56,6 @@ int variable_sliding_window_min(std::vector<int>& array) {
 }
 ```
 
-### Complexity Analysis
-
-Let \\(n\\) be the length of the array. Then:
-- Time Complexity: worst-case \\(O(n)\\)
-- Space Complexity: worst-case \\(O(1)\\)
-
 ## Fixed 
 
 ### Use Case
@@ -92,12 +86,6 @@ You are looking for a subarray/substring of some length `k` that satisfies a cer
     return result;
 }
 ```
-
-### Complexity Analysis
-
-Let \\(n\\) be the length of the array and \\(k\\) the window size. Then:
-- Time Complexity: worst-case \\(O(n)\\)
-- Space Complexity: worst-case \\(O(1)\\), excluding the \\(O(k)\\) needed to seed the first window if `current` tracks per-element state
 
 > [!NOTE]
 > The constraint must be preserved as the sliding window shrinks. If shrinking the window can break the constraint, consider using the _prefix state_ technique instead.

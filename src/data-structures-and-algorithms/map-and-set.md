@@ -24,13 +24,13 @@ trait Set<T> {
 
 ### Use Case
 
-### Map
+#### Map
 
 - Track elements seen so far for uniqueness (with any extra info stored as the value)
 - Frequency counting
 - Basic mapping
 
-### Set
+#### Set
 
 - Track elements seen so far for uniqueness
 - Store a chunk (or all) of the input for fast lookups

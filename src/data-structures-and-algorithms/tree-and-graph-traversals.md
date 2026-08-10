@@ -1,6 +1,6 @@
 # Tree and Graph Traversals
 
-## General Complexity Analysis
+## Complexity Analysis
 
 ### Tree Traversals
 

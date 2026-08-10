@@ -64,15 +64,5 @@ long long mod_sum(const std::vector<int>& nums, long long mod) {
 }
 ```
 
-## Complexity Analysis
-
-All four functions use \\(O(1)\\) space (a fixed number of accumulator variables). Time complexity varies by function:
-
-| Function | Time Complexity |
-| --- | --- |
-| `mod_subdigits` | worst-case \\(O(n)\\), where \\(n\\) is the length of `word` |
-| `mod_power` | worst-case \\(O(\log(\text{exp}))\\) |
-| `mod_product` / `mod_sum` | worst-case \\(O(n)\\), where \\(n\\) is the length of `nums` |
-
 > [!NOTE]
-> C++ integers **overflow silently**. With \\(m = 10^9 + 7\\), the product of two reduced values can reach \\(\approx 10^{18}\\), which overflows `int` but fits in `long long`, so always use `long long` for any intermediate that multiplies two mod-reduced values. Also, C++'s `%` on negative operands yields a negative result (truncation), so after subtractions normalize with: `((x % m) + m) % m`.
+> With \\(m = 10^9 + 7\\), the product of two reduced values can reach \\(\approx 10^{18}\\), which silently (in C++) overflows `int` but fits in `long long`, so always use `long long` for any intermediate that multiplies two mod-reduced values. Also, C++'s `%` on negative operands yields a negative result (truncation), so after subtractions normalize with: `((x % m) + m) % m`.

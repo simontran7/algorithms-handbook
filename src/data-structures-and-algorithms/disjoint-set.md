@@ -33,11 +33,8 @@ Find the representative of each of the two elements. If they're already the same
 | Operation | Time Complexity |
 | --- | --- |
 | Initialize | worst-case \\(O(n)\\) |
-| Find    | worst-case \\(O(\log n)\\), but amortized \\(O(\alpha(n))\\) |
-| Union    | worst-case \\(O(\log n)\\), but amortized \\(O(\alpha(n))\\) |
-
-> [!NOTE]
-> \\(\alpha(n)\\) is the inverse Ackermann function, which grows so slowly that it's less than \\(5\\) for any \\(n\\) that could ever fit in memory. So in practice, both operations are effectively \\(O(1)\\).
+| Find | worst-case \\(O(\log n)\\), but amortized \\(O(\alpha(n))\\) |
+| Union | worst-case \\(O(\log n)\\), but amortized \\(O(\alpha(n))\\) |
 
 ## Template
 

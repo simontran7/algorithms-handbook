@@ -30,11 +30,3 @@ std::vector<std::vector<int>> merge(std::vector<std::vector<int>>& intervals) {
 }
 ```
 
-## Complexity Analysis
-
-Let \\(n\\) be the number of intervals. Then:
-- Time Complexity: worst-case \\(O(n \log n)\\)
-- Space Complexity: worst-case \\(O(n)\\)
-
-> [!NOTE]
-> The space is for `result` (or the sort itself, if it isn't in-place).
