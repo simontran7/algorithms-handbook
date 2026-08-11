@@ -20,19 +20,20 @@ $$
 
 - Each digit position (called a **bit**) can hold one of two unique values: 0 or 1. Values greater than 1 require carrying to an additional bit position to the left.
 - Each bit's position determines its contribution through powers of 2: \\(2^{N-1}, \dots, 2^1, 2^0\\).
+- We call the bit with the highest positional value the **most significant bit**, and the bit with the lowest positional value the **leas significant bit**.
 
-#### Binary Groupings
+#### Bit groupings
 
 - **Byte**: 8 bits (the smallest addressable unit of memory)
-- **Nibble**: 4 bits (half a byte)
-- **Word**: The natural data width of a CPU (typically 32 or 64 bits)
-- **Most Significant Bit (MSB)**: The leftmost bit
-- **Least Significant Bit (LSB)**: The rightmost bit
+- **Nibble**: 4 bits 
+- **Word**: determined by the CPU's register (the natural unit of data that a processor operates on)
+
+> [!NOTE]
+> By the multiplication principle, for a base $b$, and \\(n\\) digits, you can represent \\(b^n\\) unique values.
 
 ### Hexadecimal System
 
 **Hexadecimal** uses base 16, where:
-
 - Each digit position can hold one of 16 unique values, such that:
   - 0 to 9 are represented as is.
   - 10 to 15 are represented as `A` to `F`.
@@ -43,7 +44,16 @@ $$
 
 ## Converting Between Number Systems
 
-### Decimal to Any Base (Division method)
+### Decimal to Any Base $b$
+
+#### Method 1: build the number $n$ from the left (Find the most significant bit first)
+
+1. Find largest exponent such that $b^{exponent} \le n$
+2. Write at position $B^{exponent}$ the quotient $q = n \div b^{exponent}$
+3. Update $n = n - (q \cdot B^{exponent})$
+4. Repeat steps 1 to 3 until the $n \le 0$
+
+#### Method 2: Build the number $N$ from the right (Find the least significant bit first)
 
 1. Repeatedly divide the decimal number by the target base
 2. Record the remainder at each step
@@ -57,6 +67,9 @@ For a number with digits \\(d_{N - 1}, d_{N - 2}, \dots, d_1, d_0\\) in base \\(
 $$
 C = (d_{N-1} \cdot B^{N-1}) + (d_{N-2} \cdot B^{N-2}) + \dots + (d_1 \cdot B^1) + (d_0 \cdot B^0)
 $$
+
+> [!NOTE]
+> If we're converting bits encoded under two's complement, then if the most significant bit is 1, then the most significant bit $\times$ the position becomes negative. Then, proceed as usual.
 
 ### Binary to Hexadecimal
 
@@ -125,7 +138,136 @@ The **American Standard Code for Information Interchange (ASCII)** is a characte
 
 #### ASCII Table
 
-[Searchable ASCII Table](https://www.rapidtables.com/code/text/ascii-table.html)
+| Dec | Char |
+|-----|------|
+| 0   | `NUL`  |
+| 1   | `SOH`  |
+| 2   | `STX`  |
+| 3   | `ETX`  |
+| 4   | `EOT`  |
+| 5   | `ENQ`  |
+| 6   | `ACK`  |
+| 7   | `BEL`  |
+| 8   | `BS`   |
+| 9   | `HT`   |
+| 10  | `LF`   |
+| 11  | `VT`   |
+| 12  | `FF`   |
+| 13  | `CR`   |
+| 14  | `SO`   |
+| 15  | `SI`   |
+| 16  | `DLE`  |
+| 17  | `DC1`  |
+| 18  | `DC2`  |
+| 19  | `DC3`  |
+| 20  | `DC4`  |
+| 21  | `NAK`  |
+| 22  | `SYN`  |
+| 23  | `ETB`  |
+| 24  | `CAN`  |
+| 25  | `EM`   |
+| 26  | `SUB`  |
+| 27  | `ESC`  |
+| 28  | `FS`   |
+| 29  | `GS`   |
+| 30  | `RS`   |
+| 31  | `US`   |
+| 32  | `` ` `` |
+| 33  | `!`    |
+| 34  | `"`    |
+| 35  | `#`    |
+| 36  | `$`    |
+| 37  | `%`    |
+| 38  | `&`    |
+| 39  | `'`    |
+| 40  | `(`    |
+| 41  | `)`    |
+| 42  | `*`    |
+| 43  | `+`    |
+| 44  | `,`    |
+| 45  | `-`    |
+| 46  | `.`    |
+| 47  | `/`    |
+| 48  | `0`    |
+| 49  | `1`    |
+| 50  | `2`    |
+| 51  | `3`    |
+| 52  | `4`    |
+| 53  | `5`    |
+| 54  | `6`    |
+| 55  | `7`    |
+| 56  | `8`    |
+| 57  | `9`    |
+| 58  | `:`    |
+| 59  | `;`    |
+| 60  | `<`    |
+| 61  | `=`    |
+| 62  | `>`    |
+| 63  | `?`    |
+| 64  | `@`    |
+| 65  | `A`    |
+| 66  | `B`    |
+| 67  | `C`    |
+| 68  | `D`    |
+| 69  | `E`    |
+| 70  | `F`    |
+| 71  | `G`    |
+| 72  | `H`    |
+| 73  | `I`    |
+| 74  | `J`    |
+| 75  | `K`    |
+| 76  | `L`    |
+| 77  | `M`    |
+| 78  | `N`    |
+| 79  | `O`    |
+| 80  | `P`    |
+| 81  | `Q`    |
+| 82  | `R`    |
+| 83  | `S`    |
+| 84  | `T`    |
+| 85  | `U`    |
+| 86  | `V`    |
+| 87  | `W`    |
+| 88  | `X`    |
+| 89  | `Y`    |
+| 90  | `Z`    |
+| 91  | `[`    |
+| 92  | `\`    |
+| 93  | `]`    |
+| 94  | `` ` `` |
+| 95  | `_`    |
+| 96  | `` ` `` |
+| 97  | `a`    |
+| 98  | `b`    |
+| 99  | `c`    |
+| 100 | `d`    |
+| 101 | `e`    |
+| 102 | `f`    |
+| 103 | `g`    |
+| 104 | `h`    |
+| 105 | `i`    |
+| 106 | `j`    |
+| 107 | `k`    |
+| 108 | `l`    |
+| 109 | `m`    |
+| 110 | `n`    |
+| 111 | `o`    |
+| 112 | `p`    |
+| 113 | `q`    |
+| 114 | `r`    |
+| 115 | `s`    |
+| 116 | `t`    |
+| 117 | `u`    |
+| 118 | `v`    |
+| 119 | `w`    |
+| 120 | `x`    |
+| 121 | `y`    |
+| 122 | `z`    |
+| 123 | `{`    |
+| 124 | `` ` `` |
+| 125 | `}`    |
+| 126 | `~`    |
+| 127 | `DEL`  |
 
 ### Unicode
 
@@ -163,39 +305,38 @@ Unicode defines three primary character encoding standards for converting code p
 
 A **grapheme cluster** represents what users typically think of as a "character", that is, the smallest unit of written language that has semantic meaning.
 
-#### Example
-
-The grapheme clusters in the Hindi word `"क्षत्रिय"` are `["क्ष", "त्रि", "य"]`, where each cluster can comprise multiple Unicode code points:
+For instance, the grapheme clusters in the Hindi word `"क्षत्रिय"` are `["क्ष", "त्रि", "य"]`, where each cluster can comprise multiple Unicode code points:
 - The first grapheme `"य"` corresponds to a Unicode single code point, yet
 - The third grapheme `"क्ष"` is a conjunct consonant formed from three code points: `"क"` (`U+0915`), `"्"` (`U+094D`), and `"ष"` (`U+0937`), which combine to create one visual unit.
 - The second grapheme `"त्रि"` is even more complex, consisting of four code points: `"त"` (`U+0924`), `"्"` (`U+094D`), `"र"` (`U+0930`), and the vowel sign `"ि"` (`U+093F`), where the vowel mark appears visually before the consonant cluster despite following it in the Unicode sequence.
 
 > [!NOTE]
-> The example above highlights why simply counting Unicode code points does not _always_ correspond to what users perceive as individual characters!
+> The example above highlights why simply counting Unicode code points does not *always* correspond to what users perceive as individual characters!
 
+## Integers
 
-## Integer Representation
+### Unsigned Integers
 
-### Unsigned Integer Representation
+An \\(N\\) **unsigned integer** is an integer that can take up values in the range of \\([0, 2^N - 1]\\).
 
-**Unsigned integers** use all available bits to represent positive values (including zero). No bit is reserved for a sign, allowing for a larger range of positive values compared to signed integers of the same bit width.
+They use all available bits to represent positive values (including zero)
 
-An \\(N\\)-bit unsigned integer can take up values in the range of \\([0, 2^N - 1]\\).
+### Signed Integers
 
-### Signed Integer Representation
+An \\(N\\)-bit **signed integer** is an integer that can take up values from \\(-2^{N-1}\\) to \\(2^{N-1} - 1\\).
 
-**Signed integers** reserve one bit (typically the MSB) to indicate sign, reducing the range of representable positive values but enabling representation of negative numbers.
+They reserve one bit (typically the most significant bit) to indicate the sign. This unfortunately reduces the range of representable positive values but enabling representation of negative numbers.
 
-Signed integers are typically encoded using the **two's complement** encoding system. A number encoded under two's complement has its MSB exclusively as a sign bit:
-- \\(\text{MSB} = 0\\): positive number (or zero)
-- \\(\text{MSB} = 1\\): negative number
-
-An \\(N\\)-bit signed integer can take up values from \\(-2^{N-1}\\) to \\(2^{N-1} - 1\\).
+Signed integers are encoded using the **two's complement** encoding system (designed in 1945 by the famous John von Neumann in First Draft of a Report on the EDVAC machine). 
 
 - To encode a positive number using two's complement: we don't change anything. The binary representation of a signed positive integer is the exact same as the binary representation of an unsigned integer.
 - To encode a negative number using two's complement:
   1. Start with the binary representation of the positive number and toggle all the bits
   2. Add 1 to the result from step 1
+
+Under two's complement,the most significant bit is reserved to store the sign:
+- \\(\text{MSB} = 0\\): positive number (or zero)
+- \\(\text{MSB} = 1\\): negative number
 
 To understand why this works, think of these steps as a way of finding the additive inverse \\(-b\\) such that \\(b + (-b) = 1000\dots0\\). We target \\(1000\dots0\\) (\\(n + 1\\) bits wide) rather than \\(0000\dots0\\) because in a \\(n\\) fixed-width register, the leading \\(1\\) is discarded as overflow, making them equivalent. It also sidesteps the problem with one's complement, where \\(b + \tilde{b} = 1111\dots1\\) introduces a "negative zero" (\\(1111\dots1\\)) alongside the usual \\(0000\dots0\\).
 
@@ -203,6 +344,128 @@ Step 1 exploits the fact that toggling all the bits of \\(b\\) produces a number
 
 > [!NOTE]
 > Signed and unsigned integers differ only in interpretation. The same bit pattern can represent different values depending on the type (e.g., the bits `11111101` is \\(253\\) when interpreted as an unsigned integer, and \\(-3\\) as signed integer).
+
+<img src="./images/unsigned-and-signed-integer-representation.png" width="200">
+
+### Integer Overflow and Underflow
+
+**Integer overflow** occurs when an arithmetic operation produces a result too large to fit in the available bits. 
+
+For instance, the following shows integer overflow for a 32-bit unsigned integer.
+
+```c
+#include <stdint.h>
+#include <limits.h>
+#include <stdio.h>
+
+int main() {
+    uint32_t a = UINT32_MAX;
+    uint32_t b = 1;
+    uint32_t c = a + b;
+    
+    printf("a = %u\n", a);
+    printf("b = %u\n", b);
+    printf("c = %u\n", c);
+
+    return 0;
+}
+```
+
+**Integer underflow** occurs when an arithmetic operation produces a result too small to fit in the available bits. 
+
+For instance, the following shows integer underflow for a 32-bit unsigned integer:
+
+```c
+#include <stdint.h>
+#include <limits.h>
+#include <stdio.h>
+
+int main() {
+    uint32_t a = 0;
+    uint32_t b = 1;
+    uint32_t c = a - b;
+    
+    printf("a = %u\n", a);
+    printf("b = %u\n", b);
+    printf("c = %u\n", c);
+
+    return 0;
+}
+```
+
+For unsigned integers, when an *unsigned* integer overflows, the result typically wraps around to the smallest representable value for that bit width, and when an *unsigned* integer *underflows*, the result typically wraps around to the largest representable value for that bit width. When a *signed* integer overflows or underflows, it is considered undefined behavior.
+
+As such, in C/C++, check for integer overflow, use the constants defined in `limits.h`. 
+
+For example, to check unsigned or signed 32-bit integers:
+
+```c
+#include <limits.h>
+
+// check for unsigned integer underflow/overflow
+if (value < 0 || value > INT32_MAX) { <...> } 
+
+// check for signed integer underflow/overflow
+if (value < INT32_MIN || value > INT32_MAX) { <...> } 
+``` 
+
+### Integer Casts
+
+Casting from an integer to a thinner integer involves **truncation**: the most significant bit(s) are discarded until the most significant bit of the smaller integer! 
+
+This may or may not alter the casted value. 
+
+For example, here `after` is a new number:
+
+```rust
+  let before: u32 = 128000;
+  let after: u16 = before as u16;
+  println!("before: {before:b}"); // 0000 0000 0000 0001 1111 0100 0000 0000
+  println!("after: {after:b}"); //                     1111 0100 0000 0000
+```
+
+In this example, `after` is the same as `before` even after truncation!
+
+```rust
+let before: u32 = -3;
+let after: u16 = before as u16;
+println!("before: {before:b}"); // 1111 1111 1111 1111 1111 1111 1111 1101
+println!("after: {after:b}"); //                       1111 1111 1111 1101
+```
+
+On the other hand, casting from an integer to a *wider* integer causes no issues because we're simply adding unessential bits!
+  - For unsigned values: prepend the signed bit until it is as wide as the new larger data type
+
+  ```rust
+  let before: i16 = 4;           
+  let after: i32 = before as i32; 
+  println!("before: {before:b}"); //                    0000 0000 0000 0100b
+  println!("after: {after:b}"); //  0000 0000 0000 0000 0000 0000 0000 0100b
+  ```
+
+  - For signed values: repeat the sign of the value for new digits (a.k.a **sign extension**)
+
+  ```rust
+  let before: i16 = -4;          
+  let after: i32 = before as i32; 
+  println!("before: {before:b}"); //                    1111 1111 1111 1100b
+  println!("after: {after:b}");  // 1111 1111 1111 1111 1111 1111 1111 1100b
+  ```
+
+When casting integers of the *same* width but different signs (e.g., signed 32 bit integer to unsigned 32 bit integer), the underlying bits does *not* change! The variable that holds the casted integer only changes its type.
+
+Because of this, it's especially important to know that casting a signed integer to an unsigned integer does *not* turn it take the absolute value of its signed representation (explicitly use the `abs` function)!
+
+For example: casting a signed integer `x` with a value `-12345` to an unsigned integer means its new value is now `4294954951`.
+
+```rust
+let x: i32 = -12345;
+let y: u32 = x as u32;
+let z: u32 = 12345;
+println!("x: {x:b}"); // 11111111111111111100111111000111
+println!("y: {y:b}"); // 11111111111111111100111111000111 
+println!("z: {z:b}"); // z: 11000000111001
+```
 
 ## Floating-Point Representation
 
@@ -230,7 +493,7 @@ $$
   sign    biased exponent               fraction
 ```
 
-> [!note]
+> [!NOTE]
 > It may not be possible to store a given \\(x\\) exactly with such a scheme whenever the actual exponent is outside of the possible range, or if the fraction field can't fit in the allocated number of bits (i.e., say for single precision, bits 24 and bits 25, where bit 0 is the implicit integer, are ones)
 
 ### Fields
@@ -270,11 +533,13 @@ Types of \\(\text{NaN}\\):
 - Signalling \\(\text{NaN}\\): triggers an exception or error when encountered in operations
 
 **Quiet \\(\text{NaN}\\)**
+
 ```
 | sign = any | exponent = 11111111 | fraction = 1<no restriction> |
 ```
 
 **Signalling \\(\text{NaN}\\)**
+
 ```
 | sign = any | exponent = 11111111 | fraction = 0<no restriction> |
 ```
@@ -289,11 +554,12 @@ Types of \\(\text{NaN}\\):
 $$
 x = (-1)^\text{sign} \times (0.\text{fraction})_2 \times 2^\text{smallest possible actual exponent}
 $$
+
 ```
 | sign = any | exponent = 00000000 | fraction != 000...0 |
 ```
 
-> [!note]
+> [!WARNING]
 > \\(+\infty\\) and \\(-\infty\\), \\(+0\\) and \\(-0\\) are not interchangeable!
 
 ### Converting Decimal to IEEE 754
@@ -333,29 +599,30 @@ $$
 
 Final result: \\(01000001010001100000000000000000_2\\)
 
-## Integer Overflow and Integer Underflow
+## Byte Order
 
-\\(N\\)-bit signed and unsigned integers have a certain range of values they may represent:
-
-| Representation               | Range                             |
-| ---------------------------- | --------------------------------- |
-| Unsigned \\(N\\)-bit integer | \\([0, 2^n − 1]\\)                |
-| Signed \\(N\\)-bit integer   | \\([−2^{n - 1}, 2^{n - 1} − 1]\\) |
-
-**Integer overflow** occurs when an arithmetic operation produces a result larger than the maximum value representable with the given number of bits. **Integer underflow** occurs when an arithmetic operation produces a result smaller than the minimum value representable with the given number of bits.
-
-In Rust, integer overflow and underflow produces panics, while release builds produce the following behaviour:
-- Unsigned integer overflows or underflows: the result will just be modded by \\(2^n\\), that is, `(a op b) mod 2^n` (this also applies in general to any arithmetic on unsigned integers)
-- Signed integers: the result will just be modded by \\(2^n\\), but then, the value is interpreted according to two's complement representation.
-
-
-## Integer Byte Order
+Bytes are stored contiguously. As such, we may ask: "how do we organize those bytes in a back-to-back fashion"?
 
 **Byte order**, also known as **endianness** of a system defines how _multi \\(N\\)-byte_ chunks (\\(N \gt 1\\)) are assigned to memory addresses.
 - **Big endian Byte Order**: The most significant byte in the \\(N\\)-byte chunk is stored at the lowest memory address.
 - **Little endian Byte Order**: The least significant byte in the \\(N\\)-byte chunk is stored at the lowest memory address.
 
-A raw blob has no recoverable endianness on its own. Figuring it out requires an anchor: the scalar's size paired with a known value it should decode to.
+For example: for the bytes `0x 01 23 45 67`
+
+```
+  Big endian representation
+byte:     67    45    23    01
+address: 0x100 0x101 0x102 0x103
+```
+
+```
+          Little endian
+byte:     01    23    45    67
+address: 0x100 0x101 0x102 0x103
+```
+
+> [!NOTE]
+> A raw blob has no recoverable endianness on its own. 
 
 > [!NOTE]
 > On x86-64 systems (and most systems today), the byte ordering is _little endian_.

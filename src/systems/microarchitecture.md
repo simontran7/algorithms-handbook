@@ -26,8 +26,17 @@ Some of its notable components:
 - **Instruction register (IR)**: holds the current instruction being executed.
 - **Instruction decoder**: decodes the instruction in the instruction register, and generates the appropriate control signals.
 
-> [!NOTE]
-> The **clock** is a separate physical component (a crystal oscillator) feeding into the entire CPU, which generates a **clock signal**: a continuous stream of electrical pulses that coordinates all processor activity. Each pulse, known as a **clock cycle**, acts like a heartbeat, synchronizing when the ALU performs an operation, when registers capture or update values, and when data is transferred across buses. Without the clock signal, the datapath's components would have no reference for _when_ to act. The **clock speed** (or **clock rate**) is the frequency of these cycles, measured in hertz (typically gigahertz).
+The **clock** is a separate physical component feeding into the entire CPU, which generates a **clock signal**: a continuous stream of electrical pulses that coordinates all processor activity. 
+
+Each pulse, known as a **clock cycle**, acts like a heartbeat, synchronizing when the ALU performs an operation, when registers capture or update values, and when data is transferred across buses. 
+
+The clock signal is said to be **high** when the value is 1, and **low** when the value is 0. 
+
+As such, a **rising edge** is the moment when the clock goes from low to high, and a **falling edge** is when it goes from high to low. Think of a clock signal in a timing diagram, with real time on the x-axis and the clock value on the y-axis. 
+
+The **clock period** is the time between two adjacent rising edges, or between two falling edges. For one clock period, the clock is high for half the time and low for half the time. The clock period is measured in real time, i.e., in seconds. The **clock speed** is the frequency of these cycles, and thus, the reciprocal of the clock period, measured in hertz (typically gigahertz).
+
+<img src="./images/clock.png" width="250">
 
 ### Memory Unit
 
@@ -55,7 +64,9 @@ An important bus is the one which connects the CPU and the memory unit together.
 
 ## Instruction Set Architecture (ISA)
 
-A particular CPU implements a specific **instruction set architecture (ISA)**, which defines the set of instructions and their binary encoding, the set of CPU registers, the natural data width of a CPU, and the effects of executing instructions on the state of the processor. There are many different ISAs, notably MIPS, ARM, x86 (including x86-32 and x86-64). A **microarchitecture** defines the circuitry of an implementation of a specific ISA. Microarchitecture implementations of the same ISA can differ as long as they implement the ISA definition. For example, Intel and AMD produce different microprocessor implementations of x86-64.
+A particular CPU implements a specific **instruction set architecture (ISA)**, which defines the set of instructions and their binary encoding, the set of CPU registers, the natural data width of a CPU, and the effects of executing instructions on the state of the processor. It is essentially a machine code language! 
+
+A **microarchitecture** defines the *circuitry* implementation of a specific ISA. Microarchitecture implementations of the same ISA can differ as long as they implement the ISA definition. For example, Intel and AMD produce different microprocessor implementations of x86-64.
 
 ### Categories of ISAs
 
@@ -213,44 +224,4 @@ There are two data hazards: instruction 2 depends on the result of instruction 1
 
 ## Hardware Multithreading
 
-The Problem: A single CPU core often sits idle waiting for things like:
-- Memory to load data (very slow compared to CPU speed)
-- Cache misses
-- Branch mispredictions
-- Other pipeline stalls
-
-During these waits, the CPU is doing nothing, thereby wasting cycles.
-
-The Solution (Hardware Multithreading): In a single core, have 2 independent copies of all the architectural state to maintain and execute multiple independent instruction streams (i.e., the sequence of instructions being executed). We call these duplicated architectural states **hardware threads**, or **logical cores**. When one instruction stream stalls waiting for memory, the CPU instantly switches to executing the other instruction stream instead of sitting idle.
-
-Each hardware thread has:
-- a complete set of general-purpose registers (e.g., 2 sets of RAX, RBX, RCX, etc. on x86)
-- a program counter (each tracking a different position in code)
-- a set of other architectural state (stack pointers, status flags, etc.)
-
-And they share:
-- The execution units (ALU, FPU, etc.)
-- The caches (usually)
-- The pipeline stages
-
-### Types of hardware multithreading
-
-#### Interleaved Multithreading
-
-- Based on scalar processors
-- Shares a single pipeline and single ALU
-- Executes instructions from only _one_ hardware thread per cycle
-- Switches between threads cycle-by-cycle or on stalls
-- Cannot achieve IPC > 1
-- **Fine-grained interleaving** (such as barrel processors) switches between threads every cycle, issuing instructions from different threads in rapid succession.
-- **Coarse-grained interleaving** only switches threads when the currently running thread encounters a high-latency event (like a page fault). This approach is more common because it requires fewer context switches.
-
-#### Simultaneous Multithreading (SMT)
-
-- Based on superscalar processors
-- Shares multiple pipelines and multiple execution units
-- Can execute instructions from MULTIPLE hardware threads in the same cycle
-- Can achieve IPC > 1
-
-> [!NOTE]
-> The term SMT is sometimes used loosely to refer to any hardware multithreading, but technically it only applies to simultaneous execution architectures.
+**Hardware multithreading** is when a CPU can execute multiple threads using dedicated hardware resources. This improves performance by keeping the processor busy. If one thread stalls (e.g., waiting for memory), the CPU can switch to another thread instead of sitting idle. There are two primary types of hardware multithreading: temporal multithreading, and simulteaneous multithreading. **Temporal multithreading** allows one physical core to executes instructions from only one thread per cycle, switch between threads over time. In **fine-grained multithreading**, the core *always* switches to a different thread every cycle, regardless of whether the current thread is stalling, while in **coarse-grained multithreading**, the core only switches threads when the current thread stalls (e.g., on a cache miss). **Simultaneous multithreading** (a.k.a Intel's Hyperthreading) allows each physical core to execute instructions from multiple threads in the *same* cycle. It achives this by allowing each physical core to virtualize cores to the operating system, so that the OS can schedule processes on those virtual cores.

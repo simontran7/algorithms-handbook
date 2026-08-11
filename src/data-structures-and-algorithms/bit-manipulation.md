@@ -1,22 +1,10 @@
 # Bit Manipulation
 
-## OR Operator
-
-### Behaviour
-
-If *any* bit is `1`, then the result will be `1`. Otherwise, the result is `0`.
-
-### Syntax
-
-```cpp
-a | b
-```
-
 ## AND Operator
 
 ### Behaviour
 
-If *all* bits are `1`, then the result will be `1`. Otherwise, the result is `0`.
+The AND of 2 bits is 1 if both bits are 1, and 0 otherwise.
 
 ### Syntax
 
@@ -24,11 +12,60 @@ If *all* bits are `1`, then the result will be `1`. Otherwise, the result is `0`
 a & b
 ```
 
+### Truth Table
+
+| a | b | output |
+|---|---|--------|
+| 0 | 0 | 0      |
+| 0 | 1 | 0      |
+| 1 | 0 | 0      |
+| 1 | 1 | 1      |
+
+## OR Operator
+
+### Behaviour
+
+The OR of 2 bits is 1 if either (or both) bits is 1
+
+### Syntax
+
+```cpp
+a | b
+```
+
+### Truth table
+
+| a | b | output |
+|---|---|--------|
+| 0 | 0 | 0      |
+| 0 | 1 | 1      |
+| 1 | 0 | 1      |
+| 1 | 1 | 1      |
+
+## NOT Operator
+
+### Behaviour
+
+The NOT of a bit is 1 if the bit is 0, or 1 otherwise.
+
+### Syntax
+
+```cpp
+~ a
+```
+
+### Truth Table
+
+| a | output |
+|---|--------|
+| 0 | 1      |
+| 1 | 0      |
+
 ## XOR Operator
 
 ### Behaviour
 
-If the count of `1` is odd, then the result will be `1`. Otherwise, the result is `0`.
+The XOR of 2 bits is 1 if *exactly* one of the bits is 1, or 0 otherwise.
 
 ### Syntax
 
@@ -36,12 +73,26 @@ If the count of `1` is odd, then the result will be `1`. Otherwise, the result i
 a ^ b
 ```
 
+### Truth Table
+
+| a | b | output |
+|---|---|--------|
+| 0 | 0 | 0      |
+| 0 | 1 | 1      |
+| 1 | 0 | 1      |
+| 1 | 1 | 0      |
+
+> [!NOTE]
+> When these operators are applied to numbers (multiple bits), the operator is applied to the corresponding bits in each number!
+
 ## Left Shift Operator and Right Shift Operator
 
 ### Behaviour
 
-- Left Shift: Moves all bits in `n` over by `k` places to the left, and fills `0`s from the right. Corresponds to multiplying by `2`.
-- Right Shift: Moves all bits in `n` over by `k` places to the right, and fills `0`s from the left. Corresponds to floor division by `2`.
+- Left Shift: Moves all bits in `n` over by `k` places to the left, and fills `0`s from the right (**logical left shift**)
+- Right Shift: 
+    - Unsigned Integers: moves all bits in `n` over by `k` places to the right, and fills `0`s from the left. (**logical right shift**)
+    - Signed Integers: sign extends (**arithmetic right shift**)
 
 ### Syntax
 
@@ -54,14 +105,23 @@ n >> k
 ```
 
 > [!NOTE]
+> `x << n` can be thought as multiplying by $2^n$ while `x >> n` can be thought as dividing by $2^n$ 
+
+> [!WARNING]
+> For unsigned integers, `>>` is always logical, while for signed integers, `>>` is typically arithmetic (i.e., it involves )
+
+> [!WARNING]
+> For signed integers, `<<` can invoke undefined behavior if you shift a 1 bit into the sign bit position.
+
+> [!WARNING]
 > Bitwise operators have low precedence, and therefore happens later in evaluation order, so make sure to use parentheses to clearly define your intended grouping.
 
 ## Bit Mask
 
 ### Use Case
 
-- Isolate bit(s) in a bit field.
-- A memory efficient set data structure used backtracking or dynamic programming problems.
+- Isolate bit(s) in an integer.
+- A hand-rolled static set typically used in backtracking or dynamic programming algorithms.
 
 ### Steps
 
@@ -79,15 +139,29 @@ int mask = (1 << k) - 1;
 int mask = (1 << 5) | (1 << 3);
 ```
 
-3. Retrieve the bits via `n <operator> mask`.
+3. Retrieve the bits via `n & mask`.
+
+## Core
+
+...
+
+## Tricks
+
+### Find the most significant bit 
+
+Idea: the most significant bit of some integer `x` can be thought as `log2(x)`, and `log2(x)` can be thought as how many times do i need to divide `x` by 2 (accomplished via `>> 1`) to get to 0.
+
+```cpp
+unsigned int x = <...> // or `int x = abs(<...>)
+int bit_pos = 0;
+while (x != 0) {
+    bit_pos++;
+    x >>= 1;
+}
+```
+
+> [!WARNING]
+> In the algorithm above, when `x` is a signed integer, we *need* to modify its *absolute* value because as mentioned above, on signed integers, `>>` behaves as an arithmetic shift, which causes signed extension, and so it will never be able to transform `x` into 0 (leading to an infinite loop).
 
 > [!NOTE]
-> When a bit mask is used to represent a **set** of up to \\(k\\) items (e.g., in backtracking or DP over subsets), it replaces an \\(O(k)\\)-space hash set with a single integer, and set operations (add/remove/check membership) drop from whatever the set data structure offers to \\(O(1)\\). But enumerating *all* subsets of \\(k\\) items is still \\(O(2^k)\\), since there are that many masks.
-
-> [!NOTE]
-> In C++, shifting by the type's width or more is **undefined behavior** (e.g., `1 << 32` on an `int`), as is left-shifting into the sign bit — use `1LL << k` when the mask may exceed 31 bits, or an `unsigned` type. Right shift on signed negative values is implementation-defined pre-C++20 (arithmetic shift in practice). 
-
-> [!NOTE]
-> Useful built-ins: 
-> - `__builtin_popcount(n)`: count set bits
-> - `__builtin_ctz(n)`: count trailing zeros
+> Equivalent builtin is count leading zeroes `__builtin_clz()`.
