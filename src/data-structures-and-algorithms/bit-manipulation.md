@@ -141,11 +141,7 @@ int mask = (1 << 5) | (1 << 3);
 
 3. Retrieve the bits via `n & mask`.
 
-## Core
-
-...
-
-## Tricks
+## Patterns
 
 ### Find the most significant bit 
 
@@ -153,9 +149,9 @@ Idea: the most significant bit of some integer `x` can be thought as `log2(x)`, 
 
 ```cpp
 unsigned int x = <...> // or `int x = abs(<...>)
-int bit_pos = 0;
+int bit_index = -1; // so we can get 0-based index
 while (x != 0) {
-    bit_pos++;
+    bit_index++;
     x >>= 1;
 }
 ```
