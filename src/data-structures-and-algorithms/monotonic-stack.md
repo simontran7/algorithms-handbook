@@ -5,7 +5,7 @@
 - Looking for the next/previous greater/smaller element
 - Spans, ranges, or boundaries
 
-#### Template
+## Template
 
 ```cpp
 std::vector<int> monotonic_decreasing_stack(const std::vector<int>& array) {
