@@ -105,13 +105,13 @@ n >> k
 ```
 
 > [!NOTE]
-> `x << n` can be thought as multiplying by $2^n$ while `x >> n` can be thought as dividing by $2^n$ 
+> `x << n` can be thought as multiplying by \\(2^n\\) while `x >> n` can be thought as dividing by \\(2^n\\)
 
 > [!WARNING]
-> For unsigned integers, `>>` is always logical, while for signed integers, `>>` is typically arithmetic (i.e., it involves )
+> For unsigned integers, `>>` is always logical, while for signed integers, `>>` is typically arithmetic (i.e., it involves **signed extension**)
 
 > [!WARNING]
-> For signed integers, `<<` can invoke undefined behavior if you shift a 1 bit into the sign bit position.
+> For signed integers, `<<` can invoke undefined behaviour if you shift a 1 bit into the sign bit position.
 
 > [!WARNING]
 > Bitwise operators have low precedence, and therefore happens later in evaluation order, so make sure to use parentheses to clearly define your intended grouping.
