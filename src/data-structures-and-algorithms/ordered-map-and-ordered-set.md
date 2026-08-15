@@ -200,9 +200,6 @@ for (int element : ordered_set) {
 ```
 
 > [!NOTE]
-> `lower_bound`/`upper_bound` return **iterators**, which may be `end()` if no such element exists — always check before dereferencing: `auto it = ordered_set.lower_bound(target); if (it != ordered_set.end()) { ... }`. To find the rightmost element `< target`, use `lower_bound` and step back: `if (it != ordered_set.begin()) { int value = *prev(it); }`.
-
-> [!NOTE]
 > For duplicate elements, use a `std::multiset`. `std::multiset` also doubles as a "sorted sliding window", where `*ms.begin()` and `*ms.rbegin()` give the window's min and max simultaneously. However, a footgun is `multiset.erase(<value>)`, which removes *all* copies of `value`. To remove just one, erase by iterator: `multiset.erase(multiset.find(<value>))`. 
 
 ### `TrieMap`

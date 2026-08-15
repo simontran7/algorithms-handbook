@@ -14,3 +14,7 @@
 - [ ] String Matching Algorithms 
     - [ ] Rabin Karp
     - [ ] KMP
+- [ ] [Assembly](https://www.youtube.com/watch?v=I7j6QCO8xMc)
+- [ ] [Cache friendly code](https://www.youtube.com/watch?v=g_X5g3xw43Q)
+- [ ] [Memory Allocators](https://www.gingerbill.org/series/memory-allocation-strategies/)
+- [ ] [SIMD](https://mitchellh.com/writing/everyone-should-know-simd)
