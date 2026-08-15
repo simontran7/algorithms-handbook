@@ -12,7 +12,7 @@ handbook on core concepts
 ### Steps
 
 ```shell
-git clone https://github.com/simontran7/notes.git
-cd notes/
+git clone https://github.com/simontran7/programming-handbook.git
+cd programming-handbook/
 mdbook serve
 ```
