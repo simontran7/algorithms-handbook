@@ -1,6 +1,6 @@
-# notes
+# programming-handbook
 
-cs notes
+handbook on core concepts
 
 ## Installation
 
