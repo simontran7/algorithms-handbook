@@ -1,5 +1,3 @@
-# TO DO
-
 - [ ] [recursion](https://leetcode.com/explore/learn/card/recursion-ii/)
 - [ ] [binary tree](https://leetcode.com/explore/learn/card/data-structure-tree/)
 - [ ] [binary search tree](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/)
@@ -15,5 +13,3 @@
     - [ ] Rabin Karp
     - [ ] KMP
 - [ ] [Assembly](https://www.youtube.com/watch?v=I7j6QCO8xMc)
-- [ ] [Memory Allocators](https://www.gingerbill.org/series/memory-allocation-strategies/)
-- [ ] [SIMD](https://mitchellh.com/writing/everyone-should-know-simd)
