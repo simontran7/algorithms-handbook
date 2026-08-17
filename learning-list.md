@@ -12,4 +12,3 @@
 - [ ] String Matching Algorithms 
     - [ ] Rabin Karp
     - [ ] KMP
-- [ ] [Assembly](https://www.youtube.com/watch?v=I7j6QCO8xMc)
