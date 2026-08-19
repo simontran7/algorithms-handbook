@@ -36,72 +36,25 @@ trait OrderedSet<T: Ord> {
 
 ## Binary Search Tree
 
+### Implementation
+
+```cpp
+```
+
+### Complexity Analysis
+
 ...
 
 ## Red-Black Tree
 
-...
+### Implementation
 
-## B-Tree
+```cpp
+```
 
-A **B-tree** generalizes a binary search tree by letting each node hold *multiple* sorted keys (up to some maximum determined by the tree's **order**) and correspondingly more children, one more than it has keys. This wide branching factor keeps the tree very shallow, which matters most when each node access is expensive (e.g., a disk read in a database or filesystem index): a shallow tree means far fewer accesses to reach any key.
+### Standard Library API 
 
-### Lookup
-
-Within a node, search its sorted keys for a match or for the two keys the target falls between; if no match, descend into the child between them and repeat, until a match is found or a leaf is reached without one.
-
-### Insertion
-
-Descend to the correct leaf as in a lookup and insert the key into that leaf's sorted key list. If the leaf now holds more keys than the maximum, split it in two around its median key and push that median up into the parent; if the parent overflows too, the split propagates upward, and if it reaches the root, the tree grows one level taller.
-
-### Deletion
-
-Locate the key. If it's in a leaf, remove it directly, then rebalance if the leaf now holds too few keys, either by borrowing a key from an adjacent sibling or merging with one. If it's in an internal node, swap it with its in-order predecessor or successor (which lives in a leaf), then remove it from there instead.
-
-### Complexity Analysis
-
-| Operation | Time Complexity |
-| --- | --- |
-| Lookup | worst-case $O(\log n)$ |
-| Insertion | worst-case $O(\log n)$ |
-| Deletion | worst-case $O(\log n)$ |
-
-> [!NOTE]
-> A B-tree's $O(\log n)$ has a much larger logarithm base (the branching factor) than a binary tree's, so in practice its height, and therefore the number of node accesses per operation, is far smaller. This is precisely why B-trees are the standard choice for on-disk structures like database indexes, where minimizing the number of expensive disk reads matters more than the constant-factor cost of scanning within a node.
-
-## Prefix Tree
-
-A **Prefix Tree (a.k.a Trie)** is a data structure that stores string keys character by character down a tree: each node holds a map from character to child node, and a path from the root spells out a prefix. 
-
-A node is marked as the end of a complete key so that lookups may distinguish a stored word from a prefix that just happens to lead through it. 
-
-This data structure is especially useful for ordered maps/sets that utilize strings as keys (e.g. prefix searching, autocomplete, etc.)
-
-### Lookup
-
-Walk down from the root one character at a time, following the child edge matching each character of the target key. 
-
-If any character has no matching child, the key isn't present. If the walk completes, check whether the final node is marked as a complete key (for an exact match) or just return true (for a prefix check).
-
-### Insertion
-
-Walk down from the root one character at a time, creating a new child node whenever the next character doesn't already have one. Once the last character is placed, mark that final node as the end of a key.
-
-### Deletion
-
-Walk down to the node for the target key as in a lookup, then unmark it as the end of a key. If that node (and any of its ancestors, walking back up) is left with no children and isn't the end of some other key, it's now dead weight and can be pruned from the tree.
-
-### Complexity Analysis
-
-| Operation | Time Complexity |
-| --- | --- |
-| Lookup | worst-case $O(m)$, where $m$ is the length of the key |
-| Add | worst-case $O(m)$, where $m$ is the length of the key |
-| Remove | worst-case $O(m)$, where $m$ is the length of the key |
-
-## API
-
-### Ordered Map
+#### Ordered Map
 
 ```cpp
 #include <map>
@@ -153,7 +106,7 @@ for (const auto& [key, value] : ordered_map) {
 }
 ```
 
-### Ordered Set
+#### Ordered Set
 
 ```cpp
 #include <set>
@@ -202,7 +155,17 @@ for (int element : ordered_set) {
 > [!NOTE]
 > For duplicate elements, use a `std::multiset`. `std::multiset` also doubles as a "sorted sliding window", where `*ms.begin()` and `*ms.rbegin()` give the window's min and max simultaneously. However, a footgun is `multiset.erase(<value>)`, which removes *all* copies of `value`. To remove just one, erase by iterator: `multiset.erase(multiset.find(<value>))`. 
 
-### `TrieMap`
+### Complexity Analysis
+
+| Operation | Time Complexity |
+| --- | --- |
+| Lookup | worst-case $O(\log n)$ |
+| Insertion | worst-case $O(\log n)$ |
+| Deletion | worst-case $O(\log n)$ |
+
+## Prefix Tree (Trie)
+
+### Implementation
 
 ```cpp
 template<typename T>
@@ -289,3 +252,12 @@ private:
     }
 };
 ```
+
+### Complexity Analysis
+
+| Operation | Time Complexity |
+| --- | --- |
+| Lookup | worst-case $O(m)$, where $m$ is the length of the key |
+| Add | worst-case $O(m)$, where $m$ is the length of the key |
+| Remove | worst-case $O(m)$, where $m$ is the length of the key |
+

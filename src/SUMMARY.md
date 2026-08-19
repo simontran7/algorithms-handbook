@@ -4,10 +4,10 @@
 
 - [Complexity Analysis](./data-structures-and-algorithms/complexity-analysis.md)
 
-<!-- - [List](./data-structures-and-algorithms/list.md) -->
+- [List](./data-structures-and-algorithms/list.md)
 - [Stack](./data-structures-and-algorithms/stack.md)
 - [Queue](./data-structures-and-algorithms/queue.md)
-<!-- - [Deque](./data-structures-and-algorithms/deque.md) -->
+- [Deque](./data-structures-and-algorithms/deque.md)
 - [Priority Queue](./data-structures-and-algorithms/priority-queue.md)
 - [Ordered Map and Ordered Set](./data-structures-and-algorithms/ordered-map-and-ordered-set.md)
 - [Map and Set](./data-structures-and-algorithms/map-and-set.md)

@@ -24,19 +24,42 @@ trait List<T> {
 
 ## Dynamic Array
 
-A dynamic array stores items contiguously in memory, which is what gives it \\(O(1)\\) random access by index (the address of item \\(i\\) is just `base + i * item_size`). Since the underlying memory block has a fixed capacity, growing past it means allocating a new, larger block (typically double the size) and copying every existing item over.
+### Implementation
 
-### Lookup
+### Standard Library 
 
-Reading index \\(i\\) is a direct memory access, no traversal needed.
+```cpp
+// new
+std::vector<T> v;
 
-### Insertion
+// add front
+v.insert(v.begin(), item);
 
-Adding at the end writes into the next open slot; if the array is already at capacity, it first grows (allocate a new block, copy everything over) before writing. Adding at the front or in the middle requires shifting every item after the insertion point one slot to the right first.
+// add last
+v.push_back(item);
 
-### Deletion
+// get front
+v.front();
 
-Removing from the end just shrinks the logical length by one. Removing from the front or middle requires shifting every item after the removed index one slot to the left to close the gap.
+// get last
+v.back();
+
+// get element at `index`
+v[index]; // no runtime bounds checks
+v.at(index) // runtime bounds checks
+
+// set element at `index`
+v[index] = item;
+
+// remove front 
+v.erase(v.begin());
+
+// remove last
+v.pop_back();
+
+// remove at `index`
+v.erase(v.begin() + index);
+```
 
 ### Complexity Analysis
 
@@ -52,21 +75,10 @@ Removing from the end just shrinks the logical length by one. Removing from the 
 
 ## Singly Linked List
 
-A singly linked list stores items as separately allocated nodes scattered across memory, each holding a value and a pointer to the next node. There's no random access: reaching item \\(i\\) means walking the pointer chain from the head, one node at a time.
+### Implementation
 
-A singly linked list is always accessed through a **head pointer**, a reference to the first node. It's the only fixed entry point, since there's no way to reach any other node except by walking from it. Some implementations also maintain a **tail pointer**, a reference to the last node, kept up to date on every insertion or deletion. A tail pointer turns adding at the end into an \\(O(1)\\) operation (append, then repoint the tail), but it doesn't help removal at the end: after removing the tail node, the new tail is its predecessor, and reaching that predecessor still means walking the whole list from the head, since a singly linked list has no way to go backwards.
-
-### Lookup
-
-Start at the head and follow `next` pointers one node at a time until reaching the target index.
-
-### Insertion
-
-Adding at the head just points the new node's `next` at the current head and repoints the head to the new node, no shifting. Adding elsewhere requires walking to the node just before the insertion point first, then relinking two pointers.
-
-### Deletion
-
-Removing the head just repoints the head to `head.next`. Removing elsewhere requires walking to the *predecessor* of the target node (since there's no `prev` pointer to jump back with) to relink around it.
+```cpp
+```
 
 ### Complexity Analysis
 
@@ -82,21 +94,10 @@ Removing the head just repoints the head to `head.next`. Removing elsewhere requ
 
 ## Doubly Linked List
 
-A doubly linked list is a singly linked list where each node also holds a `prev` pointer back to its predecessor. That second pointer is what lets a node be removed in \\(O(1)\\) once you're holding a reference to it (no need to walk from the head to find its predecessor), and lets the list be traversed backwards.
+### Implementation
 
-Like a singly linked list, a doubly linked list is accessed through a maintained **head pointer** and, typically, a **tail pointer**. But because every node also has a `prev` pointer, the tail pointer alone is enough to support \\(O(1)\\) removal at the end too: the new tail is just `tail.prev`, no walk required. This is the key difference from a singly linked list, where a tail pointer only speeds up insertion, not removal.
-
-### Lookup
-
-Same as a singly linked list: walk pointers one node at a time from the head (or from the tail, if closer, since traversal now works both directions).
-
-### Insertion
-
-Adding at the head or tail relinks two pointers on one end using a maintained head/tail reference. Adding in the middle still requires walking to the insertion point, but relinking is \\(O(1)\\) once there, since both the predecessor's and successor's `prev`/`next` pointers are directly reachable.
-
-### Deletion
-
-Given a reference to a node, removal is \\(O(1)\\): read its `prev` and `next` directly, and relink them to each other. Deleting by index still requires walking to that node first.
+```cpp
+```
 
 ### Complexity Analysis
 

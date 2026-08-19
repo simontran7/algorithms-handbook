@@ -15,7 +15,7 @@ trait Queue<T> {
 
 Processing elements in a FIFO order.
 
-## API
+## Standard Library API
 
 ```cpp
 #include <queue>

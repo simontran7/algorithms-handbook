@@ -18,4 +18,7 @@ trait Deque<T> {
 
 Need to add or remove elements from both ends efficiently (e.g., sliding window front/back, palindrome checks, bounded history).
 
+## Standard Library API
 
+```cpp
+```

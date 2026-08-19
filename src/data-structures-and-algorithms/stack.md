@@ -15,7 +15,7 @@ trait Stack<T> {
 
 Elements in the input interacting with each other, with a LIFO order.
 
-## API
+## Standard Library API
 
 ```cpp
 #include <stack>

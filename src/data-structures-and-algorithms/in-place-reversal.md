@@ -8,17 +8,17 @@ Reverse in-place the pointers in a linked list.
 
 ```cpp
 ListNode* reverse_list(ListNode* head) {
-    ListNode* previous = nullptr;
-    ListNode* current = head;
+    ListNode* i = nullptr;
+    ListNode* j = head;
 
-    while (current) {
-        ListNode* temp = current->next;
-        current->next = previous;
+    while (j) {
+        ListNode* temp = j->next;
+        j->next = i;
 
-        previous = current;
-        current = temp;
+        i = j;
+        j = temp;
     }
     
-    return previous;
+    return i;
 }
 ```
