@@ -49,6 +49,8 @@
 - [Multiprocessor Systems](./systems/multiprocessor-systems.md)
 - [Assembly](./systems/assembly.md)
 
+- [Record Reordering](./systems/record-reordering.md)
+
 # Tools
 
 - [Linux Environment](./tools/linux-environment.md)
