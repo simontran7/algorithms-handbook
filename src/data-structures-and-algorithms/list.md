@@ -26,7 +26,10 @@ trait List<T> {
 
 ### Implementation
 
-### Standard Library 
+```cpp
+```
+
+### Standard Library API
 
 ```cpp
 // new
@@ -97,6 +100,40 @@ v.erase(v.begin() + index);
 ### Implementation
 
 ```cpp
+```
+
+### Standard Library API
+
+```cpp
+// new
+std::list<T> l;
+
+// add front
+l.push_front(item);
+
+// add last
+l.push_back(item);
+
+// get front
+l.front();
+
+// get last
+l.back();
+
+// get element at `index` 
+*std::next(l.begin(), index);
+
+// set element at `index`
+*std::next(l.begin(), index) = item;
+
+// remove front
+l.pop_front();
+
+// remove last
+l.pop_back();
+
+// remove at `index`
+l.erase(std::next(l.begin(), index));
 ```
 
 ### Complexity Analysis
