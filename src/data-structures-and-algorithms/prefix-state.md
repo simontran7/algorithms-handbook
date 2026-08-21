@@ -7,27 +7,21 @@
 
 ## Template
 
-```cpp
-#include <limits>
-#include <unordered_map>
+```python
+def prefix_state(array, target_state):
+    state_index_map = {0: -1}  # we'll want to store the state as the key, and the first index of its appearance if looking for the longest subarray, the last index of its appearance if looking for the longest subarray, or its frequency as the value.
+    current_state = 0
+    result = 0  # initialize to `float("inf")` if looking for shortest subarray
 
-int prefix_state(std::vector<int>& array, int target_state) {
-    std::unordered_map<int, int> state_index_map = {{0, -1}}; // we'll want to store the state as the key, and the first index of its appearance if looking for the longest subarray, the last index of its appearance if looking for the longest subarray, or its frequency as the value.
-    int current_state = 0;
-    int result = 0; // initialize to `std::numeric_limits<int>::max()` if looking for shortest subarray
+    for i in range(len(array)):
+        current_state = <update the running prefix state with the new element>
 
-    for (int i = 0; i < array.size(); i++) {
-        current_state = <update the running prefix state with the new element>;
+        needed_state = current_state - target_state  # or `current_state ^ target_state`
+        if needed_state in state_index_map:
+            subarray_len = i - state_index_map[needed_state]
+            result = max(result, subarray_len)  # for shortest, use `min()` instead
+        else:
+            state_index_map[current_state] = i  # for shortest, remove the else branch and do this instead `state_index_map[current_state] = i`
 
-        int needed_state = current_state - target_state; // or `current_state ^ target_state`
-        if (state_index_map.count(needed_state)) {
-            int subarray_len = i - state_index_map[needed_state];
-            result = std::max(result, subarray_len); // for shortest, use `std::min()` instead
-        } else {
-            state_index_map[current_state] = i; // for shortest, remove the else branch and do this instead `state_index_map[current_state] = i`
-        }
-    }
-
-    return result; // for shortest subarray, do this instead `return result != std::numeric_limits<int>::max() ? result : 0`
-}
+    return result  # for shortest subarray, do this instead `return result if result != float("inf") else 0`
 ```

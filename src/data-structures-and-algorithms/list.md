@@ -26,42 +26,41 @@ trait List<T> {
 
 ### Implementation
 
-```cpp
+```python
 ```
 
 ### Standard Library API
 
-```cpp
-// new
-std::vector<T> v;
+```python
+# new
+v = []
 
-// add front
-v.insert(v.begin(), item);
+# add front
+v.insert(0, item)
 
-// add last
-v.push_back(item);
+# add last
+v.append(item)
 
-// get front
-v.front();
+# get front
+v[0]
 
-// get last
-v.back();
+# get last
+v[-1]
 
-// get element at `index`
-v[index]; // no runtime bounds checks
-v.at(index) // runtime bounds checks
+# get element at `index`
+v[index]
 
-// set element at `index`
-v[index] = item;
+# set element at `index`
+v[index] = item
 
-// remove front 
-v.erase(v.begin());
+# remove front
+v.pop(0)
 
-// remove last
-v.pop_back();
+# remove last
+v.pop()
 
-// remove at `index`
-v.erase(v.begin() + index);
+# remove at `index`
+v.pop(index)
 ```
 
 ### Complexity Analysis
@@ -80,7 +79,7 @@ v.erase(v.begin() + index);
 
 ### Implementation
 
-```cpp
+```python
 ```
 
 ### Complexity Analysis
@@ -99,41 +98,43 @@ v.erase(v.begin() + index);
 
 ### Implementation
 
-```cpp
+```python
 ```
 
 ### Standard Library API
 
-```cpp
-// new
-std::list<T> l;
+```python
+from collections import deque
 
-// add front
-l.push_front(item);
+# new
+l = deque()
 
-// add last
-l.push_back(item);
+# add front
+l.appendleft(item)
 
-// get front
-l.front();
+# add last
+l.append(item)
 
-// get last
-l.back();
+# get front
+l[0]
 
-// get element at `index` 
-*std::next(l.begin(), index);
+# get last
+l[-1]
 
-// set element at `index`
-*std::next(l.begin(), index) = item;
+# get element at `index`
+l[index]
 
-// remove front
-l.pop_front();
+# set element at `index`
+l[index] = item
 
-// remove last
-l.pop_back();
+# remove front
+l.popleft()
 
-// remove at `index`
-l.erase(std::next(l.begin(), index));
+# remove last
+l.pop()
+
+# remove at `index`
+del l[index]
 ```
 
 ### Complexity Analysis

@@ -8,7 +8,7 @@ The AND of 2 bits is 1 if both bits are 1, and 0 otherwise.
 
 ### Syntax
 
-```cpp
+```python
 a & b
 ```
 
@@ -29,7 +29,7 @@ The OR of 2 bits is 1 if either (or both) bits is 1
 
 ### Syntax
 
-```cpp
+```python
 a | b
 ```
 
@@ -50,8 +50,8 @@ The NOT of a bit is 1 if the bit is 0, or 1 otherwise.
 
 ### Syntax
 
-```cpp
-~ a
+```python
+~a
 ```
 
 ### Truth Table
@@ -69,7 +69,7 @@ The XOR of 2 bits is 1 if *exactly* one of the bits is 1, or 0 otherwise.
 
 ### Syntax
 
-```cpp
+```python
 a ^ b
 ```
 
@@ -96,22 +96,16 @@ a ^ b
 
 ### Syntax
 
-```cpp
+```python
 n << k
 ```
 
-```cpp
+```python
 n >> k
 ```
 
 > [!NOTE]
-> `x << n` can be thought as multiplying by \\(2^n\\) while `x >> n` can be thought as dividing by \\(2^n\\)
-
-> [!WARNING]
-> For unsigned integers, `>>` is always logical, while for signed integers, `>>` is typically arithmetic (i.e., it involves **signed extension**)
-
-> [!WARNING]
-> For signed integers, `<<` can invoke undefined behaviour if you shift a 1 bit into the sign bit position.
+> `x << n` can be thought as multiplying by \\(2^n\\) while `x >> n` can be thought as floor dividing by \\(2^n\\)
 
 > [!WARNING]
 > Bitwise operators have low precedence, and therefore happens later in evaluation order, so make sure to use parentheses to clearly define your intended grouping.
@@ -128,15 +122,15 @@ n >> k
 1. Select the bitwise operator based on your use case.
 2. Construct a bit mask.
 
-```cpp
-// set
-int mask = 1 << k;
+```python
+# set
+mask = 1 << k
 
-// k lower bits
-int mask = (1 << k) - 1;
+# k lower bits
+mask = (1 << k) - 1
 
-// range of bits
-int mask = (1 << 5) | (1 << 3);
+# range of bits
+mask = (1 << 5) | (1 << 3)
 ```
 
 3. Retrieve the bits via `n & mask`.
@@ -147,17 +141,16 @@ int mask = (1 << 5) | (1 << 3);
 
 Idea: the most significant bit of some integer `x` can be thought as `log2(x)`, and `log2(x)` can be thought as how many times do i need to divide `x` by 2 (accomplished via `>> 1`) to get to 0.
 
-```cpp
-unsigned int x = <...> // or `int x = abs(<...>)
-int bit_index = -1; // so we can get 0-based index
-while (x != 0) {
-    bit_index++;
-    x >>= 1;
-}
+```python
+x = abs(<...>)
+bit_index = -1  # so we can get 0-based index
+while x != 0:
+    bit_index += 1
+    x >>= 1
 ```
 
 > [!WARNING]
-> In the algorithm above, when `x` is a signed integer, we *need* to modify its *absolute* value because as mentioned above, on signed integers, `>>` behaves as an arithmetic shift, which causes signed extension, and so it will never be able to transform `x` into 0 (leading to an infinite loop).
+> We *need* to take the *absolute* value of `x` first because, as mentioned above, right-shifting a negative `x` sign-extends indefinitely and will never reach `0` (leading to an infinite loop).
 
 > [!NOTE]
-> Equivalent builtin is count leading zeroes `__builtin_clz()`.
+> Equivalent builtin is `x.bit_length() - 1`.

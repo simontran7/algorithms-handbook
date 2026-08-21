@@ -12,41 +12,33 @@ Finding the single source shortest path on graphs with non-negative edge weights
 
 ### Template
 
-```cpp
-std::vector<long long> dijkstras(const std::vector<std::vector<int>>& edges, int n, int source) {
-    std::unordered_map<int, std::vector<std::pair<int, int>>> graph;
-    for (const auto& edge : edges) {
-        int u = edge[0], v = edge[1], w = edge[2];
-        graph[u].push_back({v, w});
-    }
+```python
+import heapq
+from collections import defaultdict
 
-    std::vector<long long> distances(n, LLONG_MAX);
-    distances[source] = 0;
+def dijkstras(edges, n, source):
+    graph = defaultdict(list)
+    for u, v, w in edges:
+        graph[u].append((v, w))
 
-    std::priority_queue<std::pair<long long, int>,
-                        std::vector<std::pair<long long, int>>,
-                        std::greater<>> pq;
-    pq.push({0, source});
+    distances = [float("inf")] * n
+    distances[source] = 0
 
-    while (!pq.empty()) {
-        auto [distance, node] = pq.top();
-        pq.pop();
+    pq = [(0, source)]
 
-        if (distance > distances[node]) {
-            continue;
-        }
+    while pq:
+        distance, node = heapq.heappop(pq)
 
-        for (const auto& [neighbour, weight] : graph[node]) {
-            long long new_distance = distance + weight;
-            if (new_distance < distances[neighbour]) {
-                distances[neighbour] = new_distance;
-                pq.push({new_distance, neighbour});
-            }
-        }
-    }
+        if distance > distances[node]:
+            continue
 
-    return distances;
-}
+        for neighbour, weight in graph[node]:
+            new_distance = distance + weight
+            if new_distance < distances[neighbour]:
+                distances[neighbour] = new_distance
+                heapq.heappush(pq, (new_distance, neighbour))
+
+    return distances
 ```
 
 ### Complexity Analysis

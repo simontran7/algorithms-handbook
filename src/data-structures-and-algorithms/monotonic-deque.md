@@ -6,29 +6,24 @@ Maximum or minimum values in a sliding window or some ranges.
 
 ## Template
 
-```cpp
-#include <deque>
+```python
+from collections import deque
 
-std::vector<int> monotonic_non_increasing_deque(const std::vector<int>& array, int k) {
-    std::deque<int> mono_deque;
-    std::vector<int> result;
+def monotonic_non_increasing_deque(array, k):
+    mono_deque = deque()
+    result = []
 
-    for (int i = 0; i < array.size(); ++i) {
-        while (!mono_deque.empty() && array[mono_deque.back()] < array[i]) {
-            mono_deque.pop_back();
-        }
+    for i in range(len(array)):
+        while mono_deque and array[mono_deque[-1]] < array[i]:
+            mono_deque.pop()
 
-        mono_deque.push_back(i);
+        mono_deque.append(i)
 
-        if (mono_deque.front() <= i - k) {
-            mono_deque.pop_front();
-        }
+        if mono_deque[0] <= i - k:
+            mono_deque.popleft()
 
-        if (i >= k - 1) {
-            result.push_back(array[mono_deque.front()]);
-        }
-    }
+        if i >= k - 1:
+            result.append(array[mono_deque[0]])
 
-    return result;
-}
+    return result
 ```

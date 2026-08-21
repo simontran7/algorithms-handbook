@@ -6,20 +6,16 @@ The problem has a natural partition where it can be split into independent subpr
 
 ## Template
 
-```cpp
-/* result type */ divide_and_conquer(const /* problem type */& s) {
-    // Divide
-    std::vector</* problem type */> subproblems = divide(s);
+```python
+def divide_and_conquer(s):
+    # Divide
+    subproblems = divide(s)
 
-    // Conquer
-    std::vector</* result type */> subresults;
-    for (const auto& subproblem : subproblems) {
-        subresults.push_back(divide_and_conquer(subproblem));
-    }
+    # Conquer
+    subresults = [divide_and_conquer(subproblem) for subproblem in subproblems]
 
-    // Combine
-    return combine(subresults);
-}
+    # Combine
+    return combine(subresults)
 ```
 
 ## Complexity Analysis

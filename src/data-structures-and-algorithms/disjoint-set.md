@@ -20,45 +20,34 @@ trait DisjointSet {
 
 ### Implementation
 
-```cpp
-class DisjointSet {
-private:
-    std::vector<int> parent;
-    std::vector<int> rank_;
+```python
+class DisjointSet:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
 
-public:
-    DisjointSet(int n) : parent(n), rank_(n, 0) {
-        std::iota(parent.begin(), parent.end(), 0);
-    }
+    def find(self, x):
+        while self.parent[x] != x:
+            self.parent[x] = self.parent[self.parent[x]]
+            x = self.parent[x]
+        return x
 
-    int find(int x) {
-        while (parent[x] != x) {
-            parent[x] = parent[parent[x]];
-            x = parent[x];
-        }
-        return x;
-    }
+    def union(self, x, y):
+        x_rep = self.find(x)
+        y_rep = self.find(y)
 
-    bool unite(int x, int y) {
-        int x_rep = find(x);
-        int y_rep = find(y);
+        if x_rep == y_rep:
+            return False
 
-        if (x_rep == y_rep) {
-            return false;
-        }
+        if self.rank[x_rep] < self.rank[y_rep]:
+            self.parent[x_rep] = y_rep
+        elif self.rank[x_rep] > self.rank[y_rep]:
+            self.parent[y_rep] = x_rep
+        else:
+            self.parent[y_rep] = x_rep
+            self.rank[x_rep] += 1
 
-        if (rank_[x_rep] < rank_[y_rep]) {
-            parent[x_rep] = y_rep;
-        } else if (rank_[x_rep] > rank_[y_rep]) {
-            parent[y_rep] = x_rep;
-        } else {
-            parent[y_rep] = x_rep;
-            rank_[x_rep]++;
-        }
-
-        return true;
-    }
-};
+        return True
 ```
 
 > [!NOTE]

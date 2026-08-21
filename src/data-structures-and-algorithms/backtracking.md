@@ -2,38 +2,32 @@
 
 ## Use Case
 
-Enumerating all possible solutions
+Enumerate all possible solutions
 
 ## Template
 
-```cpp
-bool is_valid(/* candidate */) {
-    // Some logic to check if candidate is valid or not
-}
+```python
+def is_valid(candidate):
+    # check if candidate is valid or not
 
-int backtrack(std::vector<int>& path /*, other state variables */) {
-    if (/* base case */) {
-        // update global result (i.e., append the path to the global result
-        // or increment the global result)
-        return /* ... */;
-    }
+def backtrack(path, <other state variables>):
+    if <base case>:
+        # update global result (i.e., append the path to the global result or increment the global result)
+        return
 
-    int local_result = /* initial value */;
-    for (/* candidate in input */) {
-        if (!is_valid(candidate)) {
-            continue;
-        }
-        // modify `path`
-        local_result += backtrack(path /*, other state variables */);
-        // undo the modification to `path`
-    }
+    result = <initial value>
+    for candidate in <input>:
+        if not is_valid(candidate):
+            continue
+        # modify `path`
+        result += backtrack(path, <other state variables>)
+        # undo the modification to `path`
 
-    return local_result;
-}
+    return result
 ```
 
 > [!NOTE]
-> Backtracking can be visualized as a tree, where each node represents the current state of the path during a recursive function call. The `backtrack()` calls explore different branches of this tree, building potential solutions along the way. The leaves of the tree correspond to base cases, often representing complete solutions, though not necessarily in every problem.
+> Backtracking can be visualized as a tree, where each node represents the current state of the path during a recursive function call. The `backtrack()` calls explore different branches of this tree, building potential solutions along the way. The leaves of the tree correspond to base cases, often representing complete solutions (but not in every problem).
 
 ## Complexity Analysis
 
@@ -46,6 +40,3 @@ Let \\(S\\) be number of possible states explored and \\(C\\) the cost of proces
 > - Combinations of \\(k\\) from \\(n\\): \\(\binom{n}{k}\\)
 > - Permutations of from \\(n\\): \\(\frac{n!}{(n - k)!}\\)
 > - Generic tree with branching factor \\(b\\) and depth \\(d\\): \\(b^d\\)
-
-> [!NOTE]
-> Pass `path` by **reference** (`std::vector<int>&`) because copying it at every call would add an \\(O(n)\\) cost per node.

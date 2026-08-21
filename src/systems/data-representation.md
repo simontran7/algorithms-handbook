@@ -44,32 +44,32 @@ $$
 
 ## Converting Between Number Systems
 
-### Decimal to Any Base \\(b\\)
+### Decimal to any base \\(b\\)
 
 #### Method 1: build the number \\(n\\) from the left (Find the most significant bit first)
 
 1. Find largest exponent such that \\(b^{exponent} \le n\\)
-2. Write at position \\(B^{exponent}\\) the quotient \\(q = n \div b^{exponent}\\)
-3. Update \\(n = n - (q \cdot B^{exponent})\\)
+2. Write at position \\(b^{exponent}\\) the quotient \\(q = n \div b^{exponent}\\)
+3. Update \\(n = n - (q \cdot b^{exponent})\\)
 4. Repeat steps 1 to 3 until the \\(n \le 0\\)
 
-#### Method 2: Build the number \\(N\\) from the right (Find the least significant bit first)
+#### Method 2: Build the number \\(n\\) from the right (Find the least significant bit first)
 
 1. Repeatedly divide the decimal number by the target base
 2. Record the remainder at each step
 3. Continue until the quotient becomes 0
 4. Read the remainders from bottom to top to get the result
 
-### Any Base to Decimal (Addition of Positional Notation)
+### Any base \\(b\\) to decimal 
 
-For a number with digits \\(d_{N - 1}, d_{N - 2}, \dots, d_1, d_0\\) in base \\(B\\), the converted number to base \\(C\\) is calculated using the following formula:
+For a number with digits \\(d_{N - 1}, d_{N - 2}, \dots, d_1, d_0\\) in base \\(b\\), convert the number by multiplying each digit by its place value \\(b^i\\):
 
 $$
-C = (d_{N-1} \cdot B^{N-1}) + (d_{N-2} \cdot B^{N-2}) + \dots + (d_1 \cdot B^1) + (d_0 \cdot B^0)
+(d_{N-1} \cdot b^{N-1}) + (d_{N-2} \cdot b^{N-2}) + \dots + (d_1 \cdot b^1) + (d_0 \cdot b^0)
 $$
 
 > [!NOTE]
-> If we're converting bits encoded under two's complement, then if the most significant bit is 1, then the most significant bit \\(\times\\) the position becomes negative. Then, proceed as usual.
+> When converting bits encoded using two’s complement, first check the most significant bit. If it is 1, treat its place value as negative, then proceed with the conversion as usual.
 
 ### Binary to Hexadecimal
 
@@ -494,6 +494,7 @@ $$
 $$
 x = (-1)^\text{sign} \times (1.\text{fraction})_2 \times 2^\text{actual exponent}
 $$
+
 ```
 | sign = any | exponent != 00000000 or exponent != 11111111 | fraction = any
 ```
@@ -501,6 +502,7 @@ $$
 ### Special Numbers
 
 #### \\(+\infty\\) and \\(-\infty\\)
+
 ```
 | sign = any | exponent = 11111111 | fraction = 000...0 |
 ```
@@ -528,6 +530,7 @@ Types of \\(\text{NaN}\\):
 ```
 
 #### 0
+
 ```
 | sign = any | exponent = 00000000 | fraction = 000000...0 |
 ```

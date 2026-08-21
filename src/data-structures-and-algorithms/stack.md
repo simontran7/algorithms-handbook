@@ -17,27 +17,25 @@ Elements in the input interacting with each other, with a LIFO order.
 
 ## Standard Library API
 
-```cpp
-#include <stack>
+```python
+# Create an empty stack
+stack = []
 
-// Create an empty stack
-std::stack<int> stack;
+# Get the element at the top
+stack[-1]
 
-// Get the element at the top
-stack.top();
+# Get the number of elements in the stack
+len(stack)
 
-// Get the number of elements in the stack
-stack.size();
+# Check if the stack is empty
+not stack
 
-// Check if the stack is empty
-stack.empty();
+# Push an element onto the top
+stack.append(element)
 
-// Push an element onto the top
-stack.push(element);
-
-// Pop the element at the top (returns void!)
-stack.pop();
+# Pop the element at the top
+stack.pop()
 ```
 
 > [!NOTE]
-> We often use the stack to store the result and convert it to a string. In C++, `std::string` itself supports `push_back` / `pop_back` / `back`, so it can serve as the stack *and* the result.
+> We often use the stack to store the result and convert it to a string. In Python, strings are immutable, so build the result as a list of characters and join it at the end with `"".join(stack)`.

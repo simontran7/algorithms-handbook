@@ -5,6 +5,7 @@
 ### Definition (big O)
 
 Let \\(f(n)\\) and \\(g(n)\\) be functions mapping positive integers to positive real numbers. We say that \\(f(n)\\) is \\(O(g(n))\\) if there is a real constant \\(c \gt 0\\) and an integer constant \\(n_0 \ge 1\\) such that:
+
 $$
 f(n) \leq c \cdot g(n), \text{ for } n \geq n_0
 $$
@@ -39,8 +40,8 @@ $$
 
 ### Common Orders of Growth
 
-| Growth type  | Function       |
-| ------------ | ------------   |
+| Growth type  | Function           |
+| ------------ | ------------------ |
 | Constant     | \\(1\\)            |
 | Logarithmic  | \\(\log n\\)       |
 | Linear       | \\(n\\)            |
@@ -59,9 +60,6 @@ $$
 3. Assign a cost to each part based on the following methods
 4. Combine the costs of sequential parts using the law of addition, and nested parts using the law of multiplication
 5. Simplify using the simplification rules
-
-> [!NOTE]
-> Lowercase variables (\\(n\\), \\(m\\), \\(k\\)) are generic placeholders. Uppercase variables (\\(V\\), \\(E\\), \\(S\\), \\(C\\), etc.) are named placeholders with a specific meaning in context.
 
 ### Primitive Operations
 

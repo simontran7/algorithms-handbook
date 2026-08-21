@@ -8,23 +8,21 @@ Detect cycles in a linked list.
 
 ### Template
 
-```cpp
-ListNode* dynamic_fast_and_slow_pointers(ListNode* head) {
-    ListNode* slow = head;
-    ListNode* fast = head;
-    auto result = /* initial value */;
+```python
+def dynamic_fast_and_slow_pointers(head):
+    slow = head
+    fast = head
+    result = <initial value>
 
-    while (fast && fast->next) {
-        fast = fast->next->next;
-        slow = slow->next;
-        // Optionally to detect cycle:
-        // if (fast == slow) break;
-    }
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+        # Optionally to detect cycle:
+        # if fast == slow: break
 
-    // `slow` is at midpoint
+    # `slow` is at midpoint
 
-    return result;
-}
+    return result
 ```
 
 ## Fixed
@@ -35,33 +33,30 @@ Find the \\(k^\text{th}\\) node from the end of a linked list.
 
 ### Template
 
-```cpp
-ListNode* fixed_gap_fast_and_slow_pointers(ListNode* head, int k) {
-    ListNode* slow = head;
-    ListNode* fast = head;
+```python
+def fixed_gap_fast_and_slow_pointers(head, k):
+    slow = head
+    fast = head
 
-    // Advance fast by `k` steps
-    // so that when `fast` is nullptr,
-    // `slow` will be `k` step(s) away from nullptr,
-    // i.e., the `k`th last node
-    for (int i = 0; i < k; ++i) {
-        fast = fast->next;
-    }
+    # Advance fast by `k` steps
+    # so that when `fast` is None,
+    # `slow` will be `k` step(s) away from None,
+    # i.e., the `k`th last node
+    for _ in range(k):
+        fast = fast.next
 
-    while (fast) {
-        fast = fast->next;
-        slow = slow->next;
-    }
+    while fast:
+        fast = fast.next
+        slow = slow.next
 
-    // ... involving `slow` as the `k`th last node
-}
+    # ... involving `slow` as the `k`th last node
 ```
 
 > [!NOTE]
 > In order to reduce edge cases, and when your algorithm might modify the head, create a **sentinel head node**. This is because modifications at the head typically require a predecessor, yet the head has none, so the sentinel acts as that predecessor, reducing edge-case checks.
-> ```cpp
-> ListNode sentinel(0, head);      // stack-allocated: no new/delete needed
-> ListNode* current = &sentinel;   // prev starts at index -1
-> // uniform logic
-> return sentinel.next;            // the actual head
+> ```python
+> sentinel = ListNode(0, head)
+> current = sentinel   # prev starts at index -1
+> # uniform logic
+> return sentinel.next  # the actual head
 > ```

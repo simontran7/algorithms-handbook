@@ -17,25 +17,25 @@ Processing elements in a FIFO order.
 
 ## Standard Library API
 
-```cpp
-#include <queue>
+```python
+from collections import deque
 
-// Create an empty queue
-std::queue<int> queue;
+# Create an empty queue
+queue = deque()
 
-// Get the number of elements
-queue.size();
+# Get the number of elements
+len(queue)
 
-// Check if queue is empty
-queue.empty();
+# Check if queue is empty
+not queue
 
-// Get the element at the front
-queue.front();
+# Get the element at the front
+queue[0]
 
-// Enqueue an element at the back
-queue.push(element);
+# Enqueue an element at the back
+queue.append(element)
 
-// Dequeue the element at the front (returns void!)
-queue.pop();
-``` 
+# Dequeue the element at the front
+queue.popleft()
+```
 

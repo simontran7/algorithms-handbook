@@ -15,93 +15,93 @@ trait PriorityQueue<T> {
 - Repeatedly find the maximum or minimum element
 - Get the "top" \\(k\\) elements
 
-```cpp
-#include <queue>
+```python
+import heapq
 
-std::vector<int> top_k(const std::vector<int>& array, int k) {
-    // use a min heap to keep the largest `k` elements,
-    // or a max heap to keep the smallest `k`
-    std::priority_queue<std::pair<int, int>,
-                        std::vector<std::pair<int, int>>,
-                        std::greater<>> pq;
+def top_k(l, k):
+    # use a min heap to keep the largest `k` elements,
+    # or a max heap to keep the smallest `k`
+    pq = []
 
-    for (int num : array) {
-        // some logic to add an element according to problem's criteria
-        pq.push({/* criteria as key */, num});
-        if (pq.size() > k) {
-            pq.pop();
-        }
-    }
+    for num in l:
+        # some logic to add an element according to problem's criteria
+        heapq.heappush(pq, (<criteria as key>, num))
+        if len(pq) > k:
+            heapq.heappop(pq)
 
-    std::vector<int> result;
-    while (!pq.empty()) {
-        result.push_back(pq.top().second);
-        pq.pop();
-    }
+    result = []
+    while pq:
+        result.append(heapq.heappop(pq)[1])
 
-    return result;
-}
+    return result
 ```
 
 - Find a running/streaming median
 
-```cpp
-#include <queue>
+```python
+import heapq
 
-class MedianFinder {
-private:
-    std::priority_queue<int, std::vector<int>, std::greater<>> min_pq;
-    std::priority_queue<int> max_pq;
+class MedianFinder:
+    def __init__(self):
+        self.min_pq = []
+        self.max_pq = []
 
-public:
-    MedianFinder() {}
+    def add_num(self, num):
+        heapq.heappush_max(self.max_pq, num)
+        heapq.heappush(self.min_pq, heapq.heappop_max(self.max_pq))
+        if len(self.min_pq) > len(self.max_pq):
+            heapq.heappush_max(self.max_pq, heapq.heappop(self.min_pq))
 
-    /**
-     * second/third lines maintain the invariant that all the elements in the
-     * min pq are >= all the elements in the max pq
-     * the `if` maintains the invariant that the max pq will store 1 more
-     * element than the min pq if there are an odd number of elements
-     */
-    void addNum(int num) {
-        max_pq.push(num);
-        min_pq.push(max_pq.top());
-        max_pq.pop();
-        if (min_pq.size() > max_pq.size()) {
-            max_pq.push(min_pq.top());
-            min_pq.pop();
-        }
-    }
-
-    /**
-     * - If there are even numbers, then max_pq.size() == min_pq.size()
-     *   (i.e., the median will be the average of the top elements)
-     * - If there are odd numbers, then max_pq.size() == min_pq.size() + 1
-     *   (i.e., it will have the median)
-     */
-    double findMedian() {
-        if (max_pq.size() == min_pq.size()) {
-            return (max_pq.top() + min_pq.top()) / 2.0;
-        }
-        return max_pq.top();
-    }
-};
+    def find_median(self):
+        if len(self.max_pq) == len(self.min_pq):
+            return (self.max_pq[0] + self.min_pq[0]) / 2.0
+        return self.max_pq[0]
 ```
 
 ## Binary Heap
 
-A binary heap is a complete binary tree (every level fully filled except possibly the last, filled left to right) satisfying the **heap property**: every parent is \\(\ge\\) its children (max-heap) or \\(\le\\) its children (min-heap). Because the tree is always complete, it can be stored implicitly in an array with no pointers: for a node at index \\(i\\), its children sit at \\(2i + 1\\) and \\(2i + 2\\), and its parent at \\(\lfloor (i - 1) / 2 \rfloor\\).
+A **binary heap** is a complete (i.e., filled top-down from left to right) binary tree satisfying the **heap property**:
+- Largest element is stored at the root (max-heap) or the smallest element is stored at the root (min-heap)
+- For all nodes \\(i\\), excluding the root:
+- Every parent is \\(\ge\\) its children (max-heap) or \\(\le\\) its children (min-heap). 
 
-### Lookup
+Since the tree is always complete, it can be stored implicitly in an array such that for a node at index \\(i\\):
+- left child: \\(2i + 1\\) 
+- right child: \\(2i + 2\\)
+- parent: \(\lfloor (i - 1) / 2 \rfloor\\).
 
-The maximum (or minimum) is always at the root, so peeking at the top is just reading index \\(0\\) of the array.
+### Sift Down
+
+1. Compare the node against its children
+2. If it violates the heap property, swap it with the larger child (max-heap) or smaller child (min-heap)
+3. Repeat from the new position once the heap property is respected, or it reaches a leaf node.
+
+### Sift Up
+
+1. Compare the node against its parent
+2. If it violates the heap property, swap the positions with its parent node
+3. Repeat once the heap property is respected, or it reaches the root.
+
+### Heapify
+
+1. Find the index of the last non-leaf node: \\(\lfloor n / 2 \rfloor - 1\\) (the parent of the last element).
+2. Iterate from that index down to the root (index \\(0\\)) (i.e., bottom-up, right-to-left).
+3. At each index, perform **sift down**.
+
+### Lookup min/max
+
+Index into the \\(0\\)th element of the backing array.
 
 ### Insertion
 
-Append the new element at the end of the array (the next open leaf), then **sift up**: repeatedly compare it against its parent and swap if it violates the heap property, stopping once it doesn't or it reaches the root.
+1. Append the new node at the end of the array (the next open leaf)
+2. Starting at the rightmost node in the last level, perform **sift up**
 
 ### Deletion
 
-Swap the root with the last element in the array and shrink the array by one, then **sift down** the new root: repeatedly swap it with its larger (max-heap) or smaller (min-heap) child until the heap property is restored or it reaches a leaf.
+1. Swap the root with the last element in the array
+2. Remove the last element
+3. Starting at the root node, perform **sift down**
 
 ### Complexity Analysis
 
@@ -109,64 +109,69 @@ Swap the root with the last element in the array and shrink the array by one, th
 | --- | --- |
 | Heapify | worst-case \\(O(n)\\) |
 | Lookup min/max | worst-case \\(O(1)\\) |
-| Insertion    | worst-case \\(O(\log n)\\) |
+| Insertion | worst-case \\(O(\log n)\\) |
 | Deletion | worst-case \\(O(\log n)\\) |
 
-## C++ API
+## Python API
 
 ### Min Priority Queue
 
-```cpp
-#include <queue>
+```python
+import heapq
 
-// Create an empty min priority queue
-std::priority_queue<int, std::vector<int>, std::greater<>> min_pq;
+# Create an empty min priority queue
+min_pq = []
 
-// Heapify an existing array in O(n) by constructing from iterators
-std::priority_queue<int, std::vector<int>, std::greater<>> min_pq(array.begin(), array.end());
+# Heapify an existing array in O(n), in-place
+heapq.heapify(array)
+min_pq = array
 
-// Peek at the top element
-min_pq.top();
+# Peek at the top element
+min_pq[0]
 
-// Get the number of elements
-min_pq.size();
+# Get the number of elements
+len(min_pq)
 
-// Check if the priority queue is empty
-min_pq.empty();
+# Check if the priority queue is empty
+not min_pq
 
-// Add an element
-min_pq.push(element);
+# Add an element
+heapq.heappush(min_pq, element)
 
-// Remove the top element (returns void!)
-min_pq.pop();
+# Remove the top element
+heapq.heappop(min_pq)
 ```
 
 ### Max Priority Queue
 
-```cpp
-#include <queue>
+```python
+import heapq
 
-// Create an empty max priority queue (max heap is the DEFAULT in C++)
-std::priority_queue<int> max_pq;
+# Create an empty max priority queue
+max_pq = []
 
-// Heapify an existing array in O(n) by constructing from iterators
-std::priority_queue<int> max_pq(array.begin(), array.end());
+# Heapify an existing array in O(n), in-place
+heapq.heapify_max(array)
+max_pq = array
 
-// Peek at the top element
-max_pq.top();
+# Peek at the top element
+max_pq[0]
 
-// Get the number of elements
-max_pq.size();
+# Get the number of elements
+len(max_pq)
 
-// Check if the priority queue is empty
-max_pq.empty();
+# Check if the priority queue is empty
+not max_pq
 
-// Add an element
-max_pq.push(element);
+# Add an element
+heapq.heappush_max(max_pq, element)
 
-// Remove the top element (returns void!)
-max_pq.pop();
+# Remove the top element
+heapq.heappop_max(max_pq)
 ```
 
 > [!NOTE]
-> To simulate an **indexed priority queue**, store pairs: `std::pair<int, int>{key, element}`, where pairs are compared lexicographically (key first, then element as tie-breaker).
+> `heapq.heapify_max()` / `heapq.heappush_max()` / `heapq.heappop_max()` require Python 3.14+.
+
+> [!NOTE]
+> To simulate an **indexed priority queue**, store tuples: `(key, element)`, where tuples are compared lexicographically (key first, then element as tie-breaker).

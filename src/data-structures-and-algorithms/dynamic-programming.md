@@ -54,41 +54,32 @@ The arguments depend on the direction of flow of the state variables:
 
 ### Step 5: Produce the Top-Down Solution (Memoization)
 
-```cpp
-struct pair_hash {
-    size_t operator()(const std::pair<int, int>& p) const {
-        return std::hash<long long>()(((long long)p.first << 32) | (unsigned)p.second);
-    }
-};
+```python
+memo = dict()
 
-std::unordered_map<std::pair<int, int>, int, pair_hash> memo;
+def dp(<state variables>):
+    if <state variable> == <value>:
+        return <base case value>
 
-int dp(int i, int j /*, other state variables */) {
-    if (/* state variable == value */) {
-        return /* base case value */;
-    }
+    if (<state variables>) in memo:
+        return memo[(<state variables>)]
 
-    if (memo.count({i, j})) {
-        return memo[{i, j}];
-    }
+    result = <recurrence>  # may be more involved
 
-    int result = /* recurrence */;  // may be more involved
+    memo[(<state variables>)] = result
 
-    memo[{i, j}] = result;
+    return result
 
-    return result;
-}
-
-return dp(/* initial arguments for the state variables */);
+return dp(<initial arguments for the state variables>)
 ```
 
 #### Step 6: Produce the Bottom-Up Solution (Tabulation)
 
-1. Initialize an array `dp` that is sized according to the subproblem variables largest values. In particular, whenever you have a base case of the form `if (i >= n) return <base case value>;`, and somewhere else in your algorithm you have `dp(i + x)`, then your array must have `n + x` rows.
-2. For every base case `if (<state variable> == <value>) return <base case value>;`, explicitly set them in the lookup table `dp` i.e., `dp[<state variable>][...] = <base case value>;` or implicitly through the initial values of the lookup table (e.g., `std::vector<int> dp(n + 1, 0);` zero-initializes).
-3. Write for-loop(s) that will iterate over your state variables, such that the outermost for loop iterates the first state variable in the order of the `dp()` parameters, and such that the loop bounds should begin from the first *non-base-case* state variables problems, and end at the final result state variables. For boolean state variables, the range should be from \\([0, 2)\\). However, for certain matrix problems (e.g., Unique Paths, Minimum Path Sum) where the calculation for a cell `(row, col)` depends only on the results from cells that are above it `(row - 1, col)`, to its left `(row, col - 1)`, or both `(row - 1, col - 1)`, you can iterate through all the rows and columns from top-to-bottom, left-to-right. Within the loop, you use `continue` to skip the base case cells because their values have already been correctly initialized.
+1. Initialize an array `dp` that is sized according to the subproblem variables largest values. In particular, whenever you have a base case of the form `if i >= n: return <base case value>`, and somewhere else in your algorithm you have `dp(i + x)`, then your array must have `n + x` rows.
+2. For every base case `if <state variable> == <value>: return <base case value>`, explicitly set them in the lookup table `dp` i.e., `dp[<state variable>][...] = <base case value>` or implicitly through the initial values of the lookup table (e.g., `dp = [0] * (n + 1)` zero-initializes).
+3. Write for-loop(s) that will iterate over your state variables, such that the outermost for loop iterates the first state variable in the order of the `dp()` parameters, and such that the `range()` bounds should begin from the first *non-base-case* state variables problems, and end at the final result state variables. For boolean state variables, the range should be from \\([0, 2)\\). However, for certain matrix problems (e.g., Unique Paths, Minimum Path Sum) where the calculation for a cell `(row, col)` depends only on the results from cells that are above it `(row - 1, col)`, to its left `(row, col - 1)`, or both `(row - 1, col - 1)`, you can iterate through all the rows and columns from top-to-bottom, left-to-right. Within the loop, you use `continue` to skip the base case cells because their values have already been correctly initialized.
 4. Under the inner-most for loop, copy-paste *only* the recurrence logic from your memoization function.
-5. Change every `dp(<state variable 1>, <state variable 2>, <...>)` function calls and `result` to array accesses `dp[<state variable 1>][<state variable 2>][<...>]`. For boolean state variables, represent `true` as `1` and `false` as `0`.
+5. Change every `dp(<state variable 1>, <state variable 2>, <...>)` function calls and `result` to array accesses `dp[<state variable 1>][<state variable 2>][<...>]`. For boolean state variables, represent `True` as `1` and `False` as `0`.
 
 > [!NOTE]
 > We can reduce the space complexity of a bottom-up dynamic programming algorithm whenever the recurrence is static (i.e., it doesn't change between inputs and it only cares about a static number of previous states). Simply replace the lookup table with variables to keep track of those previous states, one rolling variable per dp index you look back at. Additionally, add an aggregation `result` variable (initialized to the first valid base case value) if the answer is the maximum over all states rather than just the final state `dp[n - 1]`. This happens when the recurrence can produce values smaller than a previous state, meaning the peak may not be at the end.

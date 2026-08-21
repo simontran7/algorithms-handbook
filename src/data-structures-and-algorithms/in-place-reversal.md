@@ -6,19 +6,17 @@ Reverse in-place the pointers in a linked list.
 
 ## Template
 
-```cpp
-ListNode* reverse_list(ListNode* head) {
-    ListNode* i = nullptr;
-    ListNode* j = head;
+```python
+def reverse_list(head):
+    i = None
+    j = head
 
-    while (j) {
-        ListNode* temp = j->next;
-        j->next = i;
+    while j:
+        temp = j.next
+        j.next = i
 
-        i = j;
-        j = temp;
-    }
-    
-    return i;
-}
+        i = j
+        j = temp
+
+    return i
 ```

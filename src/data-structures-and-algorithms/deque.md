@@ -20,5 +20,5 @@ Need to add or remove elements from both ends efficiently (e.g., sliding window 
 
 ## Standard Library API
 
-```cpp
+```python
 ```

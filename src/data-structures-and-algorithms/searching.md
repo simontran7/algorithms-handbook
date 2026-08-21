@@ -14,27 +14,23 @@ For some input array, `array`, and a desired element `target`, `array` must be s
 
 #### Template
 
-```cpp
-int binary_search(const std::vector<int>& array, int target) {
-    int low = 0;
-    int high = array.size() - 1;
+```python
+def binary_search(array, target):
+    low = 0
+    high = len(array) - 1
 
-    while (low <= high) {
-        int mid = low + (high - low) / 2;
+    while low <= high:
+        mid = low + (high - low) // 2
 
-        if (/* found condition */) {
-            return mid;
-        }
+        if <found condition>:
+            return mid
 
-        if (/* go right condition */) {
-            low = mid + 1;
-        } else {
-            high = mid - 1;
-        }
-    }
+        if <go right condition>:
+            low = mid + 1
+        else:
+            high = mid - 1
 
-    return -1;
-}
+    return -1
 ```
 
 #### Complexity Analysis
@@ -51,46 +47,36 @@ You want the first index where a condition flips in a sorted array (e.g. find mi
 
 #### Template
 
-```cpp
-/**
- * Returns the index of the leftmost value >= `target`
- */
-int lower_bound(const std::vector<int>& array, int target) {
-    int low = 0;
-    int high = array.size();
+```python
+def lower_bound(array, target):
+    """Returns the index of the leftmost value >= `target`"""
+    low = 0
+    high = len(array)
 
-    while (low < high) {
-        int mid = low + (high - low) / 2;
-        if (array[mid] < target) {
-            low = mid + 1;
-        } else {
-            high = mid;
-        }
-    }
+    while low < high:
+        mid = low + (high - low) // 2
+        if array[mid] < target:
+            low = mid + 1
+        else:
+            high = mid
 
-    return low;
-}
+    return low
 ```
 
-```cpp
-/**
- * Returns the index of the leftmost value > `target`
- */
-int upper_bound(const std::vector<int>& array, int target) {
-    int low = 0;
-    int high = array.size();
+```python
+def upper_bound(array, target):
+    """Returns the index of the leftmost value > `target`"""
+    low = 0
+    high = len(array)
 
-    while (low < high) {
-        int mid = low + (high - low) / 2;
-        if (array[mid] <= target) {
-            low = mid + 1;
-        } else {
-            high = mid;
-        }
-    }
+    while low < high:
+        mid = low + (high - low) // 2
+        if array[mid] <= target:
+            low = mid + 1
+        else:
+            high = mid
 
-    return low;
-}
+    return low
 ```
 
 #### Complexity Analysis
@@ -102,50 +88,34 @@ Let \\(n\\) be the length of the array. Then, for `lower_bound()`, `upper_bound(
 > [!NOTE]
 > If you want the neighbouring value to a target, then the template requires little to no changes, and then use it as follows accordingly. Otherwise, you likely need to tweak the if condition, and set `high = array.size() - 1` (in the pure `lower_bound()` and `upper_bound()`, we kept `high = array.size()` because an insertion point that goes beyond the last element of the array is valid).
 
-```cpp
-/**
- * Returns the rightmost value < `target`
- */
-int find_lt(const std::vector<int>& array, int target) {
-    int i = lower_bound(array, target);
-    if (i > 0) {
-        return array[i - 1];
-    }
-    throw std::out_of_range("no value < target");
-}
+```python
+def find_lt(array, target):
+    """Returns the rightmost value < `target`"""
+    i = lower_bound(array, target)
+    if i > 0:
+        return array[i - 1]
+    raise ValueError("no value < target")
 
-/**
- * Returns the rightmost value <= `target`
- */
-int find_le(const std::vector<int>& array, int target) {
-    int i = upper_bound(array, target);
-    if (i > 0) {
-        return array[i - 1];
-    }
-    throw std::out_of_range("no value <= target");
-}
+def find_le(array, target):
+    """Returns the rightmost value <= `target`"""
+    i = upper_bound(array, target)
+    if i > 0:
+        return array[i - 1]
+    raise ValueError("no value <= target")
 
-/**
- * Returns the leftmost value > `target`
- */
-int find_gt(const std::vector<int>& array, int target) {
-    int i = upper_bound(array, target);
-    if (i != array.size()) {
-        return array[i];
-    }
-    throw std::out_of_range("no value > target");
-}
+def find_gt(array, target):
+    """Returns the leftmost value > `target`"""
+    i = upper_bound(array, target)
+    if i != len(array):
+        return array[i]
+    raise ValueError("no value > target")
 
-/**
- * Returns the leftmost value >= `target`
- */
-int find_ge(const std::vector<int>& array, int target) {
-    int i = lower_bound(array, target);
-    if (i != array.size()) {
-        return array[i];
-    }
-    throw std::out_of_range("no value >= target");
-}
+def find_ge(array, target):
+    """Returns the leftmost value >= `target`"""
+    i = lower_bound(array, target)
+    if i != len(array):
+        return array[i]
+    raise ValueError("no value >= target")
 ```
 
 > [!NOTE]
@@ -171,50 +141,42 @@ You're trying to find a **maximum** or **minimum** value, and:
 
 #### Template
 
-```cpp
-int binary_search_minimum(const std::vector<int>& array) {
-    auto is_valid = [&](int x) -> bool {
-        // Some O(n) algorithm (usually also a greedy algorithm)
-        return /* boolean */;
-    };
+```python
+def binary_search_minimum(array):
+    def is_valid(x):
+        # Some O(n) algorithm (usually also a greedy algorithm)
+        return <boolean>
 
-    int low = /* minimum possible answer */;
-    int high = /* maximum possible answer */;
+    low = <minimum possible answer>
+    high = <maximum possible answer>
 
-    while (low <= high) {
-        int mid = low + (high - low) / 2;
-        if (is_valid(mid)) {
-            high = mid - 1;
-        } else {
-            low = mid + 1;
-        }
-    }
+    while low <= high:
+        mid = low + (high - low) // 2
+        if is_valid(mid):
+            high = mid - 1
+        else:
+            low = mid + 1
 
-    return low;
-}
+    return low
 ```
 
-```cpp
-int binary_search_maximum(const std::vector<int>& array) {
-    auto is_valid = [&](int x) -> bool {
-        // Some O(n) algorithm (usually also a greedy algorithm)
-        return
-    };
+```python
+def binary_search_maximum(array):
+    def is_valid(x):
+        # Some O(n) algorithm (usually also a greedy algorithm)
+        return <boolean>
 
-    int low = /* minimum possible answer */;
-    int high = /* maximum possible answer */;
+    low = <minimum possible answer>
+    high = <maximum possible answer>
 
-    while (low <= high) {
-        int mid = low + (high - low) / 2;
-        if (is_valid(mid)) {
-            low = mid + 1;
-        } else {
-            high = mid - 1;
-        }
-    }
+    while low <= high:
+        mid = low + (high - low) // 2
+        if is_valid(mid):
+            low = mid + 1
+        else:
+            high = mid - 1
 
-    return high;
-}
+    return high
 ```
 
 #### Complexity Analysis

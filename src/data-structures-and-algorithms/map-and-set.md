@@ -39,7 +39,7 @@ trait Set<T> {
 
 ### Implementation
 
-```cpp
+```python
 ```
 
 ### Complexity Analysis
@@ -54,69 +54,72 @@ trait Set<T> {
 
 #### Map
 
-```cpp
-#include <unordered_map>
+```python
+# Create an empty map
+m = dict()
 
-// Create an empty map
-std::unordered_map<K, V> m;
-
-// Create a map with initial values
-std::unordered_map<K, V> m = {
-    {<key 1>, <value 1>},
-    {<key 2>, <value 2>}
-};
-
-// Get number of entries
-m.size();
-
-// Check if the map is empty
-m.empty();
-
-// Add new entry or update current entry
-m[<key>] = <value>;
-
-// Remove an entry
-m.erase(<key>);
-
-// Remove all entries
-m.clear();
-
-// Get value
-// Note: throws std::out_of_range if the key isn't found, unlike operator[] which default-constructs and inserts it
-m.at(<key>);
-
-// Check if key exists (C++20)
-m.contains(<key>);
-
-// Iterate all entries
-for (const auto& [key, value] : my_map) {
-    // ...
+# Create a map with initial values
+m = {
+    <key 1>: <value 1>,
+    <key 2>: <value 2>
 }
+
+# Get number of entries
+len(m)
+
+# Check if the map is empty
+not m
+
+# Add new entry or update current entry
+m[<key>] = <value>
+
+# Remove an entry
+del m[<key>]
+
+# Remove all entries
+m.clear()
+
+# Get value
+# Note: raises KeyError if the key isn't found, unlike `m.get(<key>)` which returns None
+m[<key>]
+
+# Get the value with a default value if key isn't found
+# Note: I like this over `defaultdict(<default value type>)` for counting since it can avoid accidentally creating phantom keys
+m.get(<key>, <default value>)
+
+# Note: pretty much a must for adjacency list creation
+from collections import defaultdict
+m = defaultdict(<default value's type>)
+
+# Check if key exists
+<key> in m
+
+# Iterate all entries
+for key, value in m.items():
+    # ...
 ```
 
 #### Set
 
-```cpp
-#include <unordered_set>
+```python
+# Create an empty set
+s = set()
 
-// Create an empty set
-std::unordered_set<T> s;
+# Check if a set contains an element
+<element> in s
 
-// Check if a set contains an element 
-s.contains(<element>);
+# Get the number of elements
+len(s)
 
-// Get the number of elements
-s.size();
+# Check if the set is empty
+not s
 
-// Check if the set is empty
-s.empty();
+# Add an element
+s.add(<element>)
 
-// Add an element
-s.insert(<element>);
+# Remove an element
+s.remove(<element>)
 
-// Remove an element
-s.erase(<element>);
-
-// Remove all elements
-s.clear();
+# Remove all elements
+s.clear()
 ```

@@ -8,40 +8,33 @@ Given a directed acyclic graph, produce a linear ordering of its vertices such t
 
 ### Template
 
-```cpp
-std::vector<int> kahns_algorithm(int n, const std::vector<std::vector<int>>& edges) {
-    std::vector<int> indegrees(n, 0);
-    std::unordered_map<int, std::vector<int>> graph;
-    for (const auto& edge : edges) {
-        int u = edge[0], v = edge[1];
-        graph[u].push_back(v);
-        indegrees[v]++;
-    }
+```python
+from collections import deque, defaultdict
 
-    std::queue<int> queue;
-    for (int vertex = 0; vertex < n; ++vertex) {
-        if (indegrees[vertex] == 0) {
-            queue.push(vertex);
-        }
-    }
+def kahns_algorithm(n, edges):
+    indegrees = [0] * n
+    graph = defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+        indegrees[v] += 1
 
-    std::vector<int> result;
+    queue = deque()
+    for vertex in range(n):
+        if indegrees[vertex] == 0:
+            queue.append(vertex)
 
-    while (!queue.empty()) {
-        int vertex = queue.front();
-        queue.pop();
-        result.push_back(vertex);
-        for (int neighbour : graph[vertex]) {
-            indegrees[neighbour]--;
-            if (indegrees[neighbour] == 0) {
-                queue.push(neighbour);
-            }
-        }
-    }
+    result = []
 
-    // if result.size() != n, there's a cycle
-    return result.size() == n ? result : std::vector<int>{};
-}
+    while queue:
+        vertex = queue.popleft()
+        result.append(vertex)
+        for neighbour in graph[vertex]:
+            indegrees[neighbour] -= 1
+            if indegrees[neighbour] == 0:
+                queue.append(neighbour)
+
+    # if len(result) != n, there's a cycle
+    return result if len(result) == n else []
 ```
 
 ### Complexity Analysis
