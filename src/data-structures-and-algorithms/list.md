@@ -3,24 +3,24 @@
 ## Interface
 
 ```
-trait List<T> {
-    fn new() -> Self;
-    fn add_front(&mut self, item: T);
-    fn add_last(&mut self, item: T);
-    fn get_front(&self) -> T;
-    fn get_last(&self) -> T;
-    fn get(&self, index: usize) -> T;
-    fn set(&mut self, index: usize, item: T);
-    fn remove_front(&mut self) -> T;
-    fn remove_last(&mut self) -> T;
-    fn remove(&mut self, item: usize) -> T;
+trait List[E] {
+    func new() -> Self;
+    func get_first(&self) -> E;
+    func get_last(&self) -> E;
+    func get(&self, index: usize) -> E;
+    func add_first(&mut self, element: E);
+    func add_last(&mut self, element: E);
+    func add(&mut self, index: usize, element: E);
+    func set(&mut self, index: usize, element: E);
+    func remove_first(&mut self) -> E;
+    func remove_last(&mut self) -> E;
+    func remove(&mut self, index: usize) -> E;
 }
 ```
 
 ## Use Case
 
-- Order matters, and you need to iterate over items sequentially
-- The problem is naturally described as a sequence of items
+You need an ordered sequence of elements where each element has an index.
 
 ## Dynamic Array
 
@@ -33,34 +33,34 @@ trait List<T> {
 
 ```python
 # new
-v = []
+l = []
 
-# add front
-v.insert(0, item)
+# add first
+l.insert(0, item)
 
 # add last
-v.append(item)
+l.append(item)
 
-# get front
-v[0]
+# get first
+l[0]
 
 # get last
-v[-1]
+l[-1]
 
 # get element at `index`
-v[index]
+l[<index>]
 
-# set element at `index`
-v[index] = item
+# set `element` at `index`
+l[<index>] = <element>
 
-# remove front
-v.pop(0)
+# remove first
+l.pop(0)
 
 # remove last
-v.pop()
+l.pop()
 
 # remove at `index`
-v.pop(index)
+l.pop(<index>)
 ```
 
 ### Complexity Analysis
@@ -99,42 +99,6 @@ v.pop(index)
 ### Implementation
 
 ```python
-```
-
-### Standard Library API
-
-```python
-from collections import deque
-
-# new
-l = deque()
-
-# add front
-l.appendleft(item)
-
-# add last
-l.append(item)
-
-# get front
-l[0]
-
-# get last
-l[-1]
-
-# get element at `index`
-l[index]
-
-# set element at `index`
-l[index] = item
-
-# remove front
-l.popleft()
-
-# remove last
-l.pop()
-
-# remove at `index`
-del l[index]
 ```
 
 ### Complexity Analysis

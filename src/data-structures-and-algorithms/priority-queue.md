@@ -19,8 +19,8 @@ trait PriorityQueue<T> {
 import heapq
 
 def top_k(l, k):
-    # use a min heap to keep the largest `k` elements,
-    # or a max heap to keep the smallest `k`
+    # use a min pq to keep the largest `k` elements,
+    # or a max pq to keep the smallest `k`
     pq = []
 
     for num in l:
