@@ -2,7 +2,7 @@
 
 ## Alignment Requirement
 
-Every type has an **alignment requirement**, a number of bytes \\(N\\) that determines the memory addresses where objects of that type can be placed. If a type \\(T\\) has an alignment requirement of \\(N\\), objects of type \\(T\\) must be placed at memory addresses that are multiples of (N).
+Every type has an **alignment requirement**, a number of bytes $N$ that determines the memory addresses where objects of that type can be placed. If a type $T$ has an alignment requirement of $N$, objects of type $T$ must be placed at memory addresses that are multiples of (N).
 
 A primitive type has a **natural alignment requirement**, which is equal to its byte size.
 

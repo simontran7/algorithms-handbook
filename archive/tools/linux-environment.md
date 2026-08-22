@@ -200,13 +200,13 @@ cat <file>
 less <file>
 ```
 
-- Show the first \\(n\\) lines
+- Show the first $n$ lines
 
 ```bash
 head -n <n> <file>
 ```
 
-- Show the last \\(n\\) lines
+- Show the last $n$ lines
 
 ```bash
 tail -n <n> <file>
