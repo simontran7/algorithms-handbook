@@ -70,11 +70,17 @@ class TrieNode:
         self.data = None
         self.children = {}
 
+
 class TrieMap:
-    def __init__(self, words=None):
+    def __init__(self):
         self.root = TrieNode()
-        for word, value in (words or []):
-            self.add(word, value)
+
+    @classmethod
+    def from_pairs(cls, pairs):
+        trie = cls()
+        for word, value in pairs:
+            trie.add(word, value)
+        return trie
 
     def get(self, word):
         cursor = self.root
@@ -99,6 +105,7 @@ class TrieMap:
         if index == len(word):
             if node.data is None:
                 return False
+
             node.data = None
             return not node.children
 
@@ -106,10 +113,14 @@ class TrieMap:
         if c not in node.children:
             return False
 
-        should_delete_child = self._remove_rec(node.children[c], word, index + 1)
+        should_delete_child = self._remove_rec(
+            node.children[c], word, index + 1
+        )
+
         if should_delete_child:
             del node.children[c]
             return not node.children and node.data is None
+
         return False
 ```
 
