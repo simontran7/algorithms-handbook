@@ -115,9 +115,11 @@ class TrieMap:
 
 ### Complexity Analysis
 
+Let \\(m\\) be the length of the key. Then:
+
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case $O(m)$, where $m$ is the length of the key |
-| Add | worst-case $O(m)$, where $m$ is the length of the key |
-| Remove | worst-case $O(m)$, where $m$ is the length of the key |
+| Lookup | worst-case \\(O(m)\\) |
+| Insertion | worst-case \\(O(m)\\) |
+| Deletion | worst-case \\(O(m)\\) |
 
