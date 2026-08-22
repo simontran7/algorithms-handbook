@@ -90,7 +90,7 @@ Since the tree is always complete, it can be stored implicitly in an array such 
 
 ### Lookup min/max
 
-Index into the $0$th element of the backing array.
+Index into the $0^{th}$ element of the backing array.
 
 ### Insertion
 
@@ -174,4 +174,4 @@ heapq.heappop_max(max_pq)
 > `heapq.heapify_max()` / `heapq.heappush_max()` / `heapq.heappop_max()` require Python 3.14+.
 
 > [!NOTE]
-> To simulate an **indexed priority queue**, store tuples: `(key, element)`, where tuples are compared lexicographically (key first, then element as tie-breaker).
+> To simulate an **indexed priority queue**, store tuples `(key, element)`, which get compared lexicographically (key first, then element as tie-breaker).
