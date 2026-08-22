@@ -63,12 +63,12 @@ class MedianFinder:
 A **binary heap** is a complete (i.e., filled top-down from left to right) binary tree satisfying the **heap property**:
 - Largest element is stored at the root (max-heap) or the smallest element is stored at the root (min-heap)
 - For all nodes \\(i\\), excluding the root:
-- Every parent is \\(\ge\\) its children (max-heap) or \\(\le\\) its children (min-heap). 
+- Every parent node is \\(\ge\\) its children (max-heap) or \\(\le\\) its children (min-heap). 
 
 Since the tree is always complete, it can be stored implicitly in an array such that for a node at index \\(i\\):
 - left child: \\(2i + 1\\) 
 - right child: \\(2i + 2\\)
-- parent: \(\lfloor (i - 1) / 2 \rfloor\\).
+- parent: \\(\lfloor (i - 1) / 2 \rfloor\\)
 
 ### Sift Down
 
