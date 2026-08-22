@@ -29,7 +29,7 @@ def dynamic_fast_and_slow_pointers(head):
 
 ### Use Case
 
-Find the \\(k^\text{th}\\) node from the end of a linked list.
+Find the $k^\text{th}$ node from the end of a linked list.
 
 ### Template
 

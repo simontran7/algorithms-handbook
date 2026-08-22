@@ -13,7 +13,7 @@ trait PriorityQueue<T> {
 ## Use Case
 
 - Repeatedly find the maximum or minimum element
-- Get the "top" \\(k\\) elements
+- Get the "top" $k$ elements
 
 ```python
 import heapq
@@ -62,13 +62,13 @@ class MedianFinder:
 
 A **binary heap** is a complete (i.e., filled top-down from left to right) binary tree satisfying the **heap property**:
 - Largest element is stored at the root (max-heap) or the smallest element is stored at the root (min-heap)
-- For all nodes \\(i\\), excluding the root:
-- Every parent node is \\(\ge\\) its children (max-heap) or \\(\le\\) its children (min-heap). 
+- For all nodes $i$, excluding the root:
+- Every parent node is $\ge$ its children (max-heap) or $\le$ its children (min-heap). 
 
-Since the tree is always complete, it can be stored implicitly in an array such that for a node at index \\(i\\):
-- left child: \\(2i + 1\\) 
-- right child: \\(2i + 2\\)
-- parent: \\(\lfloor (i - 1) / 2 \rfloor\\)
+Since the tree is always complete, it can be stored implicitly in an array such that for a node at index $i$:
+- left child: $2i + 1$ 
+- right child: $2i + 2$
+- parent: $\lfloor (i - 1) / 2 \rfloor$
 
 ### Sift Down
 
@@ -84,13 +84,13 @@ Since the tree is always complete, it can be stored implicitly in an array such 
 
 ### Heapify
 
-1. Find the index of the last non-leaf node: \\(\lfloor n / 2 \rfloor - 1\\) (the parent of the last element).
-2. Iterate from that index down to the root (index \\(0\\)) (i.e., bottom-up, right-to-left).
+1. Find the index of the last non-leaf node: $\lfloor n / 2 \rfloor - 1$ (the parent of the last element).
+2. Iterate from that index down to the root (index $0$) (i.e., bottom-up, right-to-left).
 3. At each index, perform **sift down**.
 
 ### Lookup min/max
 
-Index into the \\(0\\)th element of the backing array.
+Index into the $0$th element of the backing array.
 
 ### Insertion
 
@@ -107,10 +107,10 @@ Index into the \\(0\\)th element of the backing array.
 
 | Operation | Time Complexity |
 | --- | --- |
-| Heapify | worst-case \\(O(n)\\) |
-| Lookup min/max | worst-case \\(O(1)\\) |
-| Insertion | worst-case \\(O(\log n)\\) |
-| Deletion | worst-case \\(O(\log n)\\) |
+| Heapify | worst-case $O(n)$ |
+| Lookup min/max | worst-case $O(1)$ |
+| Insertion | worst-case $O(\log n)$ |
+| Deletion | worst-case $O(\log n)$ |
 
 ## Python API
 

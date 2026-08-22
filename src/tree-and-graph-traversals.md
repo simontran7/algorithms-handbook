@@ -4,7 +4,7 @@
 
 ### Tree Traversals
 
-Let \\(n\\) be the number of nodes in the tree and \\(C_{node}\\) be the cost of processing a single node. Then:
+Let $n$ be the number of nodes in the tree and $C_{node}$ be the cost of processing a single node. Then:
 
 $$
 O(n \cdot C_{node})
@@ -12,7 +12,7 @@ $$
 
 ### Graph Traversals
 
-Let \\(S\\) be the number of reachable states (product of the ranges of each state variable), \\(C_{state}\\) the cost of processing a single state, \\(T\\) the number of transitions (the transitions per state times \\(S\\)), and \\(C_{transition}\\) the cost of processing a single transition. Then:
+Let $S$ be the number of reachable states (product of the ranges of each state variable), $C_{state}$ the cost of processing a single state, $T$ the number of transitions (the transitions per state times $S$), and $C_{transition}$ the cost of processing a single transition. Then:
 
 $$
 O(S \cdot C_{state} + T \cdot C_{transition})
@@ -69,10 +69,10 @@ def iterative_preorder_dfs(root):
 
 #### Complexity Analysis
 
-Let \\(n\\) be the number of nodes in the tree. Then, Space Complexity is worst-case \\(O(n)\\).
+Let $n$ be the number of nodes in the tree. Then, Space Complexity is worst-case $O(n)$.
 
 > [!NOTE]
-> The \\(O(n)\\) space comes from the call stack (recursive) or the explicit `stack` (iterative), which in the worst case (a completely skewed tree) holds all \\(n\\) nodes; for a balanced tree, this drops to \\(O(\log n)\\) (the tree's height).
+> The $O(n)$ space comes from the call stack (recursive) or the explicit `stack` (iterative), which in the worst case (a completely skewed tree) holds all $n$ nodes; for a balanced tree, this drops to $O(\log n)$ (the tree's height).
 
 > [!NOTE]
 > In the iterative depth-first search, the flow is usually pre-order `pop node → process node → push right → push left` , while in the recursive depth-first search, pre-order `process node → recurse left → recurse right` is the most common, followed by post-order `recurse left → recurse right → process node` , then in-order `recurse left → process node → recurse right` .
@@ -127,7 +127,7 @@ def bfs(root):
 
 #### Complexity Analysis
 
-Let \\(n\\) be the number of nodes in the tree. Then, Space Complexity is worst-case \\(O(n)\\), for `queue` holding an entire level (up to \\(n / 2\\) nodes for the widest level of a complete binary tree).
+Let $n$ be the number of nodes in the tree. Then, Space Complexity is worst-case $O(n)$, for `queue` holding an entire level (up to $n / 2$ nodes for the widest level of a complete binary tree).
 
 ## Graph Traversals
 
@@ -251,12 +251,12 @@ def matrix_iterative_dfs(matrix):
 
 #### Complexity Analysis
 
-For the adjacency-list templates, let \\(V\\) be the number of vertices and \\(E\\) be the number of edges. For the matrix templates, let \\(R\\) and \\(C\\) be the number of rows and columns. Then:
+For the adjacency-list templates, let $V$ be the number of vertices and $E$ be the number of edges. For the matrix templates, let $R$ and $C$ be the number of rows and columns. Then:
 
 | Template | Space Complexity |
 | --- | --- |
-| Adjacency list | worst-case \\(O(V + E)\\) |
-| Matrix | worst-case \\(O(R \cdot C)\\) |
+| Adjacency list | worst-case $O(V + E)$ |
+| Matrix | worst-case $O(R \cdot C)$ |
 
 > [!NOTE]
 > The space bound covers `visited` and the recursion/explicit stack, both of which can hold every vertex/cell in the worst case (e.g., a graph with no cycles to terminate recursion early, or a grid with no invalid cells).
@@ -322,19 +322,19 @@ def matrix_iterative_bfs(matrix):
 
 #### Complexity Analysis
 
-For the adjacency-list template, let \\(V\\) be the number of vertices and \\(E\\) be the number of edges. For the matrix template, let \\(R\\) and \\(C\\) be the number of rows and columns. Then:
+For the adjacency-list template, let $V$ be the number of vertices and $E$ be the number of edges. For the matrix template, let $R$ and $C$ be the number of rows and columns. Then:
 
 | Template | Space Complexity |
 | --- | --- |
-| Adjacency list | worst-case \\(O(V + E)\\) |
-| Matrix | worst-case \\(O(R \cdot C)\\) |
+| Adjacency list | worst-case $O(V + E)$ |
+| Matrix | worst-case $O(R \cdot C)$ |
 
 > [!NOTE]
-> Common values of \\(E\\) in the classic graph algorithms worst-case time complexity formulas:
-> - Complete graph: \\(E = \binom{n}{2} = \frac{N(N - 1)}{2}\\)
-> - Tree: \\(E = V − 1\\)
-> - Dense graph: \\(E = O(V^2)\\)
-> - Sparse graph: \\(E =O(V)\\)
+> Common values of $E$ in the classic graph algorithms worst-case time complexity formulas:
+> - Complete graph: $E = \binom{n}{2} = \frac{N(N - 1)}{2}$
+> - Tree: $E = V − 1$
+> - Dense graph: $E = O(V^2)$
+> - Sparse graph: $E =O(V)$
 
 > [!NOTE]
 > Unlike linked lists and binary trees, which we are given `head` or `root` respectively, there are various graph inputs:

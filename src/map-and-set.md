@@ -46,9 +46,9 @@ trait Set<T> {
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case \\(O(n)\\), average \\(O(1)\\) |
-| Add | worst-case \\(O(n)\\), amortized \\(O(1)\\) |
-| Remove | worst-case \\(O(n)\\), average \\(O(1)\\) |
+| Lookup | worst-case $O(n)$, average $O(1)$ |
+| Add | worst-case $O(n)$, amortized $O(1)$ |
+| Remove | worst-case $O(n)$, average $O(1)$ |
 
 ### Standard Library API
 

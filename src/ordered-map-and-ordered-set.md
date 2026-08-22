@@ -56,9 +56,9 @@ trait OrderedSet<T: Ord> {
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case \\(O(\log n)\\) |
-| Insertion | worst-case \\(O(\log n)\\) |
-| Deletion | worst-case \\(O(\log n)\\) |
+| Lookup | worst-case $O(\log n)$ |
+| Insertion | worst-case $O(\log n)$ |
+| Deletion | worst-case $O(\log n)$ |
 
 ## Prefix Tree (Trie)
 
@@ -126,11 +126,11 @@ class TrieMap:
 
 ### Complexity Analysis
 
-Let \\(m\\) be the length of the key. Then:
+Let $m$ be the length of the key. Then:
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case \\(O(m)\\) |
-| Insertion | worst-case \\(O(m)\\) |
-| Deletion | worst-case \\(O(m)\\) |
+| Lookup | worst-case $O(m)$ |
+| Insertion | worst-case $O(m)$ |
+| Deletion | worst-case $O(m)$ |
 

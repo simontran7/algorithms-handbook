@@ -2,7 +2,7 @@
 
 ## Use Case
 
-Problems that involve `x mod m`, (`m` is typically \\(10^9 + 7\\)), where:
+Problems that involve `x mod m`, (`m` is typically $10^9 + 7$), where:
 
 - Building `x` is expensive (repeated work)
 - `x` becomes too large
@@ -27,13 +27,13 @@ $$
 
 We get the following properties from the above:
 
-- \\(\boxed{(a+b)\bmod m = \big((a\bmod m)+(b\bmod m)\big)\bmod m}\\)
+- $\boxed{(a+b)\bmod m = \big((a\bmod m)+(b\bmod m)\big)\bmod m}$
 
-- \\(\boxed{(a-b)\bmod m = \big((a\bmod m)-(b\bmod m)\big)\bmod m}\\)
+- $\boxed{(a-b)\bmod m = \big((a\bmod m)-(b\bmod m)\big)\bmod m}$
 
-- \\(\boxed{(a\times b)\bmod m = \big((a\bmod m)(b\bmod m)\big)\bmod m}\\)
+- $\boxed{(a\times b)\bmod m = \big((a\bmod m)(b\bmod m)\big)\bmod m}$
 
-- \\(\boxed{(a^k) \bmod m = \big((a \bmod m)^k\big) \bmod m}\\)
+- $\boxed{(a^k) \bmod m = \big((a \bmod m)^k\big) \bmod m}$
 
 ## Templates
 
