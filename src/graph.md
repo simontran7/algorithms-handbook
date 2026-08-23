@@ -7,11 +7,11 @@
 ```
 ```
 
+## Facts
 
-- Complete graph: $E = \binom{V}{2} = \frac{V(V - 1)}{2}$
-- Tree: $E = V − 1$
-- Dense graph: $E = O(V^2)$
-- Sparse graph: $E =O(V)$
+- Complete graph has \binom{V}{2} = \frac{V(V-1)}{2} edges
+- A tree has $V-1$ edges
+- A dense graph has $O(V^2)$ edges, while a sparse graph has $E = O(V)$ edges
 
 ## Adjacency List
 
