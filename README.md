@@ -41,3 +41,35 @@
     - [Monotonic Deque](./src/monotonic-deque.md)
     - [Bit Manipulation](./src/bit-manipulation.md)
     - [Modular Arithmetic](./src/modular-arithmetic.md)
+
+**Division and Modulo**
+
+| Operation | Python | C |
+|---|---|---|
+| Integer division | `//` (floors) | `/` (truncates toward zero) |
+| Floating-point division | `/` | `/` |
+| Remainder | N/A | `%` |
+| Modulo | `%` | N/A |
+
+**Division Flooring and Division Ceiling**
+
+| Operation | Python | C |
+|---|---|---|
+| Division flooring an integer | `//` | `div_floor()` (custom, no builtin) |
+| Division ceiling an integer | `-(a // -b)` | `div_ceil()` (custom, no builtin) |
+| Flooring a float | `math.floor(/)` | `floor()` |
+| Ceiling a float | `math.ceil(/)` | `ceil()` |
+
+```c
+long div_floor(long a, long b) {
+    long q = a / b;
+    if ((a % b != 0) && ((a < 0) != (b < 0))) q--;
+    return q;
+}
+
+long div_ceil(long a, long b) {
+    long q = a / b;
+    if ((a % b != 0) && ((a < 0) == (b < 0))) q++;
+    return q;
+}
+```
