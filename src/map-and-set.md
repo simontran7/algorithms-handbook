@@ -5,7 +5,7 @@
 ### Map
 
 ```
-trait Map<K, V> {
+trait Map[K, V] {
     func get(&self, key: K) -> V;
     func add(&mut self, key: K, value: V);
     func remove(&mut self, key: K) -> V;
@@ -15,7 +15,7 @@ trait Map<K, V> {
 ### Set
 
 ```
-trait Set<T> {
+trait Set[T] {
     func add(&mut self, item: T);
     func contains(&self, item: T) -> Bool;
     func remove(&mut self, item: T);
