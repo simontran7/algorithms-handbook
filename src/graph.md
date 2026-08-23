@@ -1,6 +1,21 @@
 # Graph
 
-## Terminology
+## Theory
+
+### Terminology
+
+- **Graph, vertices, and edges**: a pair $(V, E)$, where $V$ is a set of nodes, called **vertices**, and $E$ is a collection of pairs of vertices, called **edges**
+- **Directed Edge**: an ordered pair of vertices $(u, v)$, where $u$ is the origin, and $v$ is the destination
+- **Undirected Edge**: an unordered pair of vertices $(u, v)$
+- **Directed Graph (Digraph)**: all the edges are directed 
+- **Undirected Graph**: all the edges are undirected
+- **Endpoints**: the end vertices of an edge 
+
+## Properties
+
+- A complete graph has $\binom{V}{2} = \frac{V(V-1)}{2}$ edges
+- A tree has $V-1$ edges
+- A dense graph has $O(V^2)$ edges, while a sparse graph has $O(V)$ edges
 
 ## Interface
 
@@ -55,12 +70,6 @@ pub trait Graph {
     func edges(&self) -> impl Iterator<Item = &Self::Edge>;
 }
 ```
-
-## Facts
-
-- A complete graph has $\binom{V}{2} = \frac{V(V-1)}{2}$ edges
-- A tree has $V-1$ edges
-- A dense graph has $O(V^2)$ edges, while a sparse graph has $O(V)$ edges
 
 ## Adjacency List
 
