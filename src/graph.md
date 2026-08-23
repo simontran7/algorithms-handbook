@@ -11,7 +11,7 @@
 
 - A complete graph has $\binom{V}{2} = \frac{V(V-1)}{2}$ edges
 - A tree has $V-1$ edges
-- A dense graph has $O(V^2)$ edges, while a sparse graph has $E = O(V)$ edges
+- A dense graph has $O(V^2)$ edges, while a sparse graph has $O(V)$ edges
 
 ## Adjacency List
 
