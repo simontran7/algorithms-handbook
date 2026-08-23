@@ -53,23 +53,39 @@
 
 **Division Flooring and Division Ceiling**
 
-| Operation | Python | C |
+| Operation | Python | C/C++ |
 |---|---|---|
-| Division flooring an integer | `//` | `div_floor()` (custom, no builtin) |
-| Division ceiling an integer | `-(a // -b)` | `div_ceil()` (custom, no builtin) |
-| Flooring a float | `math.floor(/)` | `floor()` |
-| Ceiling a float | `math.ceil(/)` | `ceil()` |
+| Division flooring an integer | `//` | `div_floor(<num>, <denom>)` (see below) |
+| Division ceiling an integer | `-(a // -b)` | `div_ceil(<num>, <denom>)` (see below) |
+| Flooring a float | `math.floor(<num> / <denom>)` | `floor(<num> / <denom>)` |
+| Ceiling a float | `math.ceil(<num> / <denom>)` | `ceil(<num> / <denom>)` |
 
-```c
-long div_floor(long a, long b) {
-    long q = a / b;
-    if ((a % b != 0) && ((a < 0) != (b < 0))) q--;
+```cpp
+template <typename T>
+T div_ceil(T a, T b) {
+    T q = a / b;
+    T r = a % b;
+
+    bool remainder_exists = (r != 0);
+    bool same_sign = (r < 0) == (b < 0);
+    if (remainder_exists && same_sign) {
+        q = q + 1;
+    }
+
     return q;
 }
 
-long div_ceil(long a, long b) {
-    long q = a / b;
-    if ((a % b != 0) && ((a < 0) == (b < 0))) q++;
+template <typename T>
+T div_floor(T a, T b) {
+    T q = a / b;
+    T r = a % b;
+
+    bool remainder_exists = (r != 0);
+    bool different_sign = (r < 0) != (b < 0);
+    if (remainder_exists && different_sign) {
+        q = q - 1;
+    }
+
     return q;
 }
 ```
