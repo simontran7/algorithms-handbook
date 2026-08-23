@@ -310,17 +310,10 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
 > [!NOTE]
-> Common values of $E$ in the classic graph algorithms worst-case time complexity formulas:
-> - Complete graph: $E = \binom{n}{2} = \frac{N(N - 1)}{2}$
-> - Tree: $E = V − 1$
-> - Dense graph: $E = O(V^2)$
-> - Sparse graph: $E =O(V)$
+>  `visited` is typically a HashSet, but you might achieve better runtime performance by using a static array of booleans whenever the node range is predetermined (e.g. we know there are nodes from `0` to `n - 1`).
 
 > [!NOTE]
->  `visited` is typically a HashSet, but you might achieve better runtime performance by using a boolean array when the node range is predetermined (which is typical since graph problems usually number nodes from `0` to `n - 1` )
-
-> [!NOTE]
-> Whenever the problem mentions prohibited vertices, then that's an indicator to add them straight away to the `visited` container.
+> Whenever the problem mentions prohibited vertices, then add them straight away to the `visited` container.
 
 > [!NOTE]
 > When using BFS to find shortest paths:
