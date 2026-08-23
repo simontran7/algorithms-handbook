@@ -42,14 +42,6 @@ trait Set<T> {
 ```python
 ```
 
-### Complexity Analysis
-
-| Operation | Time Complexity |
-| --- | --- |
-| Lookup | worst-case $O(n)$, average $O(1)$ |
-| Add | worst-case $O(n)$, amortized $O(1)$ |
-| Remove | worst-case $O(n)$, average $O(1)$ |
-
 ### Standard Library API
 
 #### Map
@@ -123,3 +115,12 @@ s.remove(<element>)
 # Remove all elements
 s.clear()
 ```
+
+### Complexity Analysis
+
+| Operation | Time Complexity |
+| --- | --- |
+| Lookup | worst-case $O(n)$, average $O(1)$ |
+| Add | worst-case $O(n)$, amortized $O(1)$ |
+| Remove | worst-case $O(n)$, average $O(1)$ |
+
