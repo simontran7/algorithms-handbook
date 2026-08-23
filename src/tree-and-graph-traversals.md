@@ -1,23 +1,5 @@
 # Tree and Graph Traversals
 
-## Complexity Analysis
-
-### Tree Traversals
-
-Let $n$ be the number of nodes in the tree and $C_{node}$ be the cost of processing a single node. Then:
-
-$$
-O(n \cdot C_{node})
-$$
-
-### Graph Traversals
-
-Let $S$ be the number of reachable states (product of the ranges of each state variable), $C_{state}$ the cost of processing a single state, $T$ the number of transitions (the transitions per state times $S$), and $C_{transition}$ the cost of processing a single transition. Then:
-
-$$
-O(S \cdot C_{state} + T \cdot C_{transition})
-$$
-
 ## Tree Traversals
 
 ### Depth-First Search
@@ -69,10 +51,9 @@ def iterative_preorder_dfs(root):
 
 #### Complexity Analysis
 
-Let $n$ be the number of nodes in the tree. Then, Space Complexity is worst-case $O(n)$.
-
-> [!NOTE]
-> The $O(n)$ space comes from the call stack (recursive) or the explicit `stack` (iterative), which in the worst case (a completely skewed tree) holds all $n$ nodes; for a balanced tree, this drops to $O(\log n)$ (the tree's height).
+Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing a single node, and $h$ the height of the tree. Then:
+- Time: worst-case $O(n \cdot C_{node})$
+- Space: worst-case $O(h)$
 
 > [!NOTE]
 > In the iterative depth-first search, the flow is usually pre-order `pop node → process node → push right → push left` , while in the recursive depth-first search, pre-order `process node → recurse left → recurse right` is the most common, followed by post-order `recurse left → recurse right → process node` , then in-order `recurse left → process node → recurse right` .
@@ -125,9 +106,11 @@ def bfs(root):
     return result
 ```
 
-#### Complexity Analysis
+#### Complexity Analysis 
 
-Let $n$ be the number of nodes in the tree. Then, Space Complexity is worst-case $O(n)$, for `queue` holding an entire level (up to $n / 2$ nodes for the widest level of a complete binary tree).
+Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing a single node. Then:
+- Time: worst-case $O(n \cdot C_{node})$
+- Space: worst-case $O(n)$
 
 ## Graph Traversals
 
@@ -251,15 +234,12 @@ def matrix_iterative_dfs(matrix):
 
 #### Complexity Analysis
 
-For the adjacency-list templates, let $V$ be the number of vertices and $E$ be the number of edges. For the matrix templates, let $R$ and $C$ be the number of rows and columns. Then:
+Let $S$ be the number of reachable states (product of the ranges of each state variable), $C_{state}$ the cost of processing a single state, $T$ the number of transitions (the transitions per state times $S$), $C_{transition}$ the cost of processing a single transition, $V$ be the number of vertices and $E$ be the number of edges. Then:
 
-| Template | Space Complexity |
-| --- | --- |
-| Adjacency list | worst-case $O(V + E)$ |
-| Matrix | worst-case $O(R \cdot C)$ |
-
-> [!NOTE]
-> The space bound covers `visited` and the recursion/explicit stack, both of which can hold every vertex/cell in the worst case (e.g., a graph with no cycles to terminate recursion early, or a grid with no invalid cells).
+- Time Complexity: worst-case $O(S \cdot C_{state} + T \cdot C_{transition})$
+- Space Complexity:
+	- Adjacency List: worst-case $O(V + E)$
+	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
 ### Breadth-First Search 
 
@@ -322,12 +302,12 @@ def matrix_iterative_bfs(matrix):
 
 #### Complexity Analysis
 
-For the adjacency-list template, let $V$ be the number of vertices and $E$ be the number of edges. For the matrix template, let $R$ and $C$ be the number of rows and columns. Then:
+Let $S$ be the number of reachable states (product of the ranges of each state variable), $C_{state}$ the cost of processing a single state, $T$ the number of transitions (the transitions per state times $S$), $C_{transition}$ the cost of processing a single transition, $V$ be the number of vertices and $E$ be the number of edges. Then:
 
-| Template | Space Complexity |
-| --- | --- |
-| Adjacency list | worst-case $O(V + E)$ |
-| Matrix | worst-case $O(R \cdot C)$ |
+- Time Complexity: worst-case $O(S \cdot C_{state} + T \cdot C_{transition})$
+- Space Complexity:
+	- Adjacency List: worst-case $O(V + E)$
+	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
 > [!NOTE]
 > Common values of $E$ in the classic graph algorithms worst-case time complexity formulas:
@@ -335,46 +315,6 @@ For the adjacency-list template, let $V$ be the number of vertices and $E$ be th
 > - Tree: $E = V − 1$
 > - Dense graph: $E = O(V^2)$
 > - Sparse graph: $E =O(V)$
-
-> [!NOTE]
-> Unlike linked lists and binary trees, which we are given `head` or `root` respectively, there are various graph inputs:
-> 1. Matrix: A 2D list, where each element will represent a vertex, but are _not_ numbered `0` to `n`, its neighbours are the adjacent squares, and the edges are determined by the problem description.
-> 2. Edge list: A list of edges `edges`. It's useful to turn it into an adjacency list.
->
-> ```python
-> from collections import defaultdict
->
-> def build_adjacency_list_graph(edges):
->    graph = defaultdict(list)
->    for u, v in edges:
->        graph[u].append(v)
->        graph[v].append(u) # comment out this line if the input is a directed graph
->
->    return graph
-> ```
->
-> 3. Integer Adjacency List: A 2D list of integers `graph`, where `n` nodes are numbered from `0` to `n - 1`, and `graph[i]` represents the neighbours of node `i`.
-> 4. Integer Adjacency Matrix: A 2D list of integers, where `n` nodes are numbered from `0` to `n - 1`, thereby forming an `n x n` square matrix, and where when `graph[i][j] == 1`, there exist an edge between node `i` and node `j`, and when `graph[i][j] == 0`, there is no edge between node `i` and node `j`. It's also useful to pre-process it into an adjacency list.
->
-> ```python
-> from collections import defaultdict
->
-> def build_adjacency_list_graph(adjacency_matrix):
->     graph = defaultdict(list)
->     n = len(adjacency_matrix)
->
->     for i in range(n):
->         for j in range(i + 1, n):
->             if adjacency_matrix[i][j]:
->                 graph[i].append(j)
->                 graph[j].append(i) # comment out this line if the input is a directed graph
->
->    return graph
-> ```
-> Although, even if the input is none of the above, it may still be an implicit graph problem, often where vertices aren't explicitly given, but can be generated on the fly through valid transitions or transformations. These problems typically involve:
-> - A starting state and a goal/end state
-> - A defined set of valid transitions or mutations
-> - Optional constraints like invalid/intermediate states
 
 > [!NOTE]
 >  `visited` is typically a HashSet, but you might achieve better runtime performance by using a boolean array when the node range is predetermined (which is typical since graph problems usually number nodes from `0` to `n - 1` )
