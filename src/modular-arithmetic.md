@@ -37,25 +37,6 @@ We get the following properties from the above:
 
 ## Templates
 
-### Modular Number Construction
-
-```python
-def mod_subdigits(word, m):
-    remainder = 0
-    result = []
-
-    for digit_char in word:
-        digit = int(digit_char)
-        remainder = (remainder * 10 + digit) % m
-
-        if remainder == 0:
-            result.append(1)  # divisible
-        else:
-            result.append(0)
-
-    return result
-```
-
 ### Modular Sum
 
 ```python
@@ -104,6 +85,25 @@ def mod_exponentiation(base, exp, mod):
             result = (result * base) % mod
         exp = exp >> 1  # divide by 2
         base = (base * base) % mod
+
+    return result
+```
+
+### Modular Number Construction
+
+```python
+def mod_subdigits(word, m):
+    remainder = 0
+    result = []
+
+    for digit_char in word:
+        digit = int(digit_char)
+        remainder = (remainder * 10 + digit) % m
+
+        if remainder == 0:
+            result.append(1)  # divisible
+        else:
+            result.append(0)
 
     return result
 ```
