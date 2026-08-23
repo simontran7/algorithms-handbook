@@ -3,11 +3,11 @@
 ## Interface
 
 ```
-trait Stack<T> {
+trait Stack[E] {
     func new() -> Self;
-    func top(&self) -> T;
-    func push(&mut self, item: T);
-    func pop(&mut self) -> T;
+    func top(&self) -> E;
+    func push(&mut self, element: E);
+    func pop(&mut self) -> E;
 }
 ```
 
