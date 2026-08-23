@@ -108,7 +108,7 @@ l.pop(<index>)
 | Add at the head | worst-case $O(1)$ |
 | Add at the tail | worst-case $O(1)$ (with a maintained tail pointer) |
 | Add in the middle | worst-case $O(n)$ to find the position, $O(1)$ to link |
-| Lookup by index | worst-case $O(n)$ |
+| Lookup | worst-case $O(n)$ |
 | Remove at the head | worst-case $O(1)$ |
 | Remove at the tail | worst-case $O(1)$ (with a maintained tail pointer) |
 | Remove in the middle | worst-case $O(n)$ to find the node, $O(1)$ to unlink |
