@@ -12,7 +12,7 @@
 #### Code
 
 ```
-func bubble_sort<T: PartialOrder>(array: &mut [T]) {
+func bubble_sort[T: PartialOrder](array: &mut [T]) {
     let n = array.count();
     for i in 0..n {
         let mut swapped = false;
