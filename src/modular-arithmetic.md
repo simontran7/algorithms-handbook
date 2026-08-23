@@ -31,7 +31,7 @@ We get the following properties from the above:
 
 - $\boxed{(a-b)\bmod m = \big((a\bmod m)-(b\bmod m)\big)\bmod m}$
 
-- $\boxed{(a\times b)\bmod m = \big((a\bmod m)(b\bmod m)\big)\bmod m}$
+- $\boxed{(a \cdot b)\bmod m = \big((a\bmod m)(b\bmod m)\big)\bmod m}$
 
 - $\boxed{(a^k) \bmod m = \big((a \bmod m)^k\big) \bmod m}$
 
