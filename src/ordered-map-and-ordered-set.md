@@ -36,6 +36,9 @@ trait OrderedSet<T: Ord> {
 
 ## Binary Search Tree
 
+> [!NOTE]
+> At depth $d$, there are at most $2^d$ nodes.
+
 ### Implementation
 
 ```python
@@ -46,6 +49,9 @@ trait OrderedSet<T: Ord> {
 ...
 
 ## Red-Black Tree
+
+> [!NOTE]
+> The height of a balanced binary search tree's is $O(\log n)$
 
 ### Implementation
 
