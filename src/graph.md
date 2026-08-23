@@ -4,6 +4,15 @@
 
 ## Interface
 
+```
+```
+
+
+- Complete graph: $E = \binom{V}{2} = \frac{V(V - 1)}{2}$
+- Tree: $E = V − 1$
+- Dense graph: $E = O(V^2)$
+- Sparse graph: $E =O(V)$
+
 ## Adjacency List
 
 ```python
