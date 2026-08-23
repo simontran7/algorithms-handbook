@@ -22,7 +22,7 @@
     - [Shortest Path](./src/shortest-path.md)
     - [Selection](./src/selection.md)
 
-- Algorithm Paradigms
+- Algorithmic Paradigms
     - [Backtracking](./src/backtracking.md)
     - [Divide and Conquer](./src/divide-and-conquer.md)
     - [Dynamic Programming](./src/dynamic-programming.md)
