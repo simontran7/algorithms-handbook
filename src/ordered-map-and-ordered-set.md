@@ -5,7 +5,7 @@
 ### Ordered Map
 
 ```
-trait OrderedMap<K: Ord, V> {
+trait OrderedMap[K: Order, V] {
     func get(&self, key: K) -> V;
     func add(&mut self, key: K, value: V);
     func remove(&mut self, key: K) -> V;
@@ -18,13 +18,13 @@ trait OrderedMap<K: Ord, V> {
 ### Ordered Set
 
 ```
-trait OrderedSet<T: Ord> {
-    func add(&mut self, item: T);
-    func contains(&self, item: T) -> Bool;
-    func remove(&mut self, item: T);
-    func min(&self) -> T;
-    func max(&self) -> T;
-    func range(&self, start: T, end: T) -> impl Iterator<Item = T>;
+trait OrderedSet[E: Order] {
+    func add(&mut self, element: E);
+    func contains(&self, element: E) -> Bool;
+    func remove(&mut self, element: E);
+    func min(&self) -> E;
+    func max(&self) -> E;
+    func range(&self, start: E, end: E) -> impl Iterator<Item = E>;
 }
 ```
 
