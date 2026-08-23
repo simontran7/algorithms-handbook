@@ -11,7 +11,7 @@
     - [Ordered Map and Ordered Set](./src/ordered-map-and-ordered-set.md)
     - [Map and Set](./src/map-and-set.md)
     - [Disjoint Set](./src/disjoint-set.md)
-    <!-- - [Graph](./src/graph.md) -->
+    - [Graph](./src/graph.md)
 
 - Algorithms
     - [Sorting](./src/sorting.md)
