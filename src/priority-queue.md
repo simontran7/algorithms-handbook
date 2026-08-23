@@ -108,7 +108,7 @@ Index into the $0^{th}$ element of the backing array.
 | Operation | Time Complexity |
 | --- | --- |
 | Heapify | worst-case $O(n)$ |
-| Lookup min/max | worst-case $O(1)$ |
+| Lookup (top) | worst-case $O(1)$ |
 | Insertion | worst-case $O(\log n)$ |
 | Deletion | worst-case $O(\log n)$ |
 
