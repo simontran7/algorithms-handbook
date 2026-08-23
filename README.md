@@ -1,7 +1,6 @@
 # Table of Contents
 
 - [Complexity Analysis](./src/complexity-analysis.md)
-- [Recursion](./src/recursion.md)
 - Data Structures
     - [List](./src/list.md)
     - [Stack](./src/stack.md)
@@ -23,6 +22,7 @@
     - [Selection](./src/selection.md)
 
 - Algorithmic Paradigms
+    - [Recursion](./src/recursion.md)
     - [Backtracking](./src/backtracking.md)
     - [Divide and Conquer](./src/divide-and-conquer.md)
     - [Dynamic Programming](./src/dynamic-programming.md)
