@@ -5,6 +5,55 @@
 ## Interface
 
 ```
+pub trait Graph {
+    type Vertex;
+    type Edge;
+
+    /// Returns the number of vertices in the graph.
+    func vertex_count(&self) -> UInt;
+
+    /// Returns the number of edges in the graph.
+    func edge_count(&self) -> UInt;
+
+    /// Returns the edge from `u` to `v`, if one exists.
+    func get_edge(&self, u: &Self::Vertex, v: &Self::Vertex) -> Option<&Self::Edge>;
+
+    /// Returns the two endpoints of edge `e`.
+    func endpoints(&self, e: &Self::Edge) -> (&Self::Vertex, &Self::Vertex);
+
+    /// Returns the vertex opposite `v` on edge `e`.
+    func opposite_vertex(&self, v: &Self::Vertex, e: &Self::Edge) -> &Self::Vertex;
+
+    /// Returns the number of outgoing edges from `v`.
+    func out_degree(&self, v: &Self::Vertex) -> UInt;
+
+    /// Returns the number of incoming edges to `v`.
+    func in_degree(&self, v: &Self::Vertex) -> UInt;
+
+    /// Inserts a vertex storing element `x`.
+    func add_vertex(&mut self, x: Self::Vertex);
+
+    /// Inserts an edge `(u, v)` storing element `x`.
+    func add_edge(&mut self, u: &Self::Vertex, v: &Self::Vertex, x: Self::Edge);
+
+    /// Removes vertex `v` and all incident edges.
+    func remove_vertex(&mut self, v: &Self::Vertex);
+
+    /// Removes edge `e`.
+    func remove_edge(&mut self, e: &Self::Edge);
+
+    /// Returns all incoming edges to `v`.
+    func incoming_edges(&self, v: &Self::Vertex) -> impl Iterator<Item = &Self::Edge>;
+
+    /// Returns all outgoing edges from `v`.
+    func outgoing_edges(&self, v: &Self::Vertex) -> impl Iterator<Item = &Self::Edge>;
+
+    /// Returns all vertices in the graph.
+    func vertices(&self) -> impl Iterator<Item = &Self::Edge>;
+
+    /// Returns all edges in the graph.
+    func edges(&self) -> impl Iterator<Item = &Self::Edge>;
+}
 ```
 
 ## Facts
