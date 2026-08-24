@@ -3,11 +3,10 @@
 ## Abstract Data Type
 
 ```
-trait Queue<T> {
-    func new() -> Self;
-    func front(&self) -> T;
-    func enqueue(&mut self, item: T);
-    func dequeue(&mut self) -> T;
+trait Queue[E] {
+    func front(&self) -> E;
+    func enqueue(&mut self, element: E);
+    func dequeue(&mut self) -> E;
 }
 ```
 
