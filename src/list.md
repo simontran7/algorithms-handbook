@@ -1,6 +1,6 @@
 # List
 
-## Interface
+## Abstract Data Type
 
 ```
 trait List[E] {
