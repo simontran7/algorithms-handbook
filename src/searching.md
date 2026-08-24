@@ -183,4 +183,4 @@ def binary_search_maximum(array):
 
 Let $k$ be the size of the solution space (`high - low`) and $f(n)$ be the time complexity of `is_valid()`. Then:
 - Time Complexity: worst-case $O(f(n) \log k)$
-- Space Complexity: worst-case $O(1)$, plus whatever `is_valid()` itself uses
+- Space Complexity: worst-case $O(1)$, and whatever `is_valid()` itself uses
