@@ -1,6 +1,6 @@
 # Ordered Map and Ordered Set
 
-## Interface
+## Abstract Data Type
 
 ### Ordered Map
 
