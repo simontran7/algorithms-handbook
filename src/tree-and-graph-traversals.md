@@ -1,8 +1,12 @@
 # Tree and Graph Traversals
 
-## Tree Traversals
+## Problem
 
-### Depth-First Search
+Given a graph or n-ary tree, systematically visit every relevant node, exactly once, while doing some operation at each node.
+
+## Depth-First Search
+
+### On Trees
 
 #### Use Case
 
@@ -41,53 +45,7 @@ Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing
 - Time: worst-case $O(n \cdot C_{node})$
 - Space: worst-case $O(h)$
 
-> [!NOTE]
-> In the iterative depth-first search, for a pre-order traversal, push the *right* node before pushing the *left* node onto the stack (i.e., process node → push right node → push left node).
-
-> [!NOTE]
-> BST problems typically use DFS traversal. Common techniques include:
-> - Checking if the current node's value is within bounds (e.g., `low <= node.val <= high`)
-> - Leveraging the BST property to prune subtrees: if `node.val < low` , skip the left subtree; if `node.val > high` , skip the right subtree (where `low` or `high` can also just be a target value)
-> - Using inorder traversal to collect values in sorted order for problems requiring sorted data without explicit sorting.
-
-### Breadth-First Search
-
-#### Use Case
-
-Level-order traversal.
-
-#### Template
-
-```python
-from collections import deque
-
-def bfs(root):
-    if not root:
-        return
-
-    queue = deque([root])
-
-    while queue:
-        level_width = len(queue)
-
-        for _ in range(level_width):
-            node = queue.popleft()
-
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-```
-
-#### Complexity Analysis 
-
-Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing a single node. Then:
-- Time: worst-case $O(n \cdot C_{node})$
-- Space: worst-case $O(n)$
-
-## Graph Traversals
-
-### Depth-First Search (DFS)
+### On Graphs
 
 #### Use Case
 
@@ -152,7 +110,44 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 	- Adjacency List: worst-case $O(V + E)$
 	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
-### Breadth-First Search (BFS)
+## Breadth-First Search
+
+### On Trees
+
+#### Use Case
+
+Level-order traversal.
+
+#### Template
+
+```python
+from collections import deque
+
+def bfs(root):
+    if not root:
+        return
+
+    queue = deque([root])
+
+    while queue:
+        level_width = len(queue)
+
+        for _ in range(level_width):
+            node = queue.popleft()
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+```
+
+#### Complexity Analysis 
+
+Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing a single node. Then:
+- Time: worst-case $O(n \cdot C_{node})$
+- Space: worst-case $O(n)$
+
+### On Graphs
 
 #### Use Case
 
@@ -208,6 +203,15 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
 > [!NOTE]
+> In the iterative depth-first search, for a pre-order traversal, push the *right* node before pushing the *left* node onto the stack (i.e., process node → push right node → push left node).
+
+> [!NOTE]
+> BST problems typically use DFS traversal. Common techniques include:
+> - Checking if the current node's value is within bounds (e.g., `low <= node.val <= high`)
+> - Leveraging the BST property to prune subtrees: if `node.val < low` , skip the left subtree; if `node.val > high` , skip the right subtree (where `low` or `high` can also just be a target value)
+> - Using inorder traversal to collect values in sorted order for problems requiring sorted data without explicit sorting.
+
+> [!NOTE]
 > When you need to traverse every connected component of a graph, use an outer loop to find an unvisited vertex and start a new DFS/BFS from it.
 > ```python
 > def main(adjacency_list):
@@ -233,9 +237,6 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 > ```
 
 > [!NOTE]
-> Whenever the problem involves prohibited vertices, add them straight away to the `visited` collection.
-
-> [!NOTE]
 > When using BFS to find shortest paths, store the distance/path length as part of the queue's state.
 > - If the problem asks for distance (number of moves/steps), initialize source vertices with `distance = 0`
 > - If the problem asks for path length (number of cells in the path), initialize source vertices with `path_length = 1`
@@ -248,3 +249,4 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 > For graph problems, it's useful to rephrase the problem in terms of its inverse.
 > - [Example #1](https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/): the problem description asks us to find the smallest set of vertices from which all nodes in the graph are reachable. Instead, we can rephrase the problem description in terms of its inverse: find the smallest set of nodes that _cannot_ be reached from other nodes, since if a node can be reached from another node, then we would rather just include the pointer rather than the pointee in our set.
 > - [Example #2](https://leetcode.com/problems/01-matrix/description/): the brute force solution would be to perform BFS for each cell with a 1, but instead, we can perform a multi-source BFS by performing starting from all cells with a 0 (if we have a cell `x` with value 1 and its nearest cell y has value 0, then it doesn't make a difference if we traverse from `x -> y` or `y -> x`; both give the same distance).
+
