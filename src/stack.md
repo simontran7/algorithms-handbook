@@ -1,6 +1,6 @@
 # Stack
 
-## Interface
+## Abstract Data Type
 
 ```
 trait Stack[E] {
@@ -10,10 +10,6 @@ trait Stack[E] {
     func pop(&mut self) -> E;
 }
 ```
-
-## Use Case
-
-Elements in the input interacting with each other, with a LIFO order.
 
 ## Standard Library API
 
