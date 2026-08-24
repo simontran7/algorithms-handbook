@@ -29,7 +29,7 @@
 - **Spanning Tree of a Graph $G$**: a spanning subgraph of $G$ that is a tree.
 - **Spanning Forest of a Graph $G$**: a spanning subgraph of $G$ that is a forest.
   
-## Properties
+### Properties
 
 - A complete graph has $\binom{V}{2} = \frac{V(V-1)}{2}$ edges
 - A tree has $V-1$ edges
