@@ -1,9 +1,9 @@
 # Priority Queue
 
-## Interface
+## Abstract Data Type
 
 ```
-trait PriorityQueue<T> {
+trait PriorityQueue[T] {
     func top(&self) -> T;
     func add(&mut self, item: T);
     func remove(&mut self) -> T;
