@@ -13,31 +13,21 @@ Pre-order, in-order, or post-order traversal.
 ```python
 def recursive_preorder_dfs(root):
     if not root:
-        return BASE_CASE_RESULT
-
-    # additional base cases
-
-    # process `node` and the result
+        return
 
     recursive_preorder_dfs(root.left)
     recursive_preorder_dfs(root.right)
-
-    return RECURSIVE_CASE_RESULT
 ```
 
 ```python
 def iterative_preorder_dfs(root):
     if not root:
-        return BASE_CASE_RESULT
+        return
 
     stack = [root]
 
     while stack:
         node = stack.pop()
-
-	    # additional base cases
-
-        # process `node` and the result
 
 	    if node.right:
             stack.append(node.right)
@@ -80,12 +70,8 @@ def bfs(root):
     while queue:
         level_width = len(queue)
 
-        # process involving the current level
-
         for _ in range(level_width):
             node = queue.popleft()
-
-            # process `node`
 
             if node.left:
                 queue.append(node.left)
@@ -112,7 +98,6 @@ Most graph problems.
 ```python
 def adjacency_list_recursive_dfs(vertex):
 	visited.add(vertex)
-
 	for neighbour in graph[vertex]:
 		if neighbour not in visited:
 			adjacency_list_recursive_dfs(neighbour)
@@ -120,15 +105,16 @@ def adjacency_list_recursive_dfs(vertex):
 
 ```python
 def adjacency_list_iterative_dfs(vertex):
-	stack = [vertex]
+    stack = [vertex]
+    visited.add(vertex)
 
-	while stack:
-		vertex = stack.pop()
-		visited.add(vertex)
+    while stack:
+        vertex = stack.pop()
 
-		for neighbour in graph[vertex]:
-			if neighbour not in visited:
-				stack.append(neighbour)
+        for neighbour in graph[vertex]:
+            if neighbour not in visited:
+                visited.add(neighbour)
+                stack.append(neighbour)
 ```
 
 ```python
@@ -148,13 +134,13 @@ def matrix_iterative_dfs(row, col):
 
 	while stack:
 		row, col = stack.pop()
-		visited.add((row, col))
 
 		for dr, dc in [(1, 0), (-1, 0), (0, -1), (0, 1)]: # where (change in row, change in col)
 			neighbour_row = row + dr
 			neighbour_col = col + dc
 			if 0 <= neighbour_row < ROW_COUNT and 0 <= neighbour_col < COLUMN_COUNT and (neighbour_row, neighbour_col) not in visited:
-				stack.append((neighbour_row, neighbour_col))
+				visited.add((row, col))
+				stack.append((neighbour_row, neighbour_col))		
 ```
 
 #### Complexity Analysis
@@ -197,7 +183,7 @@ from collections import deque
 
 def matrix_bfs(source_row, source_col):
 	queue = deque([(source_row, source_col)])
-	visited.add((row, col))
+	visited.set([(row, col)])
 
 	while queue:
 		row, col = queue.popleft()
