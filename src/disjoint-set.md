@@ -1,12 +1,12 @@
 # Disjoint Set (Union-Find)
 
-## Interface
+## Abstract Data Type
 
 ```
 trait DisjointSet {
     func new(n: usize) -> Self;
-    func union(&mut self, x: usize, y: usize) -> bool;
-    func find(&mut self, x: usize) -> usize;
+    func union(&mut self, x: UInt, y: UInt) -> Bool;
+    func find(&mut self, x: UInt) -> UInt;
 }
 ```
 
