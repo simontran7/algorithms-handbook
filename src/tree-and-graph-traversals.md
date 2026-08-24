@@ -310,7 +310,7 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
 > [!NOTE]
->  `visited` is typically a HashSet, but you might achieve better runtime performance by using a static array of booleans whenever the node range is predetermined (e.g. we know there are nodes from `0` to `n - 1`).
+>  Whenever the node range is predetermined (e.g. we know there are nodes from `0` to `n - 1`), you might be able to use a static array of booleans instead of a hashset or a hashmap.
 
 > [!NOTE]
 > Whenever the problem mentions prohibited vertices, then add them straight away to the `visited` container.
