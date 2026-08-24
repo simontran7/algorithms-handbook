@@ -178,5 +178,9 @@ $$
 - Adjacency List: $O(V + E)$, where $V$ is the number of vertices, and $E$ is the number of edges
 - Call Stack: $O(d \cdot F)$, where $d$ is maximum recursion depth, and $F$ is the memory call per stack frame
 
+### Optimizing Space Complexity
+
+- Whenever the problem space is predetermined (e.g. we know there are vertices from `0` to `n - 1`), you might be able to use a static array of booleans instead of a hashset or a hashmap.
+
 > [!NOTE]
 > The algorithm's input *and* output is typically excluded from the total space complexity cost. Space complexity is only concerned with auxiliary memory.
