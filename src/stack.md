@@ -4,7 +4,6 @@
 
 ```
 trait Stack[E] {
-    func new() -> Self;
     func top(&self) -> E;
     func push(&mut self, element: E);
     func pop(&mut self) -> E;
