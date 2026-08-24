@@ -6,7 +6,7 @@
 
 #### Use Case
 
-Most binary tree problems that don't involve processing nodes by their levels.
+Pre-order, in-order, or post-order traversal.
 
 #### Template
 
@@ -64,7 +64,7 @@ Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing
 
 #### Use Case
 
-Binary tree problems that involve processing nodes by their levels.
+Level-order traversal.
 
 #### Template
 
@@ -170,7 +170,7 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 
 #### Use Case
 
-Determine the distance in a graph.
+Determine the shortest path in an *unweighted* graph.
 
 #### Template
 
@@ -250,7 +250,7 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 > Whenever the problem involves prohibited vertices, add them straight away to the `visited` collection.
 
 > [!NOTE]
-> When using BFS to find shortest paths, store the distance as part of the queue's state.
+> When using BFS to find shortest paths, store the distance/path length as part of the queue's state.
 > - If the problem asks for distance (number of moves/steps), initialize source vertices with `distance = 0`
 > - If the problem asks for path length (number of cells in the path), initialize source vertices with `path_length = 1`
 > Then, after the line that pops a vertex from the queue, add an if expression that early returns the distance/path length.
