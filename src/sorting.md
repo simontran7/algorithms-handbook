@@ -1,15 +1,16 @@
 # Sorting
 
-## Comparison-Based Algorithms
+## Problem
 
-### Bubble Sort
+Given a sequence of $n$ elements $A = \langle a_1, a_2, \ldots, a_n \rangle$, rearrange the elements into nondecreasing order, so that
 
-#### Complexity Analysis
+$$
+a_1 \leq a_2 \leq \cdots \leq a_n.
+$$
 
-- Time Complexity: worst-case $O(N^2)$
-- Space Complexity: worst-case $O(1)$
+## Bubble Sort
 
-#### Code
+### Template
 
 ```
 func bubble_sort[T: PartialOrder](array: &mut [T]) {
@@ -29,20 +30,24 @@ func bubble_sort[T: PartialOrder](array: &mut [T]) {
 }
 ```
 
-### Selection Sort
+### Complexity Analysis
 
-### Insertion Sort
+Let $N$ be the number of elements in the input sequence. Then:
+- Time: worst-case $O(N^2)$
+- Auxiliary Space: worst-case $O(1)$
 
-### Heap Sort
+## Selection Sort
 
-### Merge Sort
+## Insertion Sort
 
-### Quick Sort
+## Heap Sort
 
-## Non-comparison-Based Algorithms
+## Merge Sort
 
-### Counting Sort
+## Quick Sort
 
-### Radix Sort
+## Counting Sort
 
-### Bucket Sort
+## Radix Sort
+
+## Bucket Sort
