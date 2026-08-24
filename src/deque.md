@@ -4,13 +4,12 @@
 
 ```
 trait Deque<T> {
-    fn new() -> Self;
-    fn front(&self) -> T;
-    fn back(&self) -> T;
-    fn push_front(&mut self, item: T);
-    fn push_back(&mut self, item: T);
-    fn pop_front(&mut self) -> T;
-    fn pop_back(&mut self) -> T;
+    fn front(&self) -> E;
+    fn back(&self) -> E;
+    fn push_front(&mut self, element: E);
+    fn push_back(&mut self, element: E);
+    fn pop_front(&mut self) -> E;
+    fn pop_back(&mut self) -> E;
 }
 ```
 
