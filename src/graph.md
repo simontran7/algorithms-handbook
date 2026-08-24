@@ -36,7 +36,7 @@
 - A tree has $V-1$ edges
 - A dense graph has $O(V^2)$ edges, while a sparse graph has $O(V)$ edges
 
-## Interface
+## Abstract Data Type
 
 ```
 pub trait Graph {
