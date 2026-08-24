@@ -13,40 +13,36 @@ Most binary tree problems that don't involve processing nodes by their levels.
 ```python
 def recursive_preorder_dfs(root):
     if not root:
-        return <base case result>
+        return BASE_CASE_RESULT
 
-    # Additional base cases
+    # additional base cases
 
-    # ... involving the current node and the current result
+    # process `node` and the result
 
     recursive_preorder_dfs(root.left)
     recursive_preorder_dfs(root.right)
 
-    return <current result and the two recursive calls above>
+    return RECURSIVE_CASE_RESULT
 ```
 
 ```python
 def iterative_preorder_dfs(root):
     if not root:
-        return <base case result>
+        return BASE_CASE_RESULT
 
     stack = [root]
-
-    result = <initial value>
 
     while stack:
         node = stack.pop()
 
-	    # Additional base cases
+	    # additional base cases
 
-        # ... involving the popped node and the result
+        # process `node` and the result
 
 	    if node.right:
             stack.append(node.right)
         if node.left:
             stack.append(node.left)
-
-    return result
 ```
 
 #### Complexity Analysis
@@ -56,13 +52,7 @@ Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing
 - Space: worst-case $O(h)$
 
 > [!NOTE]
-> In the iterative depth-first search, the flow is usually pre-order `pop node → process node → push right → push left` , while in the recursive depth-first search, pre-order `process node → recurse left → recurse right` is the most common, followed by post-order `recurse left → recurse right → process node` , then in-order `recurse left → process node → recurse right` .
-
-> [!NOTE]
-> In depth-first search, a **state** is all the data you need to remember at one point in the search. Each state is typically compromised of one or more variables, which we call a **state variable**. In a recursive implementation, the state consist of function arguments stored in a call stack frame, while in an iterative implementation, the state consist of variables stored in tuple that will be pushed and popped from an explicit stack you create outside the while loop.
-
-> [!NOTE]
-> In a recursive depth-first search, `result` is typically implicit since it's usually sufficient to implicitly be returned, but an explicit `result` is sometimes a good choice, where you create it within the scope of the provided function, then create and call an inner depth-first search function to perform the actual work. In an iterative depth-first search, you typically create an explicit `result` variable outside the while loop.
+> In the iterative depth-first search, for a pre-order traversal, push the *right* node before pushing the *left* node onto the stack (i.e., process node → push right node → push left node).
 
 > [!NOTE]
 > BST problems typically use DFS traversal. Common techniques include:
@@ -86,24 +76,21 @@ def bfs(root):
         return
 
     queue = deque([root])
-    result = 0
 
     while queue:
         level_width = len(queue)
 
-        # Some logic involving the current level
+        # process involving the current level
 
         for _ in range(level_width):
             node = queue.popleft()
 
-            # Some logic involving the current node
+            # process `node`
 
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-
-    return result
 ```
 
 #### Complexity Analysis 
@@ -114,7 +101,7 @@ Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing
 
 ## Graph Traversals
 
-### Depth-First Search
+### Depth-First Search (DFS)
 
 #### Use Case
 
@@ -123,113 +110,51 @@ Most graph problems.
 #### Templates
 
 ```python
-def adjacency_list_recursive_dfs(graph):
-    def dfs(vertex):
-        visited.add(vertex)
-        result = <initial value>
-        for neighbour in graph[vertex]:
-            if neighbour not in visited:
-                result += dfs(neighbour)
-        return result
+def adjacency_list_recursive_dfs(vertex):
+	visited.add(vertex)
 
-    result = <initial value>
-    visited = set()
-    for vertex in graph:
-        if vertex not in visited:
-            dfs(vertex)
-
-            # Some logic involving the result per connected component
+	for neighbour in graph[vertex]:
+		if neighbour not in visited:
+			adjacency_list_recursive_dfs(neighbour)
 ```
 
 ```python
-def adjacency_list_iterative_dfs(graph):
-    def dfs(vertex):
-	    result = <initial value>
-        stack = [vertex]
-        while stack:
-            vertex = stack.pop()
-            visited.add(vertex)
-            for neighbour in graph[vertex]:
-                if neighbour not in visited:
-                    result += <calculation>
-                    stack.append(neighbour)
-		return result
+def adjacency_list_iterative_dfs(vertex):
+	stack = [vertex]
 
-    result = <initial value>
-    visited = set()
-    for vertex in graph.keys():
-        if vertex not in visited:
-            dfs(vertex)
+	while stack:
+		vertex = stack.pop()
+		visited.add(vertex)
 
-            # Some logic involving the result per connected component
+		for neighbour in graph[vertex]:
+			if neighbour not in visited:
+				stack.append(neighbour)
 ```
 
 ```python
-def matrix_recursive_dfs(matrix):
-    ROWS = len(matrix)
-    COLUMNS = len(matrix[0])
-    # NOTE: each element is of the form (change in row, change in col)
-    DIRECTIONS = [(1, 0), (-1, 0), (0, -1), (0, 1)]
+def matrix_recursive_dfs(row, col):
+	visited.add((row, col))
 
-    def valid_cell(row, col):
-        return 0 <= row < ROWS and 0 <= col < COLUMNS and <another condition for a cell to be valid>
-
-    def dfs(row, col):
-        visited.add((row, col))
-        result = <initial value>
-        for dr, dc in DIRECTIONS:
-            neighbour_row = row + dr
-            neighbour_col = col + dc
-            if valid_cell(neighbour_row, neighbour_col) and (neighbour_row, neighbour_col) not in visited:
-                result += dfs(neighbour_row, neighbour_col)
-        return result
-
-    visited = set()
-    result = <initial value>
-    for row in range(ROWS):
-        for col in range(COLUMNS):
-            if (row, col) not in visited:
-                dfs(row, col)
-
-                # Some logic involving the result per connected component
-
-    return result
+	for dr, dc in [(1, 0), (-1, 0), (0, -1), (0, 1)]: # where (change in row, change in col)
+		neighbour_row = row + dr
+		neighbour_col = col + dc
+		if (0 <= neighbour_row < ROW_COUNT and 0 <= neighbour_col < COLUMN_COUNT) and (neighbour_row, neighbour_col) not in visited:
+			dfs(neighbour_row, neighbour_col)
 ```
 
 ```python
-def matrix_iterative_dfs(matrix):
-    ROWS = len(matrix)
-    COLUMNS = len(matrix[0])
-    # NOTE: each element is of the form (change in row, change in col)
-    DIRECTIONS = [(1, 0), (-1, 0), (0, -1), (0, 1)]
+def matrix_iterative_dfs(row, col):
+	stack = [(row, col)]
 
-    def valid_cell(row, col):
-        return 0 <= row < ROWS and 0 <= col < COLUMNS and <another condition for a cell to be valid>
+	while stack:
+		row, col = stack.pop()
+		visited.add((row, col))
 
-    def dfs(row, col):
-        stack = [(row, col)]
-        result = <initial value>
-        while stack:
-            row, col = stack.pop()
-            visited.add((row, col))
-            for dr, dc in DIRECTIONS:
-                neighbour_row = row + dr
-                neighbour_col = col + dc
-                if valid_cell(neighbour_row, neighbour_col) and (neighbour_row, neighbour_col) not in visited:
-                    result += <some calculation>
-                    stack.append((neighbour_row, neighbour_col))
-        return result
-
-    visited = set()
-    result = <initial value>
-    for row in range(ROWS):
-        for col in range(COLUMNS):
-            if (row, col) not in visited:
-                dfs(row, col)
-
-                # Some logic involving the result per connected component
-
-    return result
+		for dr, dc in [(1, 0), (-1, 0), (0, -1), (0, 1)]: # where (change in row, change in col)
+			neighbour_row = row + dr
+			neighbour_col = col + dc
+			if 0 <= neighbour_row < ROW_COUNT and 0 <= neighbour_col < COLUMN_COUNT and (neighbour_row, neighbour_col) not in visited:
+				stack.append((neighbour_row, neighbour_col))
 ```
 
 #### Complexity Analysis
@@ -241,7 +166,7 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 	- Adjacency List: worst-case $O(V + E)$
 	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
-### Breadth-First Search 
+### Breadth-First Search (BFS)
 
 #### Use Case
 
@@ -252,52 +177,39 @@ Determine the distance in a graph.
 ```python
 from collections import deque
 
-def adjacency_list_bfs(graph):
-    queue = deque([(<source vertex>,<additional state variable>, <initial distance>)])
-    visited = set([<source vertex>])
+def adjacency_list_bfs(source):
+	queue = deque([source])
+	visited = set([source])
 
-    while queue:
-        vertex, <additional state>, dist = queue.popleft()
+	while queue:
+		vertex = queue.popleft()
 
-        if vertex == <destination vertex>:
-            return dist
+		for neighbour in graph[vertex]:
+			if neighbour not in visited:
+				visited.add(neighbour)
+				queue.append(neighbour)
 
-        for neighbour in graph[vertex]:
-            if neighbour not in visited:
-                visited.add(neighbour)
-                queue.append((neighbour, <additional state variable>, dist + 1))
-
-            # Some logic involving the neighbour
+			# process `neighbour`'s state
 ```
 
 ```python
-def matrix_iterative_bfs(matrix):
-    ROWS = len(matrix)
-    COLUMNS = len(matrix[0])
-    # NOTE: each element is of the form (change in row, change in col)
-    DIRECTIONS = [(0, 1), (1, 0), (1, 1), (-1, -1), (-1, 1), (1, -1), (-1, 0), (0, -1)]
+from collections import deque
 
-    def valid_cell(row, col):
-        return 0 <= row < ROWS and 0 <= col < COLUMNS and <another condition for a cell to be valid>
+def matrix_bfs(source_row, source_col):
+	queue = deque([(source_row, source_col)])
+	visited.add((row, col))
 
-    queue = deque([(<source vertex>,<additional state>, <initial distance>)])
-    visited = set([(<source vertex>, <initial distance>)])
+	while queue:
+		row, col = queue.popleft()
 
-    while queue:
-        row, col, dist = queue.popleft()
+		for dr, dc in [(1, 0), (-1, 0), (0, -1), (0, 1)]: # where (change in row, change in col)
+			neighbour_row = row + dr
+			neighbour_col = col + dc
+			if (0 <= neighbour_row < ROW_COUNT and 0 <= neighbour_col < COLUMN_COUNT) and (neighbour_row, neighbour_col) not in visited:
+				visited.add((neighbour_row, neighbour_col))
+				queue.append((neighbour_row, neighbour_col))
 
-        if (row, col) == (<destination row>, <destination col>):
-            return dist
-
-        for dr, dc in DIRECTIONS:
-            neighbour_row = row + dr
-            neighbour_col = col + dc
-            neighbour_dist = dist + 1
-            if (neighbour_row, neighbour_col) not in visited and valid_cell(neighbour_row, neighbour_col):
-                visited.add((neighbour_row, neighbour_col))
-                queue.append((neighbour_row, neighbour_col, <additional state>, neighbour_dist))
-
-            # Some logic involving the neighbour's row and col
+			# process `neighbour`'s state
 ```
 
 #### Complexity Analysis
@@ -310,18 +222,43 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
 > [!NOTE]
->  Whenever the node range is predetermined (e.g. we know there are nodes from `0` to `n - 1`), you might be able to use a static array of booleans instead of a hashset or a hashmap.
+> When you need to traverse every connected component of a graph, use an outer loop to find an unvisited vertex and start a new DFS/BFS from it.
+> ```python
+> def main(adjacency_list):
+>     result = <initial value>
+>     visited = set()
+>     for vertex in graph:
+>         if vertex not in visited:
+>             <dfs(vertex) or bfs(vertex)> 
+>             # update `result` 
+>     return result
+> ```
+> or for matrix problems
+> ```python
+> def main(matrix):
+>     visited = set()
+>     result = <initial value>
+>     for row in range(len(matrix)):
+>         for col in range(len(matrix[0])):
+>             if (row, col) not in visited:
+>                 <dfs(row, col) or bfs(row, col)>
+>                 # update `result`
+>     return result
+> ```
 
 > [!NOTE]
-> Whenever the problem mentions prohibited vertices, then add them straight away to the `visited` container.
+> Whenever the problem involves prohibited vertices, add them straight away to the `visited` collection.
 
 > [!NOTE]
-> When using BFS to find shortest paths:
+> When using BFS to find shortest paths, store the distance as part of the queue's state.
 > - If the problem asks for distance (number of moves/steps), initialize source vertices with `distance = 0`
 > - If the problem asks for path length (number of cells in the path), initialize source vertices with `path_length = 1`
+> Then, after the line that pops a vertex from the queue, add an if expression that early returns the distance/path length.
 
 > [!NOTE]
 > For a multi-source BFS, create a for loop that visits all source nodes and appends them to the queue for the BFS.
 
 > [!NOTE]
-> For graph problems, it's useful to rephrase the problem in terms of its inverse. For instance, take [LeetCode #1557](https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/). The original problem description asks us to find the smallest set of vertices from which all nodes in the graph are reachable. Instead, we can rephrase the problem description in terms of its inverse: find the smallest set of nodes that _cannot_ be reached from other nodes, since if a node can be reached from another node, then we would rather just include the pointer rather than the pointee in our set. Another example is [LeetCode #542](https://leetcode.com/problems/01-matrix/description/). The brute force solution would be to perform BFS for each cell with a 1, but instead, we can perform a multi-source BFS by performing starting from all cells with a 0 (if we have a cell `x` with value 1 and its nearest cell y has value 0, then it doesn't make a difference if we traverse from `x -> y` or `y -> x`; both give the same distance).
+> For graph problems, it's useful to rephrase the problem in terms of its inverse.
+> - [Example #1](https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/): the problem description asks us to find the smallest set of vertices from which all nodes in the graph are reachable. Instead, we can rephrase the problem description in terms of its inverse: find the smallest set of nodes that _cannot_ be reached from other nodes, since if a node can be reached from another node, then we would rather just include the pointer rather than the pointee in our set.
+> - [Example #2](https://leetcode.com/problems/01-matrix/description/): the brute force solution would be to perform BFS for each cell with a 1, but instead, we can perform a multi-source BFS by performing starting from all cells with a 0 (if we have a cell `x` with value 1 and its nearest cell y has value 0, then it doesn't make a difference if we traverse from `x -> y` or `y -> x`; both give the same distance).
