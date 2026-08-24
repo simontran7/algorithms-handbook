@@ -4,11 +4,6 @@
 
 Given an unsorted array and an integer $k$, find the $k^\text{th}$ smallest element (the element that would be at index $k$ if the array were sorted).
 
-## Use Case
-
-- Find the $k^\text{th}$ smallest/largest element in a static array, one-shot
-- Top-$k$ variants where the array may be reordered (e.g., K Closest Points to Origin)
-
 ## QuickSelect (Hoare's Selection Algorithm)
 
 > [!NOTE]
