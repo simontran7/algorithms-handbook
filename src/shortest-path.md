@@ -4,6 +4,17 @@
 
 Given a weighted graph and a source vertex, find the minimum total edge weight to reach a destination vertex (or every other vertex).
 
+> [!NOTE]
+> You can use breadth-first-search instead of the following algorithms to find the shortest path on an unweighted graph:
+> 1. Store the distance/path length as part of the queue's state:
+>     - If the problem asks for distance (number of moves/steps), the `distance` queue's state variable should be initialized to 0.
+>     - If the problem asks for path length (number of cells in the path), the `path_length` queue's state variable should be initialized to 1.
+> 2. After the line that pops a vertex from the queue, add the following terminating condition:
+> ```python
+>  if vertex == destination: 
+>      return <distance or path length>
+> ```
+
 ## Dijkstra's Algorithm
 
 ### Use Case
@@ -46,3 +57,5 @@ def dijkstras(edges, n, source):
 Let $V$ be the number of vertices and $E$ be the number of edges. Then:
 - Time Complexity: worst-case $O((V + E) \log V)$
 - Space Complexity: worst-case $O(V + E)$
+
+
