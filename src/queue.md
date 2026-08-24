@@ -1,6 +1,6 @@
 # Queue
 
-## Interface
+## Abstract Data Type
 
 ```
 trait Queue<T> {
@@ -10,10 +10,6 @@ trait Queue<T> {
     func dequeue(&mut self) -> T;
 }
 ```
-
-## Use Case
-
-Processing elements in a FIFO order.
 
 ## Standard Library API
 
