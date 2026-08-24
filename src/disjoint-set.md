@@ -12,9 +12,9 @@ trait DisjointSet {
 
 ## Use Case
 
-- Detect and track connected components (static graphs or as edges are added dynamically)
+- Detect and track connected components 
 - Detect cycles in undirected graphs
-- Enforce grouping constraints (union nodes that must belong together, then validate)
+- Enforce grouping constraints 
 
 ## Forest (with Path Compression & Union by Rank)
 
