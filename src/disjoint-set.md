@@ -50,9 +50,6 @@ class DisjointSet:
         return True
 ```
 
-> [!NOTE]
-> Sometimes, you may need to augment the Disjoint Set to a relational Disjoint Set by storing extra data along parent pointers to propagate edge weights or relations.
-
 ### Complexity Analysis
 
 | Operation | Time Complexity |
