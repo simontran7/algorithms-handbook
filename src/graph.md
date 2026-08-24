@@ -4,12 +4,12 @@
  
 ### Terminology
 
-- **Graph $G$, vertices, and edges**: a pair $(V, E)$, where $V$ is a set of nodes, called **vertices**, and $E$ is a collection of pairs of vertices, called **edges**.
+- **Graph $G$, Vertices, and Edges**: a pair $(V, E)$, where $V$ is a set of nodes, called **vertices**, and $E$ is a collection of pairs of vertices, called **edges**.
 - **Directed Edge**: an ordered pair of vertices $(u, v)$, where $u$ is the origin, and $v$ is the destination.
 - **Undirected Edge**: an unordered pair of vertices $(u, v)$.
 - **Directed Graph (Digraph)**: a graph where all the edges are directed. 
 - **Undirected Graph**: a graph where all the edges are undirected.
-- **Endpoints of an edge $e$**: the end vertices of $e$.
+- **Endpoints of an Edge $e$**: the end vertices of $e$.
 - **Degree of a vertex $v$**: the total number of incident edges to $v$.
 - **Incident edges of a vertex $v$**: all the edges that connect directly to that specific vertex.
 - **Adjacent Vertices $v$, $w$**: two vertices $v$, $w$ are adjacent vertices if they are joined by the same direct edge.
@@ -17,12 +17,13 @@
 - **Self-loop**: an edge that connects a vertex directly to itself.
 - **Path $(v_1, \dots, v_n)$**: a sequence of alternating vertices and edges, beginning with a vertex $$ and ending with a vertex $$.
 - **Simple Path**: a path such that all its vertices and edges are distinct.
+- **Reachable Vertex $w$ from $v$**: $w$ is said to be reachable from $v$ if there directed path originating at $v$ and terminating at $w$.
 - **Cycle**: a circular sequence of alternating vertices and edges.
 - **Simple Cycle**: a cycle such that all its vertices and edges are distinct (except for its first and last vertex).
 - **Subgraph $S$ of a Graph $G$**: a graph such that the vertices of $S$ are a subset of the vertices of $G$, and the edges of $S$ are a subset of the edges of $G$
 - **Spanning Subgraph of a Graph $G$**: a subgraph that contains all the vertices of $G$.
 - **Connected Graph**: a graph where there is a path between every pair of vertices.
-- **Connected component of a graph $G$**: a maximal connected subgraph of $G$.
+- **Connected Component of a Graph $G$**: a maximal connected subgraph of $G$.
 - **Acyclic Graph**: a graph without any cycles.
 - **Tree**: a connected, acyclic, undirected graph.
 - **Forest**: a set of trees that are not necessarily connected between each other.
