@@ -1,6 +1,6 @@
 # Map and Set
 
-## Interface
+## Abstract Data Type
 
 ### Map
 
