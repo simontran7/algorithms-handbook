@@ -4,6 +4,11 @@
 
 Given a graph or n-ary tree, systematically visit every relevant node, exactly once, while doing some operation at each node.
 
+> [!NOTE]
+> For graph traversal problems, it's useful to rephrase the goal in terms of its inverse.
+> - [Example #1](https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/): the problem description asks us to find the smallest set of vertices from which all nodes in the graph are reachable. Instead, we can rephrase the problem description in terms of its inverse: find the smallest set of nodes that _cannot_ be reached from other nodes, since if a node can be reached from another node, then we would rather just include the pointer rather than the pointee in our set.
+> - [Example #2](https://leetcode.com/problems/01-matrix/description/): the brute force solution would be to perform BFS for each cell with a 1, but instead, we can perform a multi-source BFS by performing starting from all cells with a 0 (if we have a cell `x` with value 1 and its nearest cell y has value 0, then it doesn't make a difference if we traverse from `x -> y` or `y -> x`; both give the same distance).
+
 ## Depth-First Search
 
 ### On Trees
@@ -241,9 +246,4 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 
 > [!NOTE]
 > For a multi-source BFS, create a for loop that visits all source nodes and appends them to the queue for the BFS.
-
-> [!NOTE]
-> For graph traversal problems, it's useful to rephrase the goal in terms of its inverse.
-> - [Example #1](https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/): the problem description asks us to find the smallest set of vertices from which all nodes in the graph are reachable. Instead, we can rephrase the problem description in terms of its inverse: find the smallest set of nodes that _cannot_ be reached from other nodes, since if a node can be reached from another node, then we would rather just include the pointer rather than the pointee in our set.
-> - [Example #2](https://leetcode.com/problems/01-matrix/description/): the brute force solution would be to perform BFS for each cell with a 1, but instead, we can perform a multi-source BFS by performing starting from all cells with a 0 (if we have a cell `x` with value 1 and its nearest cell y has value 0, then it doesn't make a difference if we traverse from `x -> y` or `y -> x`; both give the same distance).
 
