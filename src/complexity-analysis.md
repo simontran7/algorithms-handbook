@@ -147,15 +147,13 @@ $$
 
 ### Recursive Algorithms (Recursion Tree Method)
 
-The recursion tree method is a method of calculating the time complexity of a recursive algorithm by drawing out the **recursion tree**. 
+To determine the worst-case time complexity of a recursive algorithm, we are concerned with determining the total number of function calls multiplied by the work done per function call.
 
-The recursion tree is an tree that is used to denote the execution flow of the recursive algorithm in question:
+We can determine the total number of functions calls by drawing out the **recursion tree**. The recursion tree is an tree that is used to denote the execution flow of the recursive algorithm in question:
 - Each node represents a recursive call
 - the branching factor $b$ is determined by the number of recursive calls in the recursive case (of the recurrence relation)
 
-To determine the a loose upper bound on the worst-case time complexity, we are concerned with finding the total number of nodes given $n$ levels in the recursion tree.
-
-1. Draw out the recursion tree.
+1. Draw out the recursion tree
 
 2. Determine the branching factor $b$.
 
@@ -184,7 +182,9 @@ $$
 - Array based collection or pointer based collection: $O(n)$, where $n$ is the number of elements
 - Collection of collection: $O(\text{outer collection size} \times \text{inner collection size})$
 - Adjacency List: $O(V + E)$, where $V$ is the number of vertices, and $E$ is the number of edges
-- Call Stack: $O(d \cdot F)$, where $d$ is maximum recursion depth, and $F$ is the memory call per stack frame
+- Call Stack: $O(d \cdot F)$, where $d$ is maximum recursion depth, and $F$ is the memory consumed per stack frame
+
+<img width="500" src="https://github.com/user-attachments/assets/00f45c72-e91a-48ee-a4fc-13b9c7e52613" />
 
 ### Optimizing Space Complexity
 
