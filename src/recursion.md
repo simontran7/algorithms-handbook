@@ -47,7 +47,7 @@ To turn a standard recursive function into a tail-recursive function, you pass t
 A **continuation** is a stack of functions modelling the call stack, i.e. the work we still need to do upon returning.
 
 1. Add the continuation higher order function as the accumulator argument. Then:
-- **Base Case**: call the continuation.
+- **Base Case**: apply the continuation on the base case's result.
 - **Recursive Case**: all the work that previously executed *after* the recursive call now gets moved inside the continuation
 
 ### Example
@@ -62,11 +62,14 @@ let rec append l1 l2 =
 let rec append_tr l1 l2 =
   let rec helper l1 l2 acc =
     match l1 with
+(* instead of returning the result `l2`, we apply the continuation `cont` to `l2` *)
     | [] -> acc l2
+(* instead of constructing `h :: append t l2`, we call `append_tr` recursively on `t` and `l2`, adding the task of prepending `h` to the argument `r` of the continuation `cont` *)
     | h :: t -> helper t l2 (fun r -> acc (h :: r))
   in
   helper l1 l2 (fun r -> r)
 ;;
 ```
+
 
 
