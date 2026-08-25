@@ -71,5 +71,16 @@ let rec append_tr l1 l2 =
 ;;
 ```
 
+where for example, `append_tr [1; 2] [3; 4]` executes as follows:
 
-
+```
+append_tr [1; 2] [3; 4]
+=> helper [1; 2] [3; 4] (fun r -> r)
+=> helper [2] [3; 4] (fun r1 -> (fun r -> r) (1 :: r1))
+=> helper [] [3; 4] (fun r2 -> (fun r1 -> (fun r -> r) (1 :: r1)) (2 :: r2))
+=> (fun r2 -> (fun r1 -> (fun r -> r) (1 :: r1)) (2 :: r2)) [3; 4]
+=> (fun r1 -> (fun r -> r) (1 :: r1)) (2 :: [3; 4]))
+=> (fun r -> r) (1 :: 2 :: [3; 4]) 
+=> (1 :: 2 :: [3; 4])
+=> [1; 2; 3; 4]
+```
