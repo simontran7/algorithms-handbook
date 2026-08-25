@@ -50,7 +50,9 @@ A **continuation** is a stack of functions modelling the call stack, i.e. the wo
 - **Base Case**: apply the continuation on the base case's result.
 - **Recursive Case**: all the work that previously executed *after* the recursive call now gets moved inside the continuation
 
-### Example
+### Examples
+
+#### Example 1
 
 ```ocaml
 let rec append l1 l2 =
@@ -84,3 +86,88 @@ append_tr [1; 2] [3; 4]
 => (1 :: 2 :: [3; 4])
 => [1; 2; 3; 4]
 ```
+
+#### Example 2
+
+
+```ocaml
+let rec findAll p t = match t with 
+  | Empty -> []
+  | Node(l,d,r) -> 
+    if (p d) then (findAll p l) @(d ::(findAll p r))
+    else
+      (findAll p l) @ (findAll p r)
+```
+
+```ocaml
+let rec findAll' p t sc = match t with 
+  | Empty -> sc []
+  | Node(l,d,r) -> 
+    findAll' p l 
+      (fun el ->
+        findAll' p r
+          (fun er ->
+            if (p d) then sc (el@(d::er)) else sc (el@er)))
+
+let rec findAll0 p t sc = match t with 
+  | Empty -> sc []
+  | Node(l,d,r) -> 
+     (if (p d) then
+       findAll0 p l (fun el -> findAll0 p r 
+					(fun er ->  sc (el@(d::er)))) 
+     else 
+       findAll0 p l (fun el -> findAll0 p r 
+					(fun er ->  sc (el@er))) 
+
+     )
+```
+
+#### Example 3
+
+```ocaml
+type 'a tree =
+  | Empty
+  | Node of 'a tree * 'a * 'a tree
+;;
+```
+
+```ocaml
+let rec find p t =
+  match t with
+  | Empty -> None
+  | Node (l, d, r) ->
+      if p d then Some d
+      else
+        match find p l with
+        | Some d -> Some d
+        | None -> find p r
+;;
+```
+
+```ocaml
+exception Fail
+
+let rec find_exc p t = match t with 
+  | Empty -> raise Fail
+  | Node (l,d,r) -> 
+    if (p d) then Some d
+    else (try find_exc p l with Fail -> find_exc p r)
+
+let find_ex p t =  (try find_exc p t with Fail -> None)
+```
+
+```ocaml
+let rec find_tr p t fail succeed = match t with 
+  | Empty -> fail ()
+  | Node(_, d, _) when p d -> succeed d
+  | Node(l, _, r) ->
+     find_tr p l (fun () -> find_tr p r fail succeed) succeed
+
+(** A driver function that calls the continuation-passing style
+    function and wraps the result in an option, so we could use
+    pattern matching after.
+ *)
+let find' p t = find_tr p t (fun () -> None) (fun x -> Some x)
+```
+
+
