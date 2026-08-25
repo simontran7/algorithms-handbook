@@ -147,16 +147,24 @@ $$
 
 ### Recursive Algorithms (Recursion Tree Method)
 
-1. Draw out the recursion tree
+The recursion tree method is a method of calculating the time complexity of a recursive algorithm by drawing out the **recursion tree**. 
 
-2. Figure out the branching factor (i.e., determine $b$) by counting the number of recursive calls the function makes.
+The recursion tree is an tree that is used to denote the execution flow of the recursive algorithm in question:
+- Each node represents a recursive call
+- the branching factor $b$ is determined by the number of recursive calls in the recursive case (of the recurrence relation)
 
-3. Figure out the work done per node at level $k$ (i.e., determine $W(k)$) which is usually a function of the subproblem size at that level $k$
+To determine the a loose upper bound on the worst-case time complexity, we are concerned with finding the total number of nodes given $n$ levels in the recursion tree.
+
+1. Draw out the recursion tree.
+
+2. Determine the branching factor $b$.
+
+3. Figure out the work done per node at level $k$ $W(k)$ which is a function of the subproblem size at that level $k$
     - If dividing by $b$ each time: $W(k) = \frac{n}{b^k}$
     - If decrementing by 1 each time: $W(k) = n - k$
     - If work per node doesn't depend on the subproblem size: $O(1)$
 
-4. Figure out the number of levels (i.e., determine $d$) by asking "how many times do I apply the shrinking operation before hitting the base case?"
+4. Figure out the number of levels $d$
 
 5. Plug into the formula
 
