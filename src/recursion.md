@@ -40,12 +40,7 @@ func recursive_algo(<state variables 1>, <state variable 2>, <...>, <state varia
 
 In a traditional recursive function, calculations happen after the recursive call returns. In a **tail-recursive function**, the recursive call is the absolute *last* operation executed by the function. 
 
-In order to complete a typical function call, the system allocates some space in the stack to hold three important pieces of information:
-- The returning address of the function call.
-- The arguments that are passed to the function call. 
-- The local variables within the function call.
-
-In languages that support **Tail Call Optimization**, the compiler automatically optimizes tail-recursive functions into loops under the hood. Instead of adding a new stack frame for every call, it continuously reuses the same stack frame, which prevents stack overflow errors. As a consequence, when the function recurses to the base case, the function can simply return the result to the original caller without going back to the previous function calls.
+The tail-recursive function lends itself to better memory usage, as in certain languages that support **Tail Call Optimization**, the compiler automatically optimizes tail-recursive functions into loops under the hood. Specifically, instead of adding a new stack frame for every call, it continuously reuses the same stack frame (which stores the returning address of the function call, the arguments that are passed to the function call, and the local variables within the function call if any), preventing stack overflow errors. As a consequence, when the function recurses to the base case, the function can simply return the result to the original caller without going back to the previous function calls.
 
 To turn a standard recursive function into a tail-recursive function, you pass the partial results forward using an **accumulator argument** so nothing is left to compute when the call returns. 
 
