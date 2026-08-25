@@ -18,12 +18,12 @@ trait PriorityQueue[T] {
 ```python
 import heapq
 
-def top_k(l, k):
+def top_k(array, k):
     # use a min pq to keep the largest `k` elements,
     # or a max pq to keep the smallest `k`
     pq = []
 
-    for num in l:
+    for num in array:
         # some logic to add an element according to problem's criteria
         heapq.heappush(pq, (<criteria as key>, num))
         if len(pq) > k:
