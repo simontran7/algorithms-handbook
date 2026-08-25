@@ -74,7 +74,9 @@ T div_ceil(T a, T b) {
 
     return q;
 }
+```
 
+```cpp
 template <typename T>
 T div_floor(T a, T b) {
     T q = a / b;
