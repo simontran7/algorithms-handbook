@@ -39,6 +39,18 @@ trait OrderedSet[E: Order] {
 > [!NOTE]
 > At depth $d$, there are at most $2^d$ nodes.
 
+### Lookup
+
+[Exercise](https://leetcode.com/problems/search-in-a-binary-search-tree/description/)
+
+### Insertion
+
+[Exercise](https://leetcode.com/problems/insert-into-a-binary-search-tree/description/)
+
+### Deletion
+
+[Exercise](https://leetcode.com/problems/delete-node-in-a-bst/description/)
+
 ### Implementation
 
 ```python
