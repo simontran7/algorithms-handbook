@@ -44,13 +44,29 @@ The tail-recursive function lends itself to better memory usage, as in certain l
 
 To turn a standard recursive function into a tail-recursive function, you pass the partial results forward using an **accumulator argument** so nothing is left to compute when the call returns. 
 
-A **continuation** is a stack of functions modelling the call stack, i.e. the work we still
-need to do upon returning.
+A **continuation** is a stack of functions modelling the call stack, i.e. the work we still need to do upon returning.
 
-Add the continuation higher order function as the accumulator argument. Then:
+1. Add the continuation higher order function as the accumulator argument. Then:
 - **Base Case**: call the continuation.
-- **Recursive Case**: build up in the continuation the work to do after the recursive call.
+- **Recursive Case**: all the work that previously executed *after* the recursive call now gets moved inside the continuation
 
+### Example
 
+```ocaml
+let rec append l1 l2 =
+  match l1 with
+  | [] -> l2
+  | h :: t -> h :: append t l2
+;;
+
+let rec append_tr l1 l2 =
+  let rec helper l1 l2 acc =
+    match l1 with
+    | [] -> acc l2
+    | h :: t -> helper t l2 (fun r -> acc (h :: r))
+  in
+  helper l1 l2 (fun r -> r)
+;;
+```
 
 
