@@ -42,7 +42,7 @@
     - [Bit Manipulation](./src/bit-manipulation.md)
     - [Modular Arithmetic](./src/modular-arithmetic.md)
 
-**Division and Modulo**
+**Division Operations**
 
 | Operation | Python | C++ |
 |---|---|---|
