@@ -203,9 +203,6 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 	- Adjacency Matrix: worst-case $O(R \cdot C)$
 
 > [!NOTE]
-> In the iterative depth-first search, for a pre-order traversal, push the *right* node before pushing the *left* node onto the stack (i.e., process node → push right node → push left node).
-
-> [!NOTE]
 > BST problems typically use DFS traversal. Common techniques include:
 > - Checking if the current node's value is within bounds (e.g., `low <= node.val <= high`)
 > - Leveraging the BST property to prune subtrees: if `node.val < low` , skip the left subtree; if `node.val > high` , skip the right subtree (where `low` or `high` can also just be a target value)
