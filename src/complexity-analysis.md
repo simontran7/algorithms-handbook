@@ -189,6 +189,7 @@ $$
 ### Optimizing Space Complexity
 
 - Whenever the problem space is predetermined (e.g. we know there are vertices from `0` to `n - 1`), you might be able to use a static array of booleans instead of a hashset or a hashmap.
+- For recursive functions, consider rewriting them iteratively or, where appropriate, using tail recursion.
 
 > [!NOTE]
 > In interviews, the algorithm's input *and* output is typically excluded from the total space complexity cost, and only the auxiliary space is considered.
