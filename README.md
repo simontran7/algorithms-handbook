@@ -44,7 +44,7 @@
 
 **Division and Modulo**
 
-| Operation | Python | C |
+| Operation | Python | C++ |
 |---|---|---|
 | Integer division | `//` (floors) | `/` (truncates toward zero) |
 | Floating-point division | `/` | `/` |
@@ -53,7 +53,7 @@
 
 **Division Flooring and Division Ceiling**
 
-| Operation | Python | C/C++ |
+| Operation | Python | C++ |
 |---|---|---|
 | Division flooring an integer | `//` | `div_floor(<num>, <denom>)` (see below) |
 | Division ceiling an integer | `-(a // -b)` | `div_ceil(<num>, <denom>)` (see below) |
