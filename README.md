@@ -50,15 +50,10 @@
 | Floating-point division | `/` | `/` |
 | Remainder | N/A | `%` |
 | Modulo | `%` | N/A |
-
-**Division Flooring and Division Ceiling**
-
-| Operation | Python | C++ |
-|---|---|---|
 | Division flooring an integer | `//` | `div_floor(<num>, <denom>)` (see below) |
 | Division ceiling an integer | `-(a // -b)` | `div_ceil(<num>, <denom>)` (see below) |
-| Flooring a float | `math.floor(<num> / <denom>)` | `floor(<num> / <denom>)` |
-| Ceiling a float | `math.ceil(<num> / <denom>)` | `ceil(<num> / <denom>)` |
+| Division Flooring a float | `math.floor(<num> / <denom>)` | `floor(<num> / <denom>)` |
+| Division Ceiling a float | `math.ceil(<num> / <denom>)` | `ceil(<num> / <denom>)` |
 
 ```cpp
 template <typename T>
