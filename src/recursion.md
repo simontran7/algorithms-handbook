@@ -50,7 +50,9 @@ A **continuation** is a stack of functions modelling the call stack, i.e. the wo
 - **Base Case**: apply the continuation on the base case's result.
 - **Recursive Case**: all the work that previously executed *after* the recursive call now gets moved inside the continuation
 
-### Examples
+For recursive algorithms with different possible outcomes, we may introduce a **failure continuation** and a **success continuation**. The failure continuation specifies what to do when the computation fails, while the success continuation specifies what to do when it succeeds. When either outcome occurs, control is transferred to the corresponding continuation, which carries out the remaining computation and, in the case of success, helps produce the final result.
+
+### Regular Continuation Examples
 
 #### Example 1
 
@@ -122,7 +124,7 @@ let rec findAll0 p t sc = match t with
      )
 ```
 
-#### Example 3
+### Success and Failure Continuation Examples
 
 ```ocaml
 type 'a tree =
