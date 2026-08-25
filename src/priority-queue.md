@@ -3,10 +3,10 @@
 ## Abstract Data Type
 
 ```
-trait PriorityQueue[T] {
-    func top(&self) -> T;
-    func add(&mut self, item: T);
-    func remove(&mut self) -> T;
+trait PriorityQueue[E] {
+    func top(&self) -> E;
+    func add(&mut self, element: E);
+    func remove(&mut self) -> E;
 }
 ```
 
