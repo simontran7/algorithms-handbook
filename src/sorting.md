@@ -12,22 +12,20 @@ $$
 
 ### Template
 
-```
-func bubble_sort[T: PartialOrder](array: &mut [T]) {
-    let n = array.count();
-    for i in 0..n {
-        let mut swapped = false;
-        for j in 0..n - 1 - i {
-            if array[j] > array[j + 1] {
-                array.swap(j, j + 1);
-                swapped = true;
-            }
-        }       
-        if not swapped {
-            break; 
-        }
-    }
-}
+```python
+def bubble_sort(array):
+    n = len(array)
+
+    for i in range(n):
+        swapped = False
+
+        for j in range(n - 1 - i):
+            if array[j] > array[j + 1]:
+                array[j], array[j + 1] = array[j + 1], array[j]
+                swapped = True
+
+        if not swapped:
+            break
 ```
 
 ### Complexity Analysis
