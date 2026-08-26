@@ -251,3 +251,8 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 > [!NOTE]
 > For a multi-source BFS, create a for loop that visits all source nodes and appends them to the queue for the BFS.
 
+## Exercises
+
+- [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
+- [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+- [145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
