@@ -204,7 +204,9 @@ let rec find_tr p t fail succeed = match t with
   | Node(l, _, r) ->
      find_tr p l (fun () -> find_tr p r fail succeed) succeed
 
-let find' p t = find_tr p t (fun () -> None) (fun x -> Some x)
+let find_tr_opt p t = find_tr p t (fun () -> None) (fun x -> Some x)
+let find_tr_exn p t =
+  find_tr p t (fun () -> raise Fail) (fun x -> x)
 ```
 
 #### Example 2
