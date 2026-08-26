@@ -13,6 +13,8 @@ Given a graph or n-ary tree, systematically visit every relevant node, exactly o
 
 ### On Trees
 
+[image](https://excalidraw.com/#json=6KhPhFw0odvp69FAo4Ugs,NjEJA9EdV1FPR_y485AGVw)
+
 #### Use Case
 
 Pre-order, in-order, or post-order traversal.
