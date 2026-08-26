@@ -97,9 +97,7 @@ turned into
 let rec append_tr l1 l2 =
   let rec helper l1 l2 k =
     match l1 with
-(* instead of returning the result `l2`, we apply the continuation `k` to `l2` *)
     | [] -> k l2
-(* instead of constructing `h :: append t l2`, we call `append_tr` recursively on `t` and `l2`, adding the task of prepending `h` to the argument `r` of the continuation `k` *)
     | h :: t -> helper t l2 (fun r -> k (h :: r))
   in
   helper l1 l2 (fun r -> r)
