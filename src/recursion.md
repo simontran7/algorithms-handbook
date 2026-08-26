@@ -103,7 +103,6 @@ let rec append_tr l1 l2 =
     | h :: t -> helper t l2 (fun r -> k (h :: r))
   in
   helper l1 l2 (fun r -> r)
-;;
 ```
 
 where for example, `append_tr [1; 2] [3; 4]` executes as follows:
