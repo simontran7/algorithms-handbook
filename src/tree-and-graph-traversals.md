@@ -17,7 +17,9 @@ Given a graph or n-ary tree, systematically visit every relevant node, exactly o
 
 #### Use Case
 
-- Pre-order (visit the root, then traverse the left subtree, then traverse the right subtree), In-order (traverse the left subtree, then visit the root, then traverse the right subtree) or post-order traversal (traverse the left subtree, then traverse the right subtree, then visit the root).
+- Pre-order (visit the root, then traverse the left subtree, then traverse the right subtree)
+- In-order (traverse the left subtree, then visit the root, then traverse the right subtree)
+- Post-order traversal (traverse the left subtree, then traverse the right subtree, then visit the root).
 
 #### Template
 
