@@ -46,6 +46,6 @@ def quickselect(array, k):
 ### Complexity Analysis
 
 Let $n$ be the length of the array. Then:
-- Time Complexity: average-case $O(n)$, worst-case $O(n^2)$
+- Time Complexity: worst-case $O(n^2)$, but average-case $O(n)$
 - Space Complexity: worst-case $O(1)$
 
