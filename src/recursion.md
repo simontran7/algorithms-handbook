@@ -136,27 +136,6 @@ let rec find_all_tr predicate tree =
   helper predicate tree (fun results -> results)
 ```
 
-or alternatively, turned into
-
-```ocaml
-let rec find_all_tr predicate tree =
-  let rec helper predicate tree k =
-    match tree with
-    | Empty ->
-        k []
-    | Node (left, value, right) ->
-        if predicate value then
-          helper predicate left (fun left_results ->
-            helper predicate right (fun right_results ->
-              k (left_results @ (value :: right_results))))
-        else
-          helper predicate left (fun left_results ->
-            helper predicate right (fun right_results ->
-              k (left_results @ right_results)))
-  in
-  helper predicate tree (fun results -> results)
-```
-
 ### Success and Failure Continuation Examples
 
 #### Example 1
@@ -188,25 +167,45 @@ or we have
 ```ocaml
 exception Fail
 
-let rec find_exc p t = match t with 
-  | Empty -> raise Fail
-  | Node (l,d,r) -> 
-    if (p d) then Some d
-    else (try find_exc p l with Fail -> find_exc p r)
-
-let find_ex p t =  (try find_exc p t with Fail -> None)
+let find_exc p t =
+  let rec helper t =
+    match t with
+    | Empty -> raise Fail
+    | Node (l, d, r) ->
+        if p d then
+            Some d
+        else
+          try helper l with
+          | Fail -> helper r
+  in
+  try helper t with
+  | Fail -> None
 ```
 
-```ocaml
-let rec find_tr p t fail succeed = match t with 
-  | Empty -> fail ()
-  | Node(_, d, _) when p d -> succeed d
-  | Node(l, _, r) ->
-     find_tr p l (fun () -> find_tr p r fail succeed) succeed
+and both are turned into a general tail-recursive function:
 
-let find_tr_opt p t = find_tr p t (fun () -> None) (fun x -> Some x)
+```ocaml
+exception Fail
+
+let rec find_tr p t fail succeed =
+  match t with
+  | Empty -> fail ()
+  | Node (l, d, r) ->
+      if p d then
+        succeed d
+      else
+        find_tr p l
+          (fun () -> find_tr p r fail succeed)
+          succeed
+
+let find_tr_opt p t =
+  find_tr p t
+    (fun () -> None)
+    (fun x -> Some x)
 let find_tr_exn p t =
-  find_tr p t (fun () -> raise Fail) (fun x -> x)
+  find_tr p t
+    (fun () -> raise Fail)
+    (fun x -> x)
 ```
 
 #### Example 2
@@ -246,19 +245,10 @@ exception Change
 
 let rec change_exn coins amt =
   match coins with
-  (* If the amount of change to make is zero, then we're done. *)
   | _ when amt = 0 -> []
   | [] ->
-    (**
-      * If we run out of available coins but amt is non-zero, then
-      * fail with an exception to jump back to the nearest handler.
-    *)
     raise Change
   | coin :: cs when coin > amt ->
-    (**
-      * If this coin is too large, then we forget about it for now
-      * and consider the other coins.
-    *)
     change_exn cs amt
   | coin :: cs ->
     try
