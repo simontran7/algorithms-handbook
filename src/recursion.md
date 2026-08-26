@@ -44,7 +44,7 @@ The tail-recursive function lends itself to better memory usage, as in certain l
 
 To turn a standard recursive function into a tail-recursive function, you pass the partial results forward using an **accumulator argument** so nothing is left to compute when the call returns. 
 
-A **continuation** is a stack of functions modelling the call stack, i.e. the work we still need to do upon returning.
+A **continuation**, often named `k`, is a stack of functions modelling the call stack, i.e. the work we still need to do upon returning.
 
 1. Add the continuation higher order function as the accumulator argument. Then:
 - **Base Case**: apply the continuation on the base case's result.
@@ -62,14 +62,18 @@ let rec append l1 l2 =
   | [] -> l2
   | h :: t -> h :: append t l2
 ;;
+```
 
+turned into 
+
+```ocaml
 let rec append_tr l1 l2 =
-  let rec helper l1 l2 acc =
+  let rec helper l1 l2 k =
     match l1 with
-(* instead of returning the result `l2`, we apply the continuation `cont` to `l2` *)
-    | [] -> acc l2
-(* instead of constructing `h :: append t l2`, we call `append_tr` recursively on `t` and `l2`, adding the task of prepending `h` to the argument `r` of the continuation `cont` *)
-    | h :: t -> helper t l2 (fun r -> acc (h :: r))
+(* instead of returning the result `l2`, we apply the continuation `k` to `l2` *)
+    | [] -> k l2
+(* instead of constructing `h :: append t l2`, we call `append_tr` recursively on `t` and `l2`, adding the task of prepending `h` to the argument `r` of the continuation `k` *)
+    | h :: t -> helper t l2 (fun r -> k (h :: r))
   in
   helper l1 l2 (fun r -> r)
 ;;
@@ -91,47 +95,81 @@ append_tr [1; 2] [3; 4]
 
 #### Example 2
 
-
-```ocaml
-let rec findAll p t = match t with 
-  | Empty -> []
-  | Node(l,d,r) -> 
-    if (p d) then (findAll p l) @(d ::(findAll p r))
-    else
-      (findAll p l) @ (findAll p r)
-```
-
-```ocaml
-let rec findAll' p t sc = match t with 
-  | Empty -> sc []
-  | Node(l,d,r) -> 
-    findAll' p l 
-      (fun el ->
-        findAll' p r
-          (fun er ->
-            if (p d) then sc (el@(d::er)) else sc (el@er)))
-
-let rec findAll0 p t sc = match t with 
-  | Empty -> sc []
-  | Node(l,d,r) -> 
-     (if (p d) then
-       findAll0 p l (fun el -> findAll0 p r 
-					(fun er ->  sc (el@(d::er)))) 
-     else 
-       findAll0 p l (fun el -> findAll0 p r 
-					(fun er ->  sc (el@er))) 
-
-     )
-```
-
-### Success and Failure Continuation Examples
+For a binary tree
 
 ```ocaml
 type 'a tree =
   | Empty
   | Node of 'a tree * 'a * 'a tree
-;;
 ```
+
+We have the traditional `find_all` recursive function
+
+```ocaml
+let rec find_all predicate tree =
+  match tree with
+  | Empty -> []
+  | Node (left, value, right) ->
+      if predicate value then
+        (find_all predicate left) @ (value :: (find_all predicate right))
+      else
+        (find_all predicate left) @ (find_all predicate right)
+```
+
+turned into the tail-recursive function via CPS
+
+```ocaml
+let rec find_all_tr predicate tree =
+  let rec helper predicate tree k =
+    match tree with
+    | Empty -> k []
+    | Node (left, value, right) ->
+        helper predicate left
+          (fun left_results ->
+            helper predicate right
+              (fun right_results ->
+                if predicate value then
+                  k (left_results @ (value :: right_results))
+                else
+                  k (left_results @ right_results)))
+  in
+  helper predicate tree (fun results -> results)
+```
+
+or alternatively, turned into
+
+```ocaml
+let rec find_all_tr predicate tree =
+  let rec helper predicate tree k =
+    match tree with
+    | Empty ->
+        k []
+    | Node (left, value, right) ->
+        if predicate value then
+          helper predicate left (fun left_results ->
+            helper predicate right (fun right_results ->
+              k (left_results @ (value :: right_results))))
+        else
+          helper predicate left (fun left_results ->
+            helper predicate right (fun right_results ->
+              k (left_results @ right_results)))
+  in
+  helper predicate tree (fun results -> results)
+```
+
+### Success and Failure Continuation Examples
+
+#### Example 1
+
+For the following binary tree:
+
+```ocaml
+type 'a tree =
+  | Empty
+  | Node of 'a tree * 'a * 'a tree
+```
+
+We have either
 
 ```ocaml
 let rec find p t =
@@ -143,8 +181,9 @@ let rec find p t =
         match find p l with
         | Some d -> Some d
         | None -> find p r
-;;
 ```
+
+or we have
 
 ```ocaml
 exception Fail
@@ -165,11 +204,108 @@ let rec find_tr p t fail succeed = match t with
   | Node(l, _, r) ->
      find_tr p l (fun () -> find_tr p r fail succeed) succeed
 
-(** A driver function that calls the continuation-passing style
-    function and wraps the result in an option, so we could use
-    pattern matching after.
- *)
 let find' p t = find_tr p t (fun () -> None) (fun x -> Some x)
 ```
+
+#### Example 2
+
+```ocaml
+(**
+  * -----------------------------------------------------------------
+  * Let's make change with coins
+  *
+  * Given some list l of coin denominations and some amount n,
+  * express n is terms of the coins l using the least amount of
+  * coins.
+  *
+  * We assume that denominations are sorted in decreasing order,
+  * e.g., [5; 2].
+*)
+
+(* It might not be possible to make change. *)
+exception Change
+
+(**
+  * Examples:
+  * # change [50;25;10;5;2;1] 43;;
+  * - : int list = [25; 10; 5; 2; 1]
+  * # change [50;25;10;5;2;1] 13;;
+  * - : int list = [10; 2; 1]
+  * # change [5;2;1] 13;;
+  * - : int list = [5; 5; 2; 1]
+  * The idea is to proceed greedily, but if we get stuck,
+  * we undo the most recent greedy decision and proceed again from there.
+  *
+  * We implement three versions:
+  * change_exn  : int list -> int -> int list
+  * change_opt  : int list -> int -> int list option
+  * change_cont : int list -> int -> (int list -> 'a) -> (unit -> 'a) -> 'a
+*)
+
+let rec change_exn coins amt =
+  match coins with
+  (* If the amount of change to make is zero, then we're done. *)
+  | _ when amt = 0 -> []
+  | [] ->
+    (**
+      * If we run out of available coins but amt is non-zero, then
+      * fail with an exception to jump back to the nearest handler.
+    *)
+    raise Change
+  | coin :: cs when coin > amt ->
+    (**
+      * If this coin is too large, then we forget about it for now
+      * and consider the other coins.
+    *)
+    change_exn cs amt
+  | coin :: cs ->
+    try
+      (**
+        * Otherwise, we know that this coin is plausible, so we add
+        * it to the return list and try to make change for the
+        * remaining amount.
+      *)
+      coin :: change_exn coins (amt - coin)
+    with
+    | Change ->
+      (**
+        * It turns out that by using `coin` we were unable to make
+        * the remaining change, so we forget about coin and try again
+        * with the remaining coins.
+      *)
+      change_exn cs amt
+```
+
+```ocaml
+let rec change_opt coins amt =
+  match coins with
+  | _ when amt = 0 -> Some []
+  | [] -> None
+  | coin :: cs when coin > amt -> change_opt cs amt
+  | coin :: cs ->
+    match change_opt coins (amt - coin) with
+    | Some change -> Some (coin :: change)
+    | None -> change_opt cs amt
+```
+
+and now turned into tail-recursive function
+
+```ocaml
+let rec change_cont coins amt s f =
+  match coins with
+  | _ when amt = 0 -> s []
+  | [] -> f ()
+  | coin :: cs when coin > amt -> change_cont cs amt s f
+  | coin :: cs ->
+    change_cont
+      coins
+      (amt - coin)
+      (fun change -> s (coin :: change))
+      (fun _ -> change_cont cs amt s f)
+
+let change_cont_exn coins amt = change_cont coins amt (fun x -> x) (fun _ -> raise Change)
+let change_cont_opt coins amt = change_cont coins amt (fun x -> Some x) (fun _ -> None)
+```
+
 
 
