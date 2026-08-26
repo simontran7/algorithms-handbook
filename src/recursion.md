@@ -42,17 +42,45 @@ In a traditional recursive function, calculations happen after the recursive cal
 
 The tail-recursive function lends itself to better memory usage, as in certain languages that support **Tail Call Optimization**, the compiler automatically optimizes tail-recursive functions into loops under the hood. Specifically, instead of adding a new stack frame for every call, it continuously reuses the same stack frame (which stores the returning address of the function call, the arguments that are passed to the function call, and the local variables within the function call if any), preventing stack overflow errors. As a consequence, when the function recurses to the base case, the function can simply return the result to the original caller without going back to the previous function calls.
 
-To turn a standard recursive function into a tail-recursive function, you pass the partial results forward using an **accumulator argument** so nothing is left to compute when the call returns. 
+To turn a standard recursive function into a tail-recursive function, there are two common approaches:
+- **Accumulator**: Pass partial results forward using an accumulator argument, so there is no remaining work to perform after the recursive call returns.
+- **Continuation (CPS)**: Pass the remaining work forward using a continuation, often named k. The continuation is a function that represents the work still to be performed and effectively models the pending computations of the call stack.
 
-A **continuation**, often named `k`, is a stack of functions modelling the call stack, i.e. the work we still need to do upon returning.
+### Accumulator
 
-1. Add the continuation higher order function as the accumulator argument. Then:
-- **Base Case**: apply the continuation on the base case's result.
-- **Recursive Case**: all the work that previously executed *after* the recursive call now gets moved inside the continuation
+1. Add an accumulator argument, usually named `acc`, to the recursive helper function.
+2. Initialize the accumulator with the result corresponding to the base case.
+3. Base case: Return the accumulator instead of returning the original base-case result.
+4. Recursive case: Update the accumulator with the work that would have been performed after the recursive call.
+5. Make the recursive call the final operation. 
 
-For recursive algorithms with different possible outcomes, we may introduce a **failure continuation** and a **success continuation**. The failure continuation specifies what to do when the computation fails, while the success continuation specifies what to do when it succeeds. When either outcome occurs, control is transferred to the corresponding continuation, which carries out the remaining computation and, in the case of success, helps produce the final result.
+#### Example 
 
-### Regular Continuation Examples
+```ocaml
+let rec sum l =
+  match l with
+  | [] -> 0
+  | h :: t -> h + sum t
+```
+
+turned into
+
+```ocaml
+let sum_tr l =
+  let rec helper l acc =
+    match l with
+    | [] -> acc
+    | h :: t -> helper t (acc + h)
+  in
+  helper l 0
+```
+
+### CPS 
+
+1. Add a continuation higher-order function, usually named `k`, as an additional argument. 
+2. Base case: Apply `k` to the base case's result.
+3. Recursive case: Move all the work that previously happened after the recursive call into the continuation.
+4. Make the recursive call the final operation.
 
 #### Example 1
 
@@ -61,7 +89,6 @@ let rec append l1 l2 =
   match l1 with
   | [] -> l2
   | h :: t -> h :: append t l2
-;;
 ```
 
 turned into 
@@ -135,169 +162,4 @@ let rec find_all_tr predicate tree =
   in
   helper predicate tree (fun results -> results)
 ```
-
-### Success and Failure Continuation Examples
-
-#### Example 1
-
-For the following binary tree:
-
-```ocaml
-type 'a tree =
-  | Empty
-  | Node of 'a tree * 'a * 'a tree
-```
-
-We have either
-
-```ocaml
-let rec find p t =
-  match t with
-  | Empty -> None
-  | Node (l, d, r) ->
-      if p d then Some d
-      else
-        match find p l with
-        | Some d -> Some d
-        | None -> find p r
-```
-
-or we have
-
-```ocaml
-exception Fail
-
-let find_exc p t =
-  let rec helper t =
-    match t with
-    | Empty -> raise Fail
-    | Node (l, d, r) ->
-        if p d then
-            Some d
-        else
-          try helper l with
-          | Fail -> helper r
-  in
-  try helper t with
-  | Fail -> None
-```
-
-and both are turned into a general tail-recursive function:
-
-```ocaml
-exception Fail
-
-let rec find_tr p t fail succeed =
-  match t with
-  | Empty -> fail ()
-  | Node (l, d, r) ->
-      if p d then
-        succeed d
-      else
-        find_tr p l
-          (fun () -> find_tr p r fail succeed)
-          succeed
-
-let find_tr_opt p t =
-  find_tr p t
-    (fun () -> None)
-    (fun x -> Some x)
-let find_tr_exn p t =
-  find_tr p t
-    (fun () -> raise Fail)
-    (fun x -> x)
-```
-
-#### Example 2
-
-```ocaml
-(**
-  * -----------------------------------------------------------------
-  * Let's make change with coins
-  *
-  * Given some list l of coin denominations and some amount n,
-  * express n is terms of the coins l using the least amount of
-  * coins.
-  *
-  * We assume that denominations are sorted in decreasing order,
-  * e.g., [5; 2].
-*)
-
-(* It might not be possible to make change. *)
-exception Change
-
-(**
-  * Examples:
-  * # change [50;25;10;5;2;1] 43;;
-  * - : int list = [25; 10; 5; 2; 1]
-  * # change [50;25;10;5;2;1] 13;;
-  * - : int list = [10; 2; 1]
-  * # change [5;2;1] 13;;
-  * - : int list = [5; 5; 2; 1]
-  * The idea is to proceed greedily, but if we get stuck,
-  * we undo the most recent greedy decision and proceed again from there.
-  *
-  * We implement three versions:
-  * change_exn  : int list -> int -> int list
-  * change_opt  : int list -> int -> int list option
-  * change_cont : int list -> int -> (int list -> 'a) -> (unit -> 'a) -> 'a
-*)
-
-let rec change_exn coins amt =
-  match coins with
-  | _ when amt = 0 -> []
-  | [] ->
-    raise Change
-  | coin :: cs when coin > amt ->
-    change_exn cs amt
-  | coin :: cs ->
-    try
-      (**
-        * Otherwise, we know that this coin is plausible, so we add
-        * it to the return list and try to make change for the
-        * remaining amount.
-      *)
-      coin :: change_exn coins (amt - coin)
-    with
-    | Change ->
-      (**
-        * It turns out that by using `coin` we were unable to make
-        * the remaining change, so we forget about coin and try again
-        * with the remaining coins.
-      *)
-      change_exn cs amt
-```
-
-```ocaml
-let rec change_opt coins amt =
-  match coins with
-  | _ when amt = 0 -> Some []
-  | [] -> None
-  | coin :: cs when coin > amt -> change_opt cs amt
-  | coin :: cs ->
-    match change_opt coins (amt - coin) with
-    | Some change -> Some (coin :: change)
-    | None -> change_opt cs amt
-```
-
-and now turned into tail-recursive function
-
-```ocaml
-let rec change_cont coins amt s f =
-  match coins with
-  | _ when amt = 0 -> s []
-  | [] -> f ()
-  | coin :: cs when coin > amt -> change_cont cs amt s f
-  | coin :: cs ->
-    change_cont
-      coins
-      (amt - coin)
-      (fun change -> s (coin :: change))
-      (fun _ -> change_cont cs amt s f)
-
-let change_cont_exn coins amt = change_cont coins amt (fun x -> x) (fun _ -> raise Change)
-let change_cont_opt coins amt = change_cont coins amt (fun x -> Some x) (fun _ -> None)
-```
-
-
 
