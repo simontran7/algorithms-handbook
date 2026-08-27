@@ -63,19 +63,19 @@ def recursive_inorder_dfs(root):
 
 ```python
 def iterative_inorder_dfs(root):
-	stack = []
-	current = root
+    stack = []
+    current = root
 
-	while stack or current:
-		while current:
-			stack.append(current)
-			current = current.left
-		
-		current = stack.pop()
+    while stack or current:
+        if current:
+            stack.append(current)
+            current = current.left
+        else:
+            current = stack.pop()
 
-		# process `current` 
+            # process `current`
 
-		current = current.right    
+            current = current.right   
 ```
 
 ```python
@@ -103,7 +103,8 @@ def iterative_postorder_dfs(root):
             if stack[-1].right and last_visited != stack[-1].right:
                 current = stack[-1].right
             else:
-                result.append(stack[-1].val)
+               	# process `stack[-1]`
+
                 last_visited = stack.pop()
 
     return result
