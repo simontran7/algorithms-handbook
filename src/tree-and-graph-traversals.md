@@ -42,7 +42,7 @@ def iterative_preorder_dfs(root):
     while stack:
         node = stack.pop()
 
-	# process `current` node
+		# process `current` node
 
 	    if node.right:
             stack.append(node.right)
