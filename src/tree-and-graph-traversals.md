@@ -63,9 +63,6 @@ def recursive_inorder_dfs(root):
 
 ```python
 def iterative_inorder_dfs(root):
-	if not root:
-		return
-
 	stack = []
 	current = root
 
