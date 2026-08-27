@@ -29,7 +29,9 @@ def recursive_preorder_dfs(root):
         return
 
 	# process `root`
+
     recursive_preorder_dfs(root.left)
+
     recursive_preorder_dfs(root.right)
 ```
 
@@ -57,7 +59,9 @@ def recursive_inorder_dfs(root):
         return
 
     recursive_preorder_dfs(root.left)
+
 	# process `root`
+
     recursive_preorder_dfs(root.right)
 ```
 
@@ -84,7 +88,9 @@ def recursive_postorder_dfs(root):
         return
 
     recursive_preorder_dfs(root.left)
+
     recursive_preorder_dfs(root.right)
+
 	# process `root`
 ```
 
@@ -204,10 +210,10 @@ def bfs(root):
     queue = deque([root])
 
     while queue:
-        level_width = len(queue)
-
-        for _ in range(level_width):
+        for _ in range(len(queue)):
             node = queue.popleft()
+
+			# process `node`
 
             if node.left:
                 queue.append(node.left)
