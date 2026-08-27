@@ -73,7 +73,7 @@ def dp(<state variables>):
 return dp(<initial arguments for the state variables>)
 ```
 
-#### Step 6: Produce the Bottom-Up Solution (Tabulation)
+### Step 6: Produce the Bottom-Up Solution (Tabulation)
 
 1. Initialize an array `dp` that is sized according to the subproblem variables largest values. In particular, whenever you have a base case of the form `if i >= n: return <base case value>`, and somewhere else in your algorithm you have `dp(i + x)`, then your array must have `n + x` rows.
 2. For every base case `if <state variable> == <value>: return <base case value>`, explicitly set them in the lookup table `dp` i.e., `dp[<state variable>][...] = <base case value>` or implicitly through the initial values of the lookup table (e.g., `dp = [0] * (n + 1)` zero-initializes).
