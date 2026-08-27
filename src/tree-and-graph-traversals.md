@@ -114,8 +114,8 @@ def iterative_postorder_dfs(root):
 #### Complexity Analysis
 
 Let $n$ be the number of nodes in the tree, $C_{node}$ be the cost of processing a single node, and $h$ the height of the tree. Then:
-- Time: worst-case $O(n \cdot C_{node})$
-- Space: worst-case $O(h)$
+- Time Complexity: worst-case $O(n \cdot C_{node})$
+- Space Complexity: worst-case $O(h)$
 
 ### On Graphs
 
