@@ -28,6 +28,7 @@ def recursive_preorder_dfs(root):
     if not root:
         return
 
+	# process `root`
     recursive_preorder_dfs(root.left)
     recursive_preorder_dfs(root.right)
 ```
@@ -51,7 +52,17 @@ def iterative_preorder_dfs(root):
 ```
 
 ```python
-def inorder_dfs(root):
+def recursive_inorder_dfs(root):
+    if not root:
+        return
+
+    recursive_preorder_dfs(root.left)
+	# process `root`
+    recursive_preorder_dfs(root.right)
+```
+
+```python
+def iterative_inorder_dfs(root):
 	if not root:
 		return
 
@@ -65,9 +76,19 @@ def inorder_dfs(root):
 		
 		current = stack.pop()
 
-		# process `current` node
+		# process `current` 
 
 		current = current.right    
+```
+
+```python
+def recursive_postorder_dfs(root):
+    if not root:
+        return
+
+    recursive_preorder_dfs(root.left)
+    recursive_preorder_dfs(root.right)
+	# process `root`
 ```
 
 
