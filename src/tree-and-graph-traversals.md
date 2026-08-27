@@ -88,6 +88,27 @@ def recursive_postorder_dfs(root):
 	# process `root`
 ```
 
+```python
+def iterative_postorder_dfs(root):
+    stack = []
+    current = root
+    last_visited = None
+    result = []
+
+    while stack or current:
+        if current:
+            stack.append(current)
+            current = current.left
+        else:
+            if stack[-1].right and last_visited != stack[-1].right:
+                current = stack[-1].right
+            else:
+                result.append(stack[-1].val)
+                last_visited = stack.pop()
+
+    return result
+```
+
 
 #### Complexity Analysis
 
