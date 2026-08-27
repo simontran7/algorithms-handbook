@@ -42,11 +42,34 @@ def iterative_preorder_dfs(root):
     while stack:
         node = stack.pop()
 
+	# process `current` node
+
 	    if node.right:
             stack.append(node.right)
         if node.left:
             stack.append(node.left)
 ```
+
+```python
+def inorder_dfs(root):
+	if not root:
+		return
+
+	stack = []
+	current = root
+
+	while stack or current:
+		while current:
+			stack.append(current)
+			current = current.left
+		
+		current = stack.pop()
+
+		# process `current` node
+
+		current = current.right    
+```
+
 
 #### Complexity Analysis
 
