@@ -38,8 +38,9 @@ trait OrderedSet[E: Order] {
 
 - At level $d$, there are at most $2^d$ nodes.
 - A binary tree with $n$ levels has $2^n - 1$ nodes
-- A binary tree with height $h$ has 2^{h + 1} - 1$ nodes
-- Height of a complete binary tree is $\floor{\log_{2} n}$
+- A binary tree with height $h$ has $2^{h + 1} - 1$ nodes
+- A complete binary tree has at most $\lceil{\frac{n}{2}}\rceil$ leaves
+- Height of a complete binary tree is $\lfloor{\log_{2} n}\rfloor$
 - A binary tree with $n$ nodes has $n$ - 1 edges
 - A full binary tree has $\text{internal nodes} + 1$ leaves
 - A full binary tree has $2 \times \text{internal nodes} + 1$ nodes, or equivalently, $2 \times \text{internal leaves} + 1$
