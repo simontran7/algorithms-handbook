@@ -186,6 +186,8 @@ Let $S$ be the number of reachable states (product of the ranges of each state v
 
 ### On Trees
 
+[image](https://excalidraw.com/#json=fDh43_-klJzpBKkz72-rR,2aQqM9sKdkzpEIcgmGpVWw)
+
 #### Use Case
 
 Level-order traversal.
