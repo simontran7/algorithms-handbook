@@ -90,4 +90,4 @@ Let $P$ be the number of subproblems (product of the ranges of each subproblem v
 - Time Complexity: worst-case $O(P \cdot C)$
 - Space Complexity:
     - Top-down (memoization): worst-case $O(P)$
-    - Bottom-up (tabulation): worst-case $O(P)$ when using a lookup table *or* s$O(1)$ when the recurrence only depends on a static number of previous states and forego a lookup table (see note above)
+    - Bottom-up (tabulation): worst-case $O(P)$ when using a lookup table *or* $O(1)$ when the recurrence only depends on a static number of previous states and forego a lookup table (see note above)
