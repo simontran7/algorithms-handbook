@@ -2,7 +2,7 @@
 
 ## Use Case
 
-Problems suitable for dynamic programming typically involve making decisions where each choice influences subsequent decisions. Then, the goal is to:
+Problems that typically involve making decisions where each choice influences subsequent decisions, where the goal is to:
 
 - Optimization problems
 - Combinatorial problems
