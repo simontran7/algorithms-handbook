@@ -34,3 +34,7 @@ stack.pop()
 
 > [!NOTE]
 > We often use the stack to store the result and convert it to a string. In Python, strings are immutable, so accumulate the result in the stack, and join it at the end with `"".join(stack)`.
+
+## Exercises
+
+- [232. Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/description/)
