@@ -1,6 +1,6 @@
 # Recursion
 
-## Introduction
+## Introduce
 
 **Recursion** is an algorithmic paradigm in which a problem is solved by defining a solution in terms of smaller instances of the same problem.
 
@@ -8,23 +8,16 @@ We can implement a recursive algorithm by modelling it as a **recurrence relatio
 - **Base Case(s)**: A terminating condition that can be solved directly without making another recursive call.
 - **Recursive Case**: A set of rules that reduces a problem to a smaller instance of the same problem, eventually leading to the base case.
 
-Concretely, a recursive algorithm is typically implemented through a **function calling itself**. Specifically, each time a recursive function calls itself, it reduces the given problem into subproblems (the recursive case). The recursive calls should continue until it reaches a point where the subproblem can be solved without further recursing (the base case).
+Concretely, a recursive algorithm is typically implemented through a function calling itself. Specifically, each time a recursive function calls itself, it reduces the given problem into subproblems (the recursive case). The recursive calls should continue until it reaches a point where the subproblem can be solved without further recursing (the base case). 
 
-```
-func recursive_algo(<state variables 1>, <state variable 2>, <...>, <state variable N>) {
-    // base case(s)
-    if <condition> {
-        return <base case result>;
-    }
-    if <condition> {
-        return <base case result>;
-    }
-
-    // recursive case
-    <...>
-    return recursive_algo(<...>);
-}
-```
+To create recursive algorithms, ask the following questions:
+1. What does `f()` mean?
+2. What is/are the base case(s)? For trees, it's often when the `root`/`node` is `None`, for arrays and strings, it's either when `i` is at `0` or at `array.count()`, 
+3. What does the current subproblem need to know that it can't figure out itself? These become the function's parameters.
+4. What useful information can this subproblem give back to its caller? These become the return values of the function.
+5. What smaller version of the exact same problem can I ask recursion to solve? For trees, it's often recursing on the children nodes, for graphs, it's recursing on the neighbour vertices, and for arrays, it's recursing the previous or next element.
+6. How do I use the recursive result(s) to produce the current result?
+7. Do I need to maintain a global `result` variable across multiple recursive calls?
 
 ## Examples
 
