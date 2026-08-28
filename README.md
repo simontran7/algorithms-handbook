@@ -1,4 +1,14 @@
-# Table of Contents
+# algorithms handbook
+
+## Exercises
+
+- Binary Tree
+    - [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
+    - [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+    - [145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
+    - [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
+
+## Table of Contents
 
 - [Complexity Analysis](./src/complexity-analysis.md)
 - Data Structures
