@@ -8,7 +8,7 @@ We can implement a recursive algorithm by modelling it as a **recurrence relatio
 - **Base Case(s)**: A terminating condition that can be solved directly without making another recursive call.
 - **Recursive Case**: A set of rules that reduces a problem to a smaller instance of the same problem, eventually leading to the base case.
 
-Concretely, a recursive algorithm is typically implemented through a function calling itself. Specifically, each time a recursive function calls itself, it reduces the given problem into subproblems (the recursive case). The recursive calls should continue until it reaches a point where the subproblem can be solved without further recursing (the base case). 
+Concretely, a recursive algorithm is typically implemented through a function calling itself. Specifically, each time a recursive function calls itself, it reduces the given problem into smaller subproblems, making progress toward the base case (the recursive case). These recursive calls continue until the problem reaches a point where the subproblem can be solved without further recursion (the base case).
 
 To create recursive algorithms, ask the following questions:
 1. What does `f()` mean?
