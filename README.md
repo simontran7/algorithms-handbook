@@ -93,7 +93,7 @@ T div_floor(T a, T b) {
 
 ### Arrays and Strings
 
-- [ ] [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/description/)
+- [x] [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/description/)
 - [ ] [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/description/)
 - [ ] [977. Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/description/)
 - [ ] [1089. Duplicate Zeros](https://leetcode.com/problems/duplicate-zeros/description/)
@@ -106,6 +106,8 @@ T div_floor(T a, T b) {
 - [ ] [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)
 - [ ] [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/description/)
 - [ ] [905. Sort Array By Parity](https://leetcode.com/problems/sort-array-by-parity/description/)
+
+
 - [ ] [27. Remove Element](https://leetcode.com/problems/remove-element/description/)
 - [ ] [1051. Height Checker](https://leetcode.com/problems/height-checker/description/)
 - [ ] [487. Max Consecutive Ones II](https://leetcode.com/problems/max-consecutive-ones-ii/description/)
