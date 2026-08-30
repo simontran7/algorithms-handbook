@@ -2,7 +2,7 @@
 
 ## Resources
 
-- 
+- [LeetCode's Interview Crash Course — Data Structures and Algorithms](https://leetcode.com/explore/featured/card/leetcodes-interview-crash-course-data-structures-and-algorithms/)
 - Leetcode Explore cards
     - [arrays 101](https://leetcode.com/explore/learn/card/fun-with-arrays/)
     - [array and string](https://leetcode.com/explore/learn/card/array-and-string/)
