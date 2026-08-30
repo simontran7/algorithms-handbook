@@ -2,8 +2,9 @@
 
 ## Resources
 
+- [UC Berkeley CS61B Course](https://sp26.datastructur.es/)
 - [LeetCode's Interview Crash Course — Data Structures and Algorithms](https://leetcode.com/explore/featured/card/leetcodes-interview-crash-course-data-structures-and-algorithms/)
-- Leetcode Explore cards
+- Leetcode Explore Cards
     - [arrays 101](https://leetcode.com/explore/learn/card/fun-with-arrays/)
     - [array and string](https://leetcode.com/explore/learn/card/array-and-string/)
     - [sorting](https://leetcode.com/explore/learn/card/sorting/)
