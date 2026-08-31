@@ -27,8 +27,7 @@ trait Set[T] {
 ### Map
 
 - Track elements seen so far for uniqueness (with any extra info stored as the value)
-- Frequency counting
-- Basic mapping
+- Basic mapping (e.g., mapping every unique character to its frequency in a string)
 
 ### Set
 
