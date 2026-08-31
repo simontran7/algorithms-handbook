@@ -1,32 +1,7 @@
 # algorithms handbook
 
-## Resources
-
-- [UC Berkeley CS61B Course](https://sp26.datastructur.es/)
-- [LeetCode's Interview Crash Course — Data Structures and Algorithms](https://leetcode.com/explore/featured/card/leetcodes-interview-crash-course-data-structures-and-algorithms/)
-- Leetcode Explore Cards
-    - [arrays 101](https://leetcode.com/explore/learn/card/fun-with-arrays/)
-    - [array and string](https://leetcode.com/explore/learn/card/array-and-string/)
-    - [sorting](https://leetcode.com/explore/learn/card/sorting/)
-    - [linked list](https://leetcode.com/explore/learn/card/linked-list/)
-    - [recursion I](https://leetcode.com/explore/learn/card/recursion-i/)
-    - [hash table](https://leetcode.com/explore/learn/card/hash-table/)
-    - [queue & stack](https://leetcode.com/explore/learn/card/queue-stack/)
-    - [heap](https://leetcode.com/explore/learn/card/heap/)
-    - [binary search](https://leetcode.com/explore/learn/card/binary-search/)
-    - [binary tree](https://leetcode.com/explore/learn/card/data-structure-tree/)
-    - [binary search tree](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/)
-    - [n-ary tree](https://leetcode.com/explore/learn/card/n-ary-tree/)
-    - [trie](https://leetcode.com/explore/learn/card/trie/)
-    - [recursion II](https://leetcode.com/explore/learn/card/recursion-ii/)
-    - [graph](https://leetcode.com/explore/learn/card/graph/)
-    - [dynamic programming](https://leetcode.com/explore/learn/card/dynamic-programming/)
-    - [bit manipulation](https://leetcode.com/explore/learn/card/bit-manipulation/)
-
-
-## Table of Contents
-
 - [Complexity Analysis](./src/complexity-analysis.md)
+
 - Data Structures
     - [List](./src/list.md)
     - [Stack](./src/stack.md)
