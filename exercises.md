@@ -31,7 +31,7 @@
 - [ ] [28. Implement strStr()](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/)
 - [ ] [14. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/description/)
 - [ ] [344. Reverse String](https://leetcode.com/problems/reverse-string/description/)
-- [ ] [167. Two Sum II - [ ] Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
+- [ ] [167. Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
 - [ ] [27. Remove Element](https://leetcode.com/problems/remove-element/description/)
 - [ ] [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/description/)
 - [ ] [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/description/)
