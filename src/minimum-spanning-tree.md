@@ -29,9 +29,9 @@ def kruskal(n, edges):
 
 ### Complexity Analysis
 
-Let \(V\) be number of vertices, and \(E\) be the number of edges. Then:
-- Time Complexity: worst-case \(O(E \log E) + O(E \alpha(V)) = O(E \log E)\)
-- Space Complexity: worst-case \(O(V)\)
+Let \\(V\\) be number of vertices, and \\(E\\) be the number of edges. Then:
+- Time Complexity: worst-case \\(O(E \log E) + O(E \alpha(V)) = O(E \log E)\\)
+- Space Complexity: worst-case \\(O(V)\\)
 
 ## Prim's Algorithm
 
@@ -64,6 +64,6 @@ def prim(n, graph):
 
 ### Complexity Analysis
 
-Let \(V\) be number of vertices, and \(E\) be the number of edges. Then:
-- Time Complexity: worst-case \(O(V + E) \cdot O(\log V) = O(E \log V)\)
-- Space Complexity: worst-case \(O(V + E)\)
+Let \\(V\\) be number of vertices, and \\(E\\) be the number of edges. Then:
+- Time Complexity: worst-case \\(O(V + E) \cdot O(\log V) = O(E \log V)\\)
+- Space Complexity: worst-case \\(O(V + E)\\)

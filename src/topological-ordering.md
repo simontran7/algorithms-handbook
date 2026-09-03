@@ -2,7 +2,7 @@
 
 ## Problem
 
-Given a directed acyclic graph, produce a linear ordering of its vertices such that for every edge \((u, v)\), \(u\) appears before \(v\).
+Given a directed acyclic graph, produce a linear ordering of its vertices such that for every edge \\((u, v)\\), \\(u\\) appears before \\(v\\).
 
 ## Kahn's Algorithm
 
@@ -39,6 +39,6 @@ def kahns_algorithm(n, edges):
 
 ### Complexity Analysis
 
-Let \(V\) be the number of vertices and \(E\) be the number of edges. Then:
-- Time Complexity: worst-case \(O(V + E)\)
-- Space Complexity: worst-case \(O(V + E)\)
+Let \\(V\\) be the number of vertices and \\(E\\) be the number of edges. Then:
+- Time Complexity: worst-case \\(O(V + E)\\)
+- Space Complexity: worst-case \\(O(V + E)\\)

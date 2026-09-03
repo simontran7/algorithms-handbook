@@ -54,7 +54,7 @@ class DisjointSet:
 
 | Operation | Time Complexity |
 | --- | --- |
-| Initialize | worst-case \(O(n)\) |
-| Find | worst-case \(O(\log n)\), but amortized \(O(\alpha(n))\) |
-| Union | worst-case \(O(\log n)\), but amortized \(O(\alpha(n))\) |
+| Initialize | worst-case \\(O(n)\\) |
+| Find | worst-case \\(O(\log n)\\), but amortized \\(O(\alpha(n))\\) |
+| Union | worst-case \\(O(\log n)\\), but amortized \\(O(\alpha(n))\\) |
 

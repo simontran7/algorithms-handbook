@@ -119,9 +119,9 @@ def iterative_postorder_dfs(root):
 
 #### Complexity Analysis
 
-Let \(n\) be the number of nodes in the tree, \(C_{node}\) be the cost of processing a single node, and \(h\) the height of the tree. Then:
-- Time Complexity: worst-case \(O(n \cdot C_{node})\)
-- Space Complexity: worst-case \(O(h)\)
+Let \\(n\\) be the number of nodes in the tree, \\(C_{node}\\) be the cost of processing a single node, and \\(h\\) the height of the tree. Then:
+- Time Complexity: worst-case \\(O(n \cdot C_{node})\\)
+- Space Complexity: worst-case \\(O(h)\\)
 
 ### On Graphs
 
@@ -181,12 +181,12 @@ def matrix_iterative_dfs(row, col):
 
 #### Complexity Analysis
 
-Let \(S\) be the number of reachable states (product of the ranges of each state variable), \(C_{state}\) the cost of processing a single state, \(T\) the number of transitions (the transitions per state times \(S\)), \(C_{transition}\) the cost of processing a single transition, \(V\) be the number of vertices and \(E\) be the number of edges. Then:
+Let \\(S\\) be the number of reachable states (product of the ranges of each state variable), \\(C_{state}\\) the cost of processing a single state, \\(T\\) the number of transitions (the transitions per state times \\(S\\)), \\(C_{transition}\\) the cost of processing a single transition, \\(V\\) be the number of vertices and \\(E\\) be the number of edges. Then:
 
-- Time Complexity: worst-case \(O(S \cdot C_{state} + T \cdot C_{transition})\)
+- Time Complexity: worst-case \\(O(S \cdot C_{state} + T \cdot C_{transition})\\)
 - Space Complexity:
-	- Adjacency List: worst-case \(O(V + E)\)
-	- Adjacency Matrix: worst-case \(O(R \cdot C)\)
+	- Adjacency List: worst-case \\(O(V + E)\\)
+	- Adjacency Matrix: worst-case \\(O(R \cdot C)\\)
 
 ## Breadth-First Search
 
@@ -223,9 +223,9 @@ def bfs(root):
 
 #### Complexity Analysis 
 
-Let \(n\) be the number of nodes in the tree, \(C_{node}\) be the cost of processing a single node. Then:
-- Time: worst-case \(O(n \cdot C_{node})\)
-- Space: worst-case \(O(n)\)
+Let \\(n\\) be the number of nodes in the tree, \\(C_{node}\\) be the cost of processing a single node. Then:
+- Time: worst-case \\(O(n \cdot C_{node})\\)
+- Space: worst-case \\(O(n)\\)
 
 ### On Graphs
 
@@ -275,12 +275,12 @@ def matrix_bfs(source_row, source_col):
 
 #### Complexity Analysis
 
-Let \(S\) be the number of reachable states (product of the ranges of each state variable), \(C_{state}\) the cost of processing a single state, \(T\) the number of transitions (the transitions per state times \(S\)), \(C_{transition}\) the cost of processing a single transition, \(V\) be the number of vertices and \(E\) be the number of edges. Then:
+Let \\(S\\) be the number of reachable states (product of the ranges of each state variable), \\(C_{state}\\) the cost of processing a single state, \\(T\\) the number of transitions (the transitions per state times \\(S\\)), \\(C_{transition}\\) the cost of processing a single transition, \\(V\\) be the number of vertices and \\(E\\) be the number of edges. Then:
 
-- Time Complexity: worst-case \(O(S \cdot C_{state} + T \cdot C_{transition})\)
+- Time Complexity: worst-case \\(O(S \cdot C_{state} + T \cdot C_{transition})\\)
 - Space Complexity:
-	- Adjacency List: worst-case \(O(V + E)\)
-	- Adjacency Matrix: worst-case \(O(R \cdot C)\)
+	- Adjacency List: worst-case \\(O(V + E)\\)
+	- Adjacency Matrix: worst-case \\(O(R \cdot C)\\)
 
 > [!NOTE]
 > BST problems typically use DFS traversal. Common techniques include:
