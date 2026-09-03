@@ -15,32 +15,28 @@
 
 ```cpp
 template <typename T>
-T div_ceil(T a, T b) {
-    T q = a / b;
-    T r = a % b;
-
+auto div_ceil(T a, T b) -> T {
+    auto q = a / b;
+    auto r = a % b;
     bool remainder_exists = (r != 0);
     bool same_sign = (r < 0) == (b < 0);
     if (remainder_exists && same_sign) {
         q = q + 1;
     }
-
     return q;
 }
 ```
 
 ```cpp
 template <typename T>
-T div_floor(T a, T b) {
-    T q = a / b;
-    T r = a % b;
-
+auto div_floor(T a, T b) -> T {
+    auto q = a / b;
+    auto r = a % b;
     bool remainder_exists = (r != 0);
     bool different_sign = (r < 0) != (b < 0);
     if (remainder_exists && different_sign) {
         q = q - 1;
     }
-
     return q;
 }
 ```
