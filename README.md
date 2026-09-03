@@ -45,7 +45,8 @@
     - [Bit Manipulation](./src/bit-manipulation.md)
     - [Modular Arithmetic](./src/modular-arithmetic.md)
 
-**Division Operations**
+> [!WARNING]
+> Division Operations
 
 | Operation | Python | C++ |
 |---|---|---|
