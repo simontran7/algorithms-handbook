@@ -105,7 +105,7 @@ n >> k
 ```
 
 > [!NOTE]
-> `x << n` can be thought as multiplying by $2^n$ while `x >> n` can be thought as floor dividing by $2^n$
+> `x << n` can be thought as multiplying by \(2^n\) while `x >> n` can be thought as floor dividing by \(2^n\)
 
 > [!WARNING]
 > Bitwise operators have low precedence, and therefore happens later in evaluation order, so make sure to use parentheses to clearly define your intended grouping.

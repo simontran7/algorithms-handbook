@@ -20,16 +20,16 @@ Decide on the relevant state variables (i.e. what parameters it should have). A 
 
 #### Common state variables
 
-- A primary index $i$ along an input string, input array, or an implicit range of numbers. This state variable represents the slice in the range $[0, i]$, thereby flowing backwards, or it may represent a slice in the range $[i, N)$, thereby flowing forwards.
-- A secondary index $j$ along an input string or an input array, or an implicit range of numbers. This state variable is often used in conjunction with a primary state variable $i$ to represent the slice in the range $[i, j]$. It may also simply represent another index into the second input.
-- An integer variable to track the remaining amount of moves when there is an imposed problem constraint $k$.
+- A primary index \(i\) along an input string, input array, or an implicit range of numbers. This state variable represents the slice in the range \([0, i]\), thereby flowing backwards, or it may represent a slice in the range \([i, N)\), thereby flowing forwards.
+- A secondary index \(j\) along an input string or an input array, or an implicit range of numbers. This state variable is often used in conjunction with a primary state variable \(i\) to represent the slice in the range \([i, j]\). It may also simply represent another index into the second input.
+- An integer variable to track the remaining amount of moves when there is an imposed problem constraint \(k\).
 - A boolean variable to track a status.
 
 > [!NOTE]
 > Constants given by the problem should *never* be state variables!
 
 > [!NOTE]
-> The **dimensionality** of a dynamic programming problem is determined by the number of state variables required by a dynamic programming algorithm. We say a problem is a $1D$ dynamic programming problem when a dynamic programming algorithm only requires one state variable, and when the dynamic programming algorithm requires only two state variables, we call that problem a $2D$ dynamic programming problem.
+> The **dimensionality** of a dynamic programming problem is determined by the number of state variables required by a dynamic programming algorithm. We say a problem is a \(1D\) dynamic programming problem when a dynamic programming algorithm only requires one state variable, and when the dynamic programming algorithm requires only two state variables, we call that problem a \(2D\) dynamic programming problem.
 
 ### Step 3: Determine the Recurrence Relation
 
@@ -77,7 +77,7 @@ return dp(<initial arguments for the state variables>)
 
 1. Initialize an array `dp` that is sized according to the subproblem variables largest values. In particular, whenever you have a base case of the form `if i >= n: return <base case value>`, and somewhere else in your algorithm you have `dp(i + x)`, then your array must have `n + x` rows.
 2. For every base case `if <state variable> == <value>: return <base case value>`, explicitly set them in the lookup table `dp` i.e., `dp[<state variable>][...] = <base case value>` or implicitly through the initial values of the lookup table (e.g., `dp = [0] * (n + 1)` zero-initializes).
-3. Write for-loop(s) that will iterate over your state variables, such that the outermost for loop iterates the first state variable in the order of the `dp()` parameters, and such that the `range()` bounds should begin from the first *non-base-case* state variables problems, and end at the final result state variables. For boolean state variables, the range should be from $[0, 2)$. However, for certain matrix problems (e.g., Unique Paths, Minimum Path Sum) where the calculation for a cell `(row, col)` depends only on the results from cells that are above it `(row - 1, col)`, to its left `(row, col - 1)`, or both `(row - 1, col - 1)`, you can iterate through all the rows and columns from top-to-bottom, left-to-right. Within the loop, you use `continue` to skip the base case cells because their values have already been correctly initialized.
+3. Write for-loop(s) that will iterate over your state variables, such that the outermost for loop iterates the first state variable in the order of the `dp()` parameters, and such that the `range()` bounds should begin from the first *non-base-case* state variables problems, and end at the final result state variables. For boolean state variables, the range should be from \([0, 2)\). However, for certain matrix problems (e.g., Unique Paths, Minimum Path Sum) where the calculation for a cell `(row, col)` depends only on the results from cells that are above it `(row - 1, col)`, to its left `(row, col - 1)`, or both `(row - 1, col - 1)`, you can iterate through all the rows and columns from top-to-bottom, left-to-right. Within the loop, you use `continue` to skip the base case cells because their values have already been correctly initialized.
 4. Under the inner-most for loop, copy-paste *only* the recurrence logic from your memoization function.
 5. Change every `dp(<state variable 1>, <state variable 2>, <...>)` function calls and `result` to array accesses `dp[<state variable 1>][<state variable 2>][<...>]`. For boolean state variables, represent `True` as `1` and `False` as `0`.
 
@@ -86,8 +86,8 @@ return dp(<initial arguments for the state variables>)
 
 ## Complexity Analysis
 
-Let $P$ be the number of subproblems (product of the ranges of each subproblem variable), and $C$ the cost of processing a single subproblem. Then:
-- Time Complexity: worst-case $O(P \cdot C)$
+Let \(P\) be the number of subproblems (product of the ranges of each subproblem variable), and \(C\) the cost of processing a single subproblem. Then:
+- Time Complexity: worst-case \(O(P \cdot C)\)
 - Space Complexity:
-    - Top-down (memoization): worst-case $O(P)$
-    - Bottom-up (tabulation): worst-case $O(P)$ when using a lookup table *or* $O(1)$ when the recurrence only depends on a static number of previous states and forego a lookup table (see note above)
+    - Top-down (memoization): worst-case \(O(P)\)
+    - Bottom-up (tabulation): worst-case \(O(P)\) when using a lookup table *or* \(O(1)\) when the recurrence only depends on a static number of previous states and forego a lookup table (see note above)

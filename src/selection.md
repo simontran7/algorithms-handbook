@@ -2,12 +2,12 @@
 
 ## Problem
 
-Given an unsorted array and an integer $k$, find the $k^\text{th}$ smallest element (i.e., the element that would be at index $k$ if the array were sorted).
+Given an unsorted array and an integer \(k\), find the \(k^\text{th}\) smallest element (i.e., the element that would be at index \(k\) if the array were sorted).
 
 ## QuickSelect (Hoare's Selection Algorithm)
 
 > [!NOTE]
-> For streaming input or small $k$, prefer a priority queue of size $k$, and for repeated queries on a changing set, prefer an augmented BST.
+> For streaming input or small \(k\), prefer a priority queue of size \(k\), and for repeated queries on a changing set, prefer an augmented BST.
 
 ### Template
 
@@ -45,7 +45,7 @@ def quickselect(array, k):
 
 ### Complexity Analysis
 
-Let $n$ be the length of the array. Then:
-- Time Complexity: worst-case $O(n^2)$, but average-case $O(n)$
-- Space Complexity: worst-case $O(1)$
+Let \(n\) be the length of the array. Then:
+- Time Complexity: worst-case \(O(n^2)\), but average-case \(O(n)\)
+- Space Complexity: worst-case \(O(1)\)
 

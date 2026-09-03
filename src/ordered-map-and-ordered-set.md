@@ -36,14 +36,14 @@ trait OrderedSet[E: Order] {
 
 ## Binary Search Tree
 
-- At level $d$, there are at most $2^d$ nodes.
-- A binary tree with $n$ levels has $2^n - 1$ nodes
-- A binary tree with height $h$ has $2^{h + 1} - 1$ nodes
-- A complete binary tree has at most $\lceil{\frac{n}{2}}\rceil$ leaves
-- Height of a complete binary tree is $\lfloor{\log_{2} n}\rfloor$
-- A binary tree with $n$ nodes has $n$ - 1 edges
-- A full binary tree has $\text{internal nodes} + 1$ leaves
-- A full binary tree has $2 \times \text{internal nodes} + 1$ nodes, or equivalently, $2 \times \text{internal leaves} + 1$
+- At level \(d\), there are at most \(2^d\) nodes.
+- A binary tree with \(n\) levels has \(2^n - 1\) nodes
+- A binary tree with height \(h\) has \(2^{h + 1} - 1\) nodes
+- A complete binary tree has at most \(\lceil{\frac{n}{2}}\rceil\) leaves
+- Height of a complete binary tree is \(\lfloor{\log_{2} n}\rfloor\)
+- A binary tree with \(n\) nodes has \(n\) - 1 edges
+- A full binary tree has \(\text{internal nodes} + 1\) leaves
+- A full binary tree has \(2 \times \text{internal nodes} + 1\) nodes, or equivalently, \(2 \times \text{internal leaves} + 1\)
 
 ### Lookup
 
@@ -69,7 +69,7 @@ trait OrderedSet[E: Order] {
 ## Red-Black Tree
 
 > [!NOTE]
-> The height of a balanced binary search tree's is $O(\log n)$
+> The height of a balanced binary search tree's is \(O(\log n)\)
 
 ### Implementation
 
@@ -80,9 +80,9 @@ trait OrderedSet[E: Order] {
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case $O(\log n)$ |
-| Insertion | worst-case $O(\log n)$ |
-| Deletion | worst-case $O(\log n)$ |
+| Lookup | worst-case \(O(\log n)\) |
+| Insertion | worst-case \(O(\log n)\) |
+| Deletion | worst-case \(O(\log n)\) |
 
 ## Prefix Tree (Trie)
 
@@ -150,11 +150,11 @@ class TrieMap:
 
 ### Complexity Analysis
 
-Let $m$ be the length of the key. Then:
+Let \(m\) be the length of the key. Then:
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case $O(m)$ |
-| Insertion | worst-case $O(m)$ |
-| Deletion | worst-case $O(m)$ |
+| Lookup | worst-case \(O(m)\) |
+| Insertion | worst-case \(O(m)\) |
+| Deletion | worst-case \(O(m)\) |
 

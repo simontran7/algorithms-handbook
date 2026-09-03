@@ -2,14 +2,14 @@
 
 ## Use Case
 
-Problems that involve `x mod m`, (`m` is typically $10^9 + 7$), where:
+Problems that involve `x mod m`, (`m` is typically \(10^9 + 7\)), where:
 
 - Building `x` is expensive (repeated work)
 - `x` becomes too large
 
 ## Theorem
 
-$$
+\[
 \boxed{
 \begin{aligned}
 a \equiv b \pmod{m}
@@ -17,23 +17,23 @@ a \equiv b \pmod{m}
 &\iff a-b=km,\quad k\in\mathbb{Z}.
 \end{aligned}
 }
-$$
+\]
 
-$$
+\[
 \text{In other words, }a\text{ and }b\text{ have the same remainder when divided by }m.
-$$
+\]
 
 ### Properties 
 
 We get the following properties from the above:
 
-- $\boxed{(a+b)\bmod m = \big((a\bmod m)+(b\bmod m)\big)\bmod m}$
+- \(\boxed{(a+b)\bmod m = \big((a\bmod m)+(b\bmod m)\big)\bmod m}\)
 
-- $\boxed{(a-b)\bmod m = \big((a\bmod m)-(b\bmod m)\big)\bmod m}$
+- \(\boxed{(a-b)\bmod m = \big((a\bmod m)-(b\bmod m)\big)\bmod m}\)
 
-- $\boxed{(a \cdot b)\bmod m = \big((a\bmod m)(b\bmod m)\big)\bmod m}$
+- \(\boxed{(a \cdot b)\bmod m = \big((a\bmod m)(b\bmod m)\big)\bmod m}\)
 
-- $\boxed{(a^k) \bmod m = \big((a \bmod m)^k\big) \bmod m}$
+- \(\boxed{(a^k) \bmod m = \big((a \bmod m)^k\big) \bmod m}\)
 
 ## Templates
 

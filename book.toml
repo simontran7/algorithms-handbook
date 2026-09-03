@@ -1,0 +1,7 @@
+[book]
+title = "algorithms-handbook"
+authors = ["Simon Tran"]
+language = "en"
+
+[output.html]
+mathjax-support = true

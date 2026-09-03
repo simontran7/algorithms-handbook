@@ -1,6 +1,6 @@
-## exercises
+# exercises
 
-### Arrays and Strings
+## Arrays and Strings
 
 - [x] [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/description/)
 - [x] [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/description/)
@@ -42,7 +42,7 @@
 - [ ] [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)
 - [ ] [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/description/)
 
-### Sorting
+## Sorting
 
 - [ ] [75. Sort Colors](https://leetcode.com/problems/sort-colors/description/)
 - [ ] [1051. Height Checker](https://leetcode.com/problems/height-checker/description/)
@@ -55,7 +55,7 @@
 - [ ] [164. Maximum Gap](https://leetcode.com/problems/maximum-gap/description/)
 - [ ] [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/description/)
 
-### Queue and Stack
+## Queue and Stack
 
 - [ ] [622. Design Circular Queue](https://leetcode.com/problems/design-circular-queue/description/)
 - [ ] [346. Moving Average from Data Stream](https://leetcode.com/problems/moving-average-from-data-stream/description/)
@@ -77,7 +77,7 @@
 - [ ] [542. 01 Matrix](https://leetcode.com/problems/01-matrix/description/)
 - [ ] [841. Keys and Rooms](https://leetcode.com/problems/keys-and-rooms/description/)
 
-### Hash Table
+## Hash Table
 
 - [ ] [705. Design HashSet](https://leetcode.com/problems/design-hashset/description/)
 - [ ] [706. Design HashMap](https://leetcode.com/problems/design-hashmap/description/)
@@ -104,7 +104,7 @@
 - [ ] [288. Unique Word Abbreviation](https://leetcode.com/problems/unique-word-abbreviation/description/)
 - [ ] [380. Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/description/)
 
-### Linked List
+## Linked List
 
 - [ ] [707. Design Linked List](https://leetcode.com/problems/design-linked-list/description/)
 - [ ] [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description/)
@@ -123,7 +123,7 @@
 - [ ] [138. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/description/)
 - [ ] [61. Rotate List](https://leetcode.com/problems/rotate-list/description/)
 
-### Recursion I
+## Recursion I
 
 - [ ] [344. Reverse String](https://leetcode.com/problems/reverse-string/description/)
 - [ ] [24. Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/description/)
@@ -138,7 +138,7 @@
 - [ ] [779. K-th Symbol in Grammar](https://leetcode.com/problems/k-th-symbol-in-grammar/description/)
 - [ ] [95. Unique Binary Search Trees II](https://leetcode.com/problems/unique-binary-search-trees-ii/description/)
 
-### Recursion II
+## Recursion II
 
 - [ ] [912. Sort an Array](https://leetcode.com/problems/sort-an-array/description/)
 - [ ] [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)
@@ -157,7 +157,7 @@
 - [ ] [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/)
 - [ ] [218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/description/)
 
-### Binary Search
+## Binary Search
 
 - [ ] [704. Binary Search](https://leetcode.com/problems/binary-search/description/)
 - [ ] [69. Sqrt(x)](https://leetcode.com/problems/sqrtx/description/)
@@ -184,7 +184,7 @@
 - [ ] [719. Find K-th Smallest Pair Distance](https://leetcode.com/problems/find-k-th-smallest-pair-distance/description/)
 - [ ] [410. Split Array Largest Sum](https://leetcode.com/problems/split-array-largest-sum/description/)
 
-### Binary Tree
+## Binary Tree
 
 - [x] [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
 - [x] [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
@@ -201,7 +201,7 @@
 - [ ] [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/)
 - [ ] [297. Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/)
 
-### N-ary Tree
+## N-ary Tree
 
 - [ ] [589. N-ary Tree Preorder Traversal](https://leetcode.com/problems/n-ary-tree-preorder-traversal/description/)
 - [ ] [590. N-ary Tree Postorder Traversal](https://leetcode.com/problems/n-ary-tree-postorder-traversal/description/)
@@ -210,7 +210,7 @@
 - [ ] [431. Encode N-ary Tree to Binary Tree](https://leetcode.com/problems/encode-n-ary-tree-to-binary-tree/description/)
 - [ ] [428. Serialize and Deserialize N-ary Tree](https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/description/)
 
-### Binary Search Tree
+## Binary Search Tree
 
 - [ ] [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)
 - [ ] [285. Inorder Successor in BST](https://leetcode.com/problems/inorder-successor-in-bst/description/)
@@ -224,7 +224,7 @@
 - [ ] [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/description/)
 - [ ] [108. Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/)
 
-### Heap
+## Heap
 
 - [ ] [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/description/)
 - [ ] [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/description/)
@@ -238,7 +238,7 @@
 - [ ] [1642. Furthest Building You Can Reach](https://leetcode.com/problems/furthest-building-you-can-reach/description/)
 - [ ] [295. Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/description/)
 
-### Trie
+## Trie
 
 - [ ] [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/description/)
 - [ ] [677. Map Sum Pairs](https://leetcode.com/problems/map-sum-pairs/description/)
@@ -250,7 +250,7 @@
 - [ ] [425. Word Squares](https://leetcode.com/problems/word-squares/description/)
 - [ ] [336. Palindrome Pairs](https://leetcode.com/problems/palindrome-pairs/description/)
 
-### Graph
+## Graph
 
 - [ ] [547. Number of Provinces](https://leetcode.com/problems/number-of-provinces/description/)
 - [ ] [261. Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/description/)
@@ -280,7 +280,7 @@
 - [ ] [310. Minimum Height Trees](https://leetcode.com/problems/minimum-height-trees/description/)
 - [ ] [1136. Parallel Courses](https://leetcode.com/problems/parallel-courses/description/)
 
-### Dynamic Programming
+## Dynamic Programming
 
 - [ ] [198. House Robber](https://leetcode.com/problems/house-robber/description/)
 - [ ] [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/description/)
@@ -316,7 +316,7 @@
 - [ ] [983. Minimum Cost For Tickets](https://leetcode.com/problems/minimum-cost-for-tickets/description/)
 - [ ] [97. Interleaving String](https://leetcode.com/problems/interleaving-string/description/)
 
-### Bit Manipulation
+## Bit Manipulation
 
 - [ ] [504. Base 7](https://leetcode.com/problems/base-7/description/)
 - [ ] [405. Convert a Number to Hexadecimal](https://leetcode.com/problems/convert-a-number-to-hexadecimal/description/)

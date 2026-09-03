@@ -54,8 +54,8 @@ def dijkstras(edges, n, source):
 
 ### Complexity Analysis
 
-Let $V$ be the number of vertices and $E$ be the number of edges. Then:
-- Time Complexity: worst-case $O((V + E) \log V)$
-- Space Complexity: worst-case $O(V + E)$
+Let \(V\) be the number of vertices and \(E\) be the number of edges. Then:
+- Time Complexity: worst-case \(O((V + E) \log V)\)
+- Space Complexity: worst-case \(O(V + E)\)
 
 

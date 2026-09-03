@@ -67,13 +67,13 @@ l.pop(<index>)
 
 | Operation | Time Complexity |
 | --- | --- |
-| Add at the end | worst-case $O(n)$, but amortized $O(1)$  |
-| Add at the front | worst-case $O(n)$ |
-| Add in the middle | worst-case $O(n)$ |
-| Lookup by index | worst-case $O(1)$ |
-| Remove at the end | worst-case $O(1)$ |
-| Remove at the front | worst-case $O(n)$ |
-| Remove in the middle | worst-case $O(n)$ |
+| Add at the end | worst-case \(O(n)\), but amortized \(O(1)\)  |
+| Add at the front | worst-case \(O(n)\) |
+| Add in the middle | worst-case \(O(n)\) |
+| Lookup by index | worst-case \(O(1)\) |
+| Remove at the end | worst-case \(O(1)\) |
+| Remove at the front | worst-case \(O(n)\) |
+| Remove in the middle | worst-case \(O(n)\) |
 
 ## Singly Linked List
 
@@ -86,13 +86,13 @@ l.pop(<index>)
 
 | Operation | Time Complexity |
 | --- | --- |
-| Add at the head | worst-case $O(1)$ |
-| Add at the tail | worst-case $O(n)$, or $O(1)$ with a maintained tail pointer |
-| Add in the middle | worst-case $O(n)$ |
-| Lookup by index | worst-case $O(n)$ |
-| Remove at the head | worst-case $O(1)$ |
-| Remove at the tail | worst-case $O(n)$ |
-| Remove in the middle | worst-case $O(n)$ |
+| Add at the head | worst-case \(O(1)\) |
+| Add at the tail | worst-case \(O(n)\), or \(O(1)\) with a maintained tail pointer |
+| Add in the middle | worst-case \(O(n)\) |
+| Lookup by index | worst-case \(O(n)\) |
+| Remove at the head | worst-case \(O(1)\) |
+| Remove at the tail | worst-case \(O(n)\) |
+| Remove in the middle | worst-case \(O(n)\) |
 
 ## Doubly Linked List
 
@@ -105,13 +105,13 @@ l.pop(<index>)
 
 | Operation | Time Complexity |
 | --- | --- |
-| Add at the head | worst-case $O(1)$ |
-| Add at the tail | worst-case $O(1)$ (with a maintained tail pointer) |
-| Add in the middle | worst-case $O(n)$ to find the position, $O(1)$ to link |
-| Lookup | worst-case $O(n)$ |
-| Remove at the head | worst-case $O(1)$ |
-| Remove at the tail | worst-case $O(1)$ (with a maintained tail pointer) |
-| Remove in the middle | worst-case $O(n)$ to find the node, $O(1)$ to unlink |
+| Add at the head | worst-case \(O(1)\) |
+| Add at the tail | worst-case \(O(1)\) (with a maintained tail pointer) |
+| Add in the middle | worst-case \(O(n)\) to find the position, \(O(1)\) to link |
+| Lookup | worst-case \(O(n)\) |
+| Remove at the head | worst-case \(O(1)\) |
+| Remove at the tail | worst-case \(O(1)\) (with a maintained tail pointer) |
+| Remove in the middle | worst-case \(O(n)\) to find the node, \(O(1)\) to unlink |
 
 > [!NOTE]
 > Both variants benefit from a **sentinel node**: an extra node holding no real data, placed immediately before the head (and, for a doubly linked list, another one immediately after the tail). Its only purpose is to always be a valid neighbour, so insertions and removals at a boundary no longer need a special case i.e., the same relinking logic for the middle of the list will work in general. The real head becomes `sentinel.next` (and the real tail `sentinel.prev`, for a doubly linked list).

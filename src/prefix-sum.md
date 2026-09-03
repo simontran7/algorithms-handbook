@@ -2,7 +2,7 @@
 
 ## Use Case
 
-You need a subroutine which involves range-sum queries of a subarray in $O(1)$.
+You need a subroutine which involves range-sum queries of a subarray in \(O(1)\).
 
 ## Template
 
