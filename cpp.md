@@ -20,7 +20,7 @@ auto div_ceil(T a, T b) -> T {
     auto r = a % b;
     bool remainder_exists = (r != 0);
     bool same_sign = (r < 0) == (b < 0);
-    if (remainder_exists && same_sign) {
+    if (remainder_exists and same_sign) {
         q = q + 1;
     }
     return q;
@@ -34,7 +34,7 @@ auto div_floor(T a, T b) -> T {
     auto r = a % b;
     bool remainder_exists = (r != 0);
     bool different_sign = (r < 0) != (b < 0);
-    if (remainder_exists && different_sign) {
+    if (remainder_exists and different_sign) {
         q = q - 1;
     }
     return q;
