@@ -24,7 +24,28 @@ You need an ordered sequence of elements where each element has an index.
 
 ## Dynamic Array
 
-### Implementation
+### Lookup
+
+A lookup at element \\(i\\) in `array` is done by indexing i.e., `array[i]`.
+
+### Insertion
+
+#### Inserting at the Front
+
+<img width="500" src="https://github.com/user-attachments/assets/a4eb2879-823c-4e4a-9926-c9ecd66a94c4" />
+
+
+#### Inserting in the Middle 
+
+<img width="500" src="https://github.com/user-attachments/assets/a69fdb6d-fc2c-4b7c-83a0-42ca4ac60d6e" />
+
+#### Inserting at the Back
+
+<img width="500" src="https://github.com/user-attachments/assets/b27f4f89-28c7-4fc3-b23b-fc05736dc3fb" />
+
+### Deletion
+
+### `ArrayList`
 
 ```python
 ```
@@ -77,7 +98,7 @@ l.pop(<index>)
 
 ## Singly Linked List
 
-### Implementation
+### `SinglyLinkedList`
 
 ```python
 ```
@@ -96,7 +117,7 @@ l.pop(<index>)
 
 ## Doubly Linked List
 
-### Implementation
+### `DoublyLinkedList`
 
 ```python
 ```
