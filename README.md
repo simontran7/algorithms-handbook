@@ -28,12 +28,4 @@
     - [dynamic programming](https://leetcode.com/explore/learn/card/dynamic-programming/)
     - [bit manipulation](https://leetcode.com/explore/learn/card/bit-manipulation/)
 
-## exercises
-
-### Arrays and Strings
-
-- [x] [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/description/)
-- [x] [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/description/)
-- [x] [977. Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/description/)
-- [x] [1089. Duplicate Zeros](https://leetcode.com/problems/duplicate-zeros/description/)
 
