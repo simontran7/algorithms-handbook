@@ -26,20 +26,45 @@ You need an ordered sequence of elements where each element has an index.
 
 ### Lookup
 
-A lookup at element \\(i\\) in `array` is done by indexing i.e., `array[i]`.
+A lookup at element \\(i\\) in `array` is done by indexing.
+
+```
+return array[i];
+```
 
 ### Insertion
 
-#### Inserting at the Front
+#### Resizing
 
-<img width="500" src="https://github.com/user-attachments/assets/a4eb2879-823c-4e4a-9926-c9ecd66a94c4" />
+Before insertion, we *need*
 
+#### Inserting at the Front or in the Middle
 
-#### Inserting in the Middle 
+To insert at an index \\(i\\) that's anywhere else but the back (i.e., at any index that is not \\(N - 1\\), we **shift** all elements
+to the right. 
+
+Concretely, for every element \\(j\\), beginning at the last element, and stopping *at* the index $i$, **copy** the value of the element to its left (i.e., `array[j] = array[j - 1]`).
+
+Then, write the new value at index \\(i\\).
+
+```
+for j array.count() - 1..i {
+    array[j] = array[j - 1];
+}
+array[i] = <new value>; // alternatively, since `j` is also at `i`, `array[j] = <new value>`
+```
+
+<img width="500" src="https://github.com/user-attachments/assets/a4eb2879-823c-4e4a-9926-c9ecd66a94c4" />  
 
 <img width="500" src="https://github.com/user-attachments/assets/a69fdb6d-fc2c-4b7c-83a0-42ca4ac60d6e" />
 
-#### Inserting at the Back
+#### Inserting in the Back
+
+To insert at the back (i.e., at index \\(N - 1\\)), we simply write the new value at \\(N - 1\\).
+
+```
+array[n - 1] = <new value>;
+```
 
 <img width="500" src="https://github.com/user-attachments/assets/b27f4f89-28c7-4fc3-b23b-fc05736dc3fb" />
 
