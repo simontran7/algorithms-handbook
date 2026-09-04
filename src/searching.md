@@ -4,6 +4,29 @@
 
 Given a collection of candidates and a criterion, find an element that satisfies the criterion (or determine that none does).
 
+## Linear Search
+
+### Use Case
+
+For simple searches.
+
+### Template
+
+```python
+def linear_search(array, target):
+    for i in range(len(array)):
+        if array[i] == target:
+            return i
+
+    return -1
+```
+
+#### Complexity Analysis
+
+Let \\(n\\) be the length of the array. Then:
+- Time Complexity: worst-case \\(O(n)\\)
+- Space Complexity: worst-case \\(O(1)\\)
+
 ## Binary Search
 
 ### Exact Match On an Array
