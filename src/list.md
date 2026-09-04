@@ -26,53 +26,77 @@ You need an ordered sequence of elements where each element has an index.
 
 ### Lookup
 
-A lookup at element \\(i\\) in `array` is done by indexing.
+Index into the `array` at the desired index \\(i\\) if it is within bounds \\([0, N)\\).
 
 ```
-return array[i];
+func get(this, i: UInt) -> Result[E, ListError] {
+    if i >= this.count {
+        return Error(ListError::IndexOutOfBounds);
+    } 
+    Ok(this.data[i])
+}
 ```
 
 ### Insertion
 
-#### Resizing
-
-Before insertion, we *need*
-
-#### Inserting at the Front or in the Middle
-
-To insert at an index \\(i\\) that's anywhere else but the back (i.e., at any index that is not \\(N - 1\\), we **shift** all elements
-to the right. 
-
-Concretely, for every element \\(j\\), beginning at the last element, and stopping *at* the index $i$, **copy** the value of the element to its left (i.e., `array[j] = array[j - 1]`).
-
-Then, write the new value at index \\(i\\).
+1. Reject the insertion if the desired index \\(i\\) is less than \\(0\\).
+2. Resize the current array if the number of elements in the current array is equal to the capacity \\(N\\) of the array by allocating a new array of capacity \\(N * 1.5\\) (i.e., **geometric resizing**), then copying all elements from the current array to the new array.
+3. If inserting at index \\(N - 1\\), skip to step 4. Otherwise, shift all elements from \\([i + 1, N)\\) to the right to make way for the new element.
+4. Write the new element at index \\(i\\).
 
 ```
-for j array.count() - 1..i {
-    array[j] = array[j - 1];
+func add(this, i: UInt, e: E) -> Result[(), ListError] {
+    if i > this.count {
+        return Error(ListError::IndexOutOfBounds);
+    }
+    if this.count == this.data.capacity() {
+        let new_capacity = if this.count == 0 { 1 } else { (this.count.to_float() * 1.5).ceil() as UInt };
+        try this.resize(new_capacity);
+    }
+    for j in (i..this.count).rev() {
+        this.data[j + 1] = this.data[j];
+    }
+    this.data[i] = e; // alternatively, since `j` is also at `i`, `array[j] = <new value>`
+    this.count += 1;
+    Ok(())
 }
-array[i] = <new value>; // alternatively, since `j` is also at `i`, `array[j] = <new value>`
+
+func resize(this, new_capacity: UInt) -> Result[(), ListError] {
+    let new_array = Array::with_capacity(new_capacity);
+    for i in 0..this.count {
+        new_array[i] = this.data[i];
+    }
+    this.data = new_array;
+    Ok(())
+}
 ```
 
 <img width="500" src="https://github.com/user-attachments/assets/a4eb2879-823c-4e4a-9926-c9ecd66a94c4" />  
 
 <img width="500" src="https://github.com/user-attachments/assets/a69fdb6d-fc2c-4b7c-83a0-42ca4ac60d6e" />
 
-#### Inserting in the Back
-
-To insert at the back (i.e., at index \\(N - 1\\)), we simply write the new value at \\(N - 1\\).
-
-```
-array[n - 1] = <new value>;
-```
-
 <img width="500" src="https://github.com/user-attachments/assets/b27f4f89-28c7-4fc3-b23b-fc05736dc3fb" />
 
 ### Deletion
 
+```
+func remove(this, i: UInt) -> Result[E, ListError] {
+    if i >= this.count { 
+        return Error(ListError::IndexOutOfBounds); // also prevents `this.count - 1` underflow when `this.count` is 0
+    }
+    let old_element = this.data[i];
+    for j in i..this.count - 1 { 
+        this.data[j] = this.data[j + 1];
+    }
+    this.data[this.count - 1] = 0; 
+    this.count -= 1;
+    Ok(old_element)
+}
+```
+
 ### `ArrayList`
 
-```python
+```
 ```
 
 ### Standard Library API
@@ -113,13 +137,13 @@ l.pop(<index>)
 
 | Operation | Time Complexity |
 | --- | --- |
-| Add at the end | worst-case \\(O(n)\\), but amortized \\(O(1)\\)  |
-| Add at the front | worst-case \\(O(n)\\) |
-| Add in the middle | worst-case \\(O(n)\\) |
+| Add at the last position | worst-case \\(O(n)\\), but amortized \\(O(1)\\)  |
+| Add at the first position | worst-case \\(O(n)\\) |
+| Add in the middle position | worst-case \\(O(n)\\) |
 | Lookup by index | worst-case \\(O(1)\\) |
-| Remove at the end | worst-case \\(O(1)\\) |
-| Remove at the front | worst-case \\(O(n)\\) |
-| Remove in the middle | worst-case \\(O(n)\\) |
+| Remove at the last position | worst-case \\(O(1)\\) |
+| Remove at the first position | worst-case \\(O(n)\\) |
+| Remove in the middle position | worst-case \\(O(n)\\) |
 
 ## Singly Linked List
 
