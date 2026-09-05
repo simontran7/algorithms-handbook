@@ -1,4 +1,21 @@
-# C++
+# C++ STL
+
+## Minimum and Maximum Element
+
+```cpp
+#include <algorithm>
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> values = {5, 2, 9, 1, 7};
+
+    auto [min_it, max_it] = std::minmax_element(values.begin(), values.end());
+
+    std::cout << "min: " << *min_it << "\n";  // 1
+    std::cout << "max: " << *max_it << "\n";  // 9
+}
+```
 
 ## Division Operations
 
