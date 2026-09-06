@@ -1,6 +1,10 @@
 # algorithms handbook
 
-- [Complexity Analysis](./complexity-analysis.md)
+# Complexity Analysis
+
+- [Introduction to Complexity Analysis](./complexity-analysis.md)
+- [Worst-case Analysis](./worst-case-analysis.md)
+- [Amortized-case Analysis](./amortized-case-analysis.md)
 
 # Data Structures
 
