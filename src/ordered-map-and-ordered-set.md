@@ -45,6 +45,12 @@ trait OrderedSet[E: Order] {
 - A full binary tree has \\(\text{internal nodes} + 1\\) leaves
 - A full binary tree has \\(2 \times \text{internal nodes} + 1\\) nodes, or equivalently, \\(2 \times \text{internal leaves} + 1\\)
 
+**Definition** (complete binary tree). A binary tree is **complete** if and only if it satisfies the following two properties:
+- All of its levels are full, except possibly the bottom one.
+- All of the nodes in the bottom level are as far to the left as possible.
+
+
+
 ### Lookup
 
 [Exercise](https://leetcode.com/problems/search-in-a-binary-search-tree/description/)
