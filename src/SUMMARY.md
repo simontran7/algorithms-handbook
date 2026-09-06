@@ -2,7 +2,7 @@
 
 # Complexity Analysis
 
-- [Introduction to Complexity Analysis](./complexity-analysis.md)
+- [Introduction to Complexity Analysis](./introduction-to-complexity-analysis.md)
 - [Worst-case Analysis](./worst-case-analysis.md)
 - [Amortized-case Analysis](./amortized-case-analysis.md)
 
