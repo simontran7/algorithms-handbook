@@ -85,7 +85,7 @@ Since the tree is always complete, it can be stored implicitly in an array such 
 
 1. Find the index of the last non-leaf node: \\(\lfloor n / 2 \rfloor - 1\\) (the parent of the last element).
 2. Iterate from that index down to the root (index \\(0\\)) (i.e., bottom-up, right-to-left).
-3. At each index, perform **sift down**.
+3. At each index, perform the sift down operation.
 
 ### Lookup min/max
 
@@ -94,13 +94,13 @@ Index into the \\(0^{th}\\) element of the backing array.
 ### Insertion
 
 1. Append the new node at the end of the array (the next open leaf)
-2. Starting at the rightmost node in the last level, perform **sift up**
+2. Starting at the rightmost node in the last level, perform the sift up operation.
 
 ### Deletion
 
 1. Swap the root with the last element in the array
 2. Remove the last element
-3. Starting at the root node, perform **sift down**
+3. Starting at the root node, perform the sift down operation.
 
 ### Complexity Analysis
 
@@ -115,62 +115,60 @@ Index into the \\(0^{th}\\) element of the backing array.
 
 ### Min Priority Queue
 
-```python
-import heapq
+```cpp
+#include <queue>
+#include <vector>
+#include <functional> // for std::greater
 
-# Create an empty min priority queue
-min_pq = []
+// Create an empty min priority queue
+std::priority_queue<int, std::vector<int>, std::greater<int>> min_pq;
 
-# Heapify an existing array in O(n), in-place
-heapq.heapify(array)
-min_pq = array
+// Heapify an existing vector in O(n)
+std::priority_queue<int, std::vector<int>, std::greater<int>> min_pq2(<vector>.begin(), <vector>.end());
 
-# Peek at the top element
-min_pq[0]
+// Peek at the top element
+min_pq.top();
 
-# Get the number of elements
-len(min_pq)
+// Get the number of elements
+min_pq.size();
 
-# Check if the priority queue is empty
-not min_pq
+// Check if the priority queue is empty
+min_pq.empty();
 
-# Add an element
-heapq.heappush(min_pq, element)
+// Add an element
+min_pq.push(element);
 
-# Remove the top element
-heapq.heappop(min_pq)
+// Remove the top element
+min_pq.pop();
 ```
 
 ### Max Priority Queue
 
-```python
-import heapq
+```cpp
+#include <queue>
+#include <vector>
 
-# Create an empty max priority queue
-max_pq = []
+// Create an empty max priority queue (default comparator is `std::less`)
+std::priority_queue<int> max_pq;
 
-# Heapify an existing array in O(n), in-place
-heapq.heapify_max(array)
-max_pq = array
+// Heapify an existing vector in O(n)
+std::priority_queue<int> max_pq(<vector>.begin(), <vector>.end());
 
-# Peek at the top element
-max_pq[0]
+// Peek at the top element
+max_pq.top();
 
-# Get the number of elements
-len(max_pq)
+// Get the number of elements
+max_pq.size();
 
-# Check if the priority queue is empty
-not max_pq
+// Check if the priority queue is empty
+max_pq.empty();
 
-# Add an element
-heapq.heappush_max(max_pq, element)
+// Add an element
+max_pq.push(<element>);
 
-# Remove the top element
-heapq.heappop_max(max_pq)
+// Remove the top element
+max_pq.pop();
 ```
 
 > [!NOTE]
-> `heapq.heapify_max()` / `heapq.heappush_max()` / `heapq.heappop_max()` require Python 3.14+.
-
-> [!NOTE]
-> To simulate an **indexed priority queue**, store tuples `(key, element)`, which get compared lexicographically (key first, then element as tie-breaker).
+> To simulate an **indexed priority queue**, set `T` as a pair `{key, element}` via `std::pair<int, int>`. The key is first compared, then element as a tie-breaker.
