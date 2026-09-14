@@ -1,12 +1,12 @@
-# Data Structures and Algorithms
+# Summary
 
-## Complexity Analysis
+# Complexity Analysis
 
 - [Introduction to Complexity Analysis](introduction-to-complexity-analysis.md)
 - [Worst-case Analysis](worst-case-analysis.md)
 - [Amortized Analysis](amortized-analysis.md)
 
-## Data Structures
+# Data Structures
 
 - [List](list.md)
 - [Stack](stack.md)
@@ -17,7 +17,7 @@
 - [Disjoint Set](disjoint-set.md)
 - [Graph](graph.md)
 
-## Algorithms
+# Algorithms
 
 - [Sorting](sorting.md)
 - [Searching](searching.md)
@@ -27,7 +27,7 @@
 - [Shortest Path](shortest-path.md)
 - [Selection](selection.md)
 
-## Algorithmic Paradigms
+# Algorithmic Paradigms
 
 - [Recursion](recursion.md)
 - [Backtracking](backtracking.md)
@@ -36,7 +36,7 @@
 - [Greedy Algorithms](greedy-algorithms.md)
 - [Sweep Line](sweep-line.md)
 
-## Algorithmic Techniques
+# Algorithmic Techniques
 
 - [Two Pointers](two-pointers.md)
 - [Sliding Window](sliding-window.md)
@@ -48,4 +48,3 @@
 - [Monotonic Deque](monotonic-deque.md)
 - [Bit Manipulation](bit-manipulation.md)
 - [Modular Arithmetic](modular-arithmetic.md)
-

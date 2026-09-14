@@ -1,6 +1,6 @@
-# C++ STL
+# C++ STL Functions
 
-## Minimum and Maximum Element
+### Minimum and Maximum Element
 
 ```cpp
 #include <algorithm>

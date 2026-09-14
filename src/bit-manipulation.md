@@ -105,7 +105,7 @@ n >> k
 ```
 
 > [!NOTE]
-> `x << n` is equivalent to by $x \cdot 2^n$. `x >> n` is equivalent to $\lfloor{\frac{x}{2^n}\rfloor}$.
+> `x << n` is equivalent to by \\(x \cdot 2^n\\). `x >> n` is equivalent to \\(\lfloor{\frac{x}{2^n}\rfloor}\\).
 
 > [!WARNING]
 > Bitwise operators have low precedence, and therefore happens later in evaluation order, so make sure to use parentheses to clearly define your intended grouping.
@@ -139,9 +139,9 @@ mask = (1 << 5) | (1 << 3)
 
 ### Find the most significant bit 
 
-The most significant bit of some integer `x` can be thought as finding $\log(x)$.
+The most significant bit of some integer `x` can be thought as finding \\(\log(x)\\).
 
-That is, how many times do i need to divide $x$ by 2 (via `x >>= 1`) to get to 0.
+That is, how many times do i need to divide \\(x\\) by 2 (via `x >>= 1`) to get to 0.
 
 ```python
 x = abs(<...>)

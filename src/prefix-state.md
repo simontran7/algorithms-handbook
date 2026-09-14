@@ -4,7 +4,7 @@
 
 ### Use Case
 
-Query the sum of any range $[i, j]$ in $O(1)$
+Query the sum of any range \\([i, j]\\) in \\(O(1)\\)
 
 ### Template
 

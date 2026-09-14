@@ -18,6 +18,81 @@
 | `contains(element)` | Returns whether `element` exists in the set |
 | `remove(element)` | Removes `element` from the set |
 
+## C++ STL API
+
+### Map
+
+```cpp
+#include <unordered_map>
+
+// Creates an empty map
+std::unordered_map<K, V> m;
+
+// Creates a map with initial values
+std::unordered_map<K, V> m = {
+    {<key1>, <value1>},
+    {<key2>, <value2>}
+};
+
+// Returns the value associated with `key`
+// NOTE: prefer this avoid m[<key>], which creates default values on insert 
+// (and thus, may create unintentional phantom keys in certain problems)
+m.at(<key>);
+
+// Inserts or updates the value associated with `key`
+m[<key>] = <value>;
+
+// Removes `key` from the map
+m.erase(<key>);
+
+// Removes all entries from the map
+m.clear();
+
+// Returns the number of entries in the map
+m.size();
+
+// Returns whether the map is empty
+m.empty();
+
+// Returns the value associated with `key`, or a default value if `key` isn't found
+m.contains(<key>) ? m.at(<key>) : <default_value>;
+
+// Returns whether `key` exists in the map
+m.contains(<key>);
+
+// Iterate all entries
+for (const auto& [key, value] : m) {
+    // ...
+}
+```
+
+### Set
+
+```cpp
+#include <unordered_set>
+
+// Creates an empty set
+std::unordered_set<T> s;
+
+// Inserts an element into the set
+s.insert(<element>);
+
+// Returns whether an element exists in the set
+s.contains(<element>);
+
+// Removes an element from the set
+s.erase(<element>);
+
+// Removes all elements from the set
+s.clear();
+
+// Returns the number of elements in the set
+s.size();
+
+// Returns whether the set is empty
+s.empty();
+```
+
 ## Use Case
 
 ### Map
@@ -29,80 +104,6 @@
 
 - Track elements seen so far for uniqueness
 - Store a chunk (or all) of the input for fast lookups
-
-## Python Standard Library 
-
-### Map
-
-```python
-# Create an empty map
-m = dict()
-
-# Create a map with initial values
-m = {
-    <key 1>: <value 1>,
-    <key 2>: <value 2>
-}
-
-# Get number of entries
-len(m)
-
-# Check if the map is empty
-not m
-
-# Add new entry or update current entry
-m[<key>] = <value>
-
-# Remove an entry
-del m[<key>]
-
-# Remove all entries
-m.clear()
-
-# Get value
-# Note: raises KeyError if the key isn't found, unlike `m.get(<key>)` which returns None
-m[<key>]
-
-# Get the value with a default value if key isn't found
-# Note: I like this over `defaultdict(<default value type>)` for counting since it can avoid accidentally creating phantom keys
-m.get(<key>, <default value>)
-
-# Note: pretty much a must for adjacency list creation
-from collections import defaultdict
-m = defaultdict(<default value's type>)
-
-# Check if key exists
-<key> in m
-
-# Iterate all entries
-for key, value in m.items():
-    # ...
-```
-
-### Set
-
-```python
-# Create an empty set
-s = set()
-
-# Check if a set contains an element
-<element> in s
-
-# Get the number of elements
-len(s)
-
-# Check if the set is empty
-not s
-
-# Add an element
-s.add(<element>)
-
-# Remove an element
-s.remove(<element>)
-
-# Remove all elements
-s.clear()
-```
 
 ## Hash Table
 
@@ -118,9 +119,9 @@ s.clear()
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case $O(n)$, average $O(1)$ |
-| Add | worst-case $O(n)$, amortized $O(1)$ |
-| Remove | worst-case $O(n)$, average $O(1)$ |
+| Lookup | worst-case \\(O(n)\\), average \\(O(1)\\) |
+| Add | worst-case \\(O(n)\\), amortized \\(O(1)\\) |
+| Remove | worst-case \\(O(n)\\), average \\(O(1)\\) |
 
 ## Bit Array
 
@@ -322,7 +323,7 @@ impl<W: Word, const WORDS: usize> StaticBitSet<W, WORDS> {
         None
     }
 
-    /// Returns the smallest bit *not* in the set, or `None` if full.
+    /// Returns the smallest bit _not_ in the set, or `None` if full.
     pub fn first_unset(&self) -> Option<usize> {
         for (word_index, word) in self.data.iter().enumerate() {
             let tz = (!*word).trailing_zeros();
@@ -333,7 +334,7 @@ impl<W: Word, const WORDS: usize> StaticBitSet<W, WORDS> {
         None
     }
 
-    /// Returns the largest bit *not* in the set, or `None` if full.
+    /// Returns the largest bit _not_ in the set, or `None` if full.
     pub fn last_unset(&self) -> Option<usize> {
         for (word_index, word) in self.data.iter().enumerate().rev() {
             let lz = (!*word).leading_zeros();
@@ -345,7 +346,7 @@ impl<W: Word, const WORDS: usize> StaticBitSet<W, WORDS> {
         None
     }
 
-    /// Returns the smallest bit *not* in the set, strictly greater than `bit`.
+    /// Returns the smallest bit _not_ in the set, strictly greater than `bit`.
     pub fn first_unset_after(&self, bit: usize) -> Option<usize> {
         let boundary_index = bit / W::BITS;
         let bit_index = (bit % W::BITS) as u32;
@@ -371,7 +372,7 @@ impl<W: Word, const WORDS: usize> StaticBitSet<W, WORDS> {
         None
     }
 
-    /// Returns the largest bit *not* in the set, strictly less than `bit`.
+    /// Returns the largest bit _not_ in the set, strictly less than `bit`.
     pub fn last_unset_before(&self, bit: usize) -> Option<usize> {
         let boundary_index = (bit / W::BITS).min(WORDS);
         let bit_index = (bit % W::BITS) as u32;

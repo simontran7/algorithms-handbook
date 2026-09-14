@@ -35,15 +35,15 @@
 
 ### Tree Properties
 
-- In a binary tree, a level $d$ has at most $2^d$ nodes.
-- A binary tree with $n$ levels has $2^n - 1$ nodes.
-- A binary tree with height $h$ has $2^{h + 1} - 1$ nodes.
-- A binary tree with $n$ nodes has $n$ - 1 edges.
-- A complete binary tree has at most $\lceil{\frac{n}{2}}\rceil$ leaves.
-- The height $h$ of a complete binary tree is $\lfloor{\log_{2} n}\rfloor$.
-- The height $h$ of a balanced binary search tree is $\log n$.
-- A full binary tree has $\text{internal nodes} + 1$ leaves.
-- A full binary tree has $2 \times \text{internal nodes} + 1$ nodes, or equivalently, $2 \cdot \text{internal leaves} + 1$
+- In a binary tree, a level \\(d\\) has at most \\(2^d\\) nodes.
+- A binary tree with \\(n\\) levels has \\(2^n - 1\\) nodes.
+- A binary tree with height \\(h\\) has \\(2^{h + 1} - 1\\) nodes.
+- A binary tree with \\(n\\) nodes has \\(n\\) - 1 edges.
+- A complete binary tree has at most \\(\lceil{\frac{n}{2}}\rceil\\) leaves.
+- The height \\(h\\) of a complete binary tree is \\(\lfloor{\log_{2} n}\rfloor\\).
+- The height \\(h\\) of a balanced binary search tree is \\(\log n\\).
+- A full binary tree has \\(\text{internal nodes} + 1\\) leaves.
+- A full binary tree has \\(2 \times \text{internal nodes} + 1\\) nodes, or equivalently, \\(2 \cdot \text{internal leaves} + 1\\)
 
 ### Lookup
 
@@ -55,9 +55,9 @@
 
 | Operation | Time Complexity   |
 | --------- | ----------------- |
-| Lookup    | worst-case $O(\log n)$ |
-| Insertion | worst-case $O(\log n)$ |
-| Deletion  | worst-case $O(\log n)$ |
+| Lookup    | worst-case \\(O(\log n)\\) |
+| Insertion | worst-case \\(O(\log n)\\) |
+| Deletion  | worst-case \\(O(\log n)\\) |
 
 ## Prefix Tree (Trie)
 
@@ -127,7 +127,7 @@ class TrieMap:
 
 | Operation | Time Complexity |
 | --- | --- |
-| Lookup | worst-case $O(m)$ |
-| Insertion | worst-case $O(m)$ |
-| Deletion | worst-case $O(m)$ |
+| Lookup | worst-case \\(O(m)\\) |
+| Insertion | worst-case \\(O(m)\\) |
+| Deletion | worst-case \\(O(m)\\) |
 

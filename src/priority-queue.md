@@ -8,10 +8,72 @@
 | `add(e)`         | Inserts element `e` in the correct priority in the priority queue  |
 | `remove_top()`   | Removes element at in the priority queue                           |
 
+## C++ STL API
+
+### Min Priority Queue
+
+```cpp
+#include <queue>
+#include <vector>
+#include <functional>
+
+// Creates an empty min priority queue
+std::priority_queue<T, std::vector<T>, std::greater<T>> min_pq;
+
+// Heapifys an existing vector in O(n)
+std::priority_queue<T, std::vector<T>, std::greater<T>> min_pq(<existing>.begin(), <existing>.end());
+
+// Returns the element at the top (smallest) of the priority queue
+min_pq.top();
+
+// Returns the number of elements in the priority queue
+min_pq.size();
+
+// Returns whether the priority queue is empty
+min_pq.empty();
+
+// Inserts an element in the correct priority in the priority queue
+min_pq.push(<element>);
+
+// Removes the element at the top (smallest) of the priority queue
+min_pq.pop();
+```
+
+### Max Priority Queue
+
+```cpp
+#include <queue>
+#include <vector>
+
+// Creates an empty max priority queue
+std::priority_queue<T> max_pq;
+
+// Heapifys an existing vector in O(n)
+std::priority_queue<T> max_pq(<existing>.begin(), <existing>.end());
+
+// Returns the element at the top (largest) of the priority queue
+max_pq.top();
+
+// Returns the number of elements in the priority queue
+max_pq.size();
+
+// Returns whether the priority queue is empty
+max_pq.empty();
+
+// Inserts an element in the correct priority in the priority queue
+max_pq.push(<element>);
+
+// Removes the element at the top (largest) of the priority queue
+max_pq.pop();
+```
+
+> [!NOTE]
+> To simulate an **indexed priority queue**, push a `std::pair<Key, Element>`. The key is compared first, then the element as a tie-breaker.
+
 ## Use Case
 
 - Repeatedly find the maximum or minimum element
-- Get the "top" $k$ elements
+- Get the "top" \\(k\\) elements
 
 ```python
 import heapq
@@ -60,12 +122,12 @@ class MedianFinder:
 
 A **binary heap** is a complete, binary tree satisfying the **heap property**:
 - Largest element is stored at the root (max-heap) or the smallest element is stored at the root (min-heap)
-- Excluding the root, every parent node is $\ge$ its children (max-heap) or $\le$ its children (min-heap). 
+- Excluding the root, every parent node is \\(\ge\\) its children (max-heap) or \\(\le\\) its children (min-heap). 
 
-Since the tree is always complete, it can be stored implicitly in an array such that for a node at index $i$:
-- left child: $2i + 1$ 
-- right child: $2i + 2$
-- parent: $\lfloor (i - 1) / 2 \rfloor$
+Since the tree is always complete, it can be stored implicitly in an array such that for a node at index \\(i\\):
+- left child: \\(2i + 1\\) 
+- right child: \\(2i + 2\\)
+- parent: \\(\lfloor (i - 1) / 2 \rfloor\\)
 
 ### Sift Down
 
@@ -81,13 +143,13 @@ Since the tree is always complete, it can be stored implicitly in an array such 
 
 ### Heapify
 
-1. Find the index of the last non-leaf node: $\lfloor n / 2 \rfloor - 1$ (the parent of the last element).
-2. Iterate from that index down to the root (index $0$) (i.e., bottom-up, right-to-left).
+1. Find the index of the last non-leaf node: \\(\lfloor n / 2 \rfloor - 1\\) (the parent of the last element).
+2. Iterate from that index down to the root (index \\(0\\)) (i.e., bottom-up, right-to-left).
 3. At each index, perform the sift down operation.
 
 ### Lookup min/max
 
-Index into the $0^{th}$ element of the backing array.
+Index into the \\(0^{th}\\) element of the backing array.
 
 ### Insertion
 
@@ -104,68 +166,7 @@ Index into the $0^{th}$ element of the backing array.
 
 | Operation | Time Complexity |
 | --- | --- |
-| Heapify | worst-case $O(n)$ |
-| Lookup (top) | worst-case $O(1)$ |
-| Insertion | worst-case $O(\log n)$ |
-| Deletion | worst-case $O(\log n)$ |
-
-## Standard Library API
-
-### Min Priority Queue
-
-```python
-import heapq
-
-# Create an empty min priority queue
-min_pq = []
-
-# Heapify an existing list in O(n)
-min_pq = <existing list>.copy() 
-heapq.heapify(min_pq)
-
-# Peek at the top (smallest) element
-min_pq[0]
-
-# Get the number of elements
-len(min_pq)
-
-# Returns whether the min priority queue is empty
-len(min_pq) == 0  
-
-# Add an element
-heapq.heappush(min_pq, <element>)
-
-# Remove and return the top (smallest) element
-heapq.heappop(min_pq)
-```
-
-### Max Priority Queue
-
-```python
-import heapq
-
-# Create an empty max priority queue
-max_pq = []
-
-# Heapify an existing list in O(n)
-max_pq = <existing list>.copy()
-heapq.heapify_max(max_pq2)
-
-# Peek at the top (largest) element
-max_pq[0]
-
-# Get the number of elements
-len(max_pq)
-
-# Returns whether the max priority queue is empty
-len(max_pq) == 0  
-
-# Add an element
-heapq.heappush_max(max_pq, <element>)
-
-# Remove and return the top (largest) element
-heapq.heappop_max(max_pq)
-```
-
-> [!NOTE]
-> To simulate an **indexed priority queue**, insert a tuple `(key, element)`. The key is first compared, then element as a tie-breaker.
+| Heapify | worst-case \\(O(n)\\) |
+| Lookup (top) | worst-case \\(O(1)\\) |
+| Insertion | worst-case \\(O(\log n)\\) |
+| Deletion | worst-case \\(O(\log n)\\) |

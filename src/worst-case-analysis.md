@@ -4,7 +4,7 @@
 
 ### Calculating the Worst Case
 
-1. Identify the input parameters that influence running time and assign variables (commonly $n$, $m$, $k$, etc.).
+1. Identify the input parameters that influence running time and assign variables (commonly \\(n\\), \\(m\\), \\(k\\), etc.).
 2. Break the algorithm into significant parts
 3. Assign a cost to each part based on the following methods
 4. Combine the costs of sequential parts using the law of addition, and nested parts using the law of multiplication
@@ -12,7 +12,7 @@
 
 ### Primitive Operations
 
-The following primitive operations are worst-case $O(1)$:
+The following primitive operations are worst-case \\(O(1)\\):
 - Assigning a value to a variable
 - Accessing an element by index or field
 - Performing an arithmetic, comparison, or bitwise operation
@@ -26,73 +26,73 @@ The following primitive operations are worst-case $O(1)$:
 4. Substitute the RHS of the matching formula to get a closed form, then apply Bachmann-Landau rules to simplify to asymptotic complexity
 
 > [!NOTE]
-> For step 2, for fixed-limit formulas, if the upper limit does not match the standard formula (e.g. $\sum_{i=0}^{n-1}$ instead of $\sum_{i=1}^{n}$), substitute the upper limit into the formula in place of $n$. However, if the lower limit doesn't match the fixed-limit formula, there are two approaches. If the lower limit is larger than that of the fixed formula, then your sum is missing terms compared to the formula's sum, so you compute the full sum and subtract the prefix you don't want (e.g., $\sum_{i=3}^{n} i = \sum_{i=1}^{n} i - \sum_{i=1}^{2} i = \frac{n(n+1)}{2} - 3$). If the lower limit is smaller than that of the fixed formula, then your sum has extra terms compared to the formula's sum, so you compute the formula's sum and add the extras manually (e.g., $\sum_{i=0}^{n} i = 0 + \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$).
+> For step 2, for fixed-limit formulas, if the upper limit does not match the standard formula (e.g. \\(\sum_{i=0}^{n-1}\\) instead of \\(\sum_{i=1}^{n}\\)), substitute the upper limit into the formula in place of \\(n\\). However, if the lower limit doesn't match the fixed-limit formula, there are two approaches. If the lower limit is larger than that of the fixed formula, then your sum is missing terms compared to the formula's sum, so you compute the full sum and subtract the prefix you don't want (e.g., \\(\sum_{i=3}^{n} i = \sum_{i=1}^{n} i - \sum_{i=1}^{2} i = \frac{n(n+1)}{2} - 3\\)). If the lower limit is smaller than that of the fixed formula, then your sum has extra terms compared to the formula's sum, so you compute the formula's sum and add the extras manually (e.g., \\(\sum_{i=0}^{n} i = 0 + \sum_{i=1}^{n} i = \frac{n(n+1)}{2}\\)).
 
 #### Property (big O and summation)
 
-$$
+\\[
 \sum_{i \in I} O(f(i)) = O\left(\sum_{i \in I} f(i)\right)
-$$
+\\]
 
 #### Property (summation of a constant)
 
-$$
+\\[
 \sum_{i = m}^{n} ca_i = c \sum_{i = m}^{n} a_i
-$$
+\\]
 
 #### Property (addition and subtraction of summations)
 
-$$
+\\[
 \sum_{i = m}^{n} (a_i \pm b_i) = \sum_{i = m}^{n} a_i \pm \sum_{i = m}^{n} b_i
-$$
+\\]
 
-#### Formula (summation of a $1$)
+#### Formula (summation of a \\(1\\))
 
-$$
+\\[
 \sum_{i = m}^{n} 1 = n - m + 1
-$$
+\\]
 
 #### Formula (arithmetic series)
 
-$$
+\\[
 \sum_{i = 1}^{n} i = \frac{n(n + 1)}{2}
-$$
+\\]
 
 #### Formula (sum of squares)
 
-$$
+\\[
 \sum_{i = 1}^{n} i^2 = \frac{n(n + 1)(2n + 1)}{6}
-$$
+\\]
 
 #### Formula (cubic series)
 
-$$
+\\[
 \sum_{i = 1}^{n} i^3 = \left(\frac{n(n + 1)}{2}\right)^2
-$$
+\\]
 
-#### Formula ($i^k$ series)
+#### Formula (\\(i^k\\) series)
 
-$$
+\\[
 \sum_{i = 1}^{n} i^k \approx \frac{1}{k + 1}n^{k + 1}
-$$
+\\]
 
 #### Formula (geometric series)
 
-$$
+\\[
 \sum_{k = 0}^{n}r^k = \frac{r^{n + 1} - 1}{r - 1}, \text{ where } r > 0 \text{ and } r \neq 1
-$$
+\\]
 
 #### Formula (harmonic series)
 
-$$
+\\[
 \sum_{i = 1}^{n} \frac{1}{i} \approx \ln n + \gamma, \text{ where } \gamma \approx 0.5772 \dots
-$$
+\\]
 
-#### Formula ($\log_{2}$ series)
+#### Formula (\\(\log_{2}\\) series)
 
-$$
+\\[
 \sum_{i = 1}^{n} \log_2 i = O\left(\sum_{i = 1}^{n} \log_2 n\right) = O(n\log_2 n)
-$$
+\\]
 
 ### Recursive Algorithms (Recursion Tree Method)
 
@@ -100,32 +100,32 @@ To determine the worst-case time complexity of a recursive algorithm, we are con
 
 We can determine the total number of functions calls by drawing out the **recursion tree**. The recursion tree is an tree that is used to denote the execution flow of the recursive algorithm in question:
 - Each node represents a recursive call
-- the branching factor $b$ is determined by the number of recursive calls in the recursive case (of the recurrence relation)
+- the branching factor \\(b\\) is determined by the number of recursive calls in the recursive case (of the recurrence relation)
 
 1. Draw out the recursion tree
 
-2. Determine the branching factor $b$.
+2. Determine the branching factor \\(b\\).
 
-3. Figure out the work done per node at level $k$ $W(k)$ which is a function of the subproblem size at that level $k$
-    - If dividing by $b$ each time: $W(k) = \frac{n}{b^k}$
-    - If decrementing by 1 each time: $W(k) = n - k$
-    - If work per node doesn't depend on the subproblem size: $O(1)$
+3. Figure out the work done per node at level \\(k\\) \\(W(k)\\) which is a function of the subproblem size at that level \\(k\\)
+    - If dividing by \\(b\\) each time: \\(W(k) = \frac{n}{b^k}\\)
+    - If decrementing by 1 each time: \\(W(k) = n - k\\)
+    - If work per node doesn't depend on the subproblem size: \\(O(1)\\)
 
-4. Figure out the number of levels $d$
+4. Figure out the number of levels \\(d\\)
 
 5. Plug into the formula
 
-$$
+\\[
 \sum_{k=0}^{d} W(k) \cdot b^k
-$$
+\\]
 
 ## Worst-case Space Complexity
 
-- Integers: $O(1)$
-- Array based collection or pointer based collection: $O(n)$, where $n$ is the number of elements
-- Collection of collection: $O(\text{outer collection size} \times \text{inner collection size})$
-- Adjacency List: $O(V + E)$, where $V$ is the number of vertices, and $E$ is the number of edges
-- Call Stack: $O(d \cdot F)$, where $d$ is maximum recursion depth, and $F$ is the memory consumed per stack frame
+- Integers: \\(O(1)\\)
+- Array based collection or pointer based collection: \\(O(n)\\), where \\(n\\) is the number of elements
+- Collection of collection: \\(O(\text{outer collection size} \times \text{inner collection size})\\)
+- Adjacency List: \\(O(V + E)\\), where \\(V\\) is the number of vertices, and \\(E\\) is the number of edges
+- Call Stack: \\(O(d \cdot F)\\), where \\(d\\) is maximum recursion depth, and \\(F\\) is the memory consumed per stack frame
 
 ![](Pasted%20image%2020260907000639.png)
 

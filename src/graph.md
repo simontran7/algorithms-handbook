@@ -2,8 +2,8 @@
 
 ## Properties
 
-- A simple, undirected graph has $\binom{V}{2} = \frac{V(V-1)}{2} \in O(V^2)$ edges
-- A tree has $V-1$ edges
+- A simple, undirected graph has \\(\binom{V}{2} = \frac{V(V-1)}{2} \in O(V^2)\\) edges
+- A tree has \\(V-1\\) edges
 
 ## Abstract Data Type
 
