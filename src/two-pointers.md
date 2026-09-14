@@ -17,9 +17,9 @@ def opposite_ends_two_pointers(array):
     while left < right:
         # process `array[left]` and/or `array[right]`
 
-        if <condition to move only left>:
+        if <condition to move only `left`>:
             left += 1
-        elif <condition to move only right>:
+        elif <condition to move only `right`>:
             right -= 1
         else:
             # both pointers satisfy/violate the condition together
@@ -63,9 +63,23 @@ def two_pointer_merge(list1, list2):
     j = 0
 
     while i < len(list1) and j < len(list2):
-        # compare values of `list1[i]` and `list2[i]`
+        # compare `list1[i]` and `list2[j]`
 
-        # increment either `i` and/or `j`
+        if <condition to advance only `i`>:
+            i += 1
+        elif <condition to advance only `j`>:
+            j += 1
+        else:
+            # both elements satisfy the condition together (e.g. equal, or matched pair)
+            i += 1
+            j += 1
 
-    # process leftover elements `list1[i:]` and `list2[j:]`
+    # drain whichever list wasn't exhausted )only one of these runs)
+    while i < len(list1):
+        # process `list1[i]`
+        i += 1
+
+    while j < len(list2):
+        # process `list2[j]`
+        j += 1
 ```
