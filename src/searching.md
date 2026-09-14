@@ -204,6 +204,31 @@ def binary_search_maximum(array):
     return high
 ```
 
+#### C++ STL API
+
+```cpp
+#include <algorithm>
+
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> values = {1, 2, 2, 2, 4, 7};
+
+    // first element >= 2
+    auto lb = std::lower_bound(values.begin(), values.end(), 2);  
+    std::cout << "lower_bound index: " << (lb - values.begin()) << "\n";  // 1
+
+    // first element > 2
+    auto ub = std::upper_bound(values.begin(), values.end(), 2);
+    std::cout << "upper_bound index: " << (ub - values.begin()) << "\n";  // 4
+
+    // number of elements equal to 2
+    int count = ub - lb;  
+    std::cout << "count: " << count << "\n";  // 3
+}
+```
+
 #### Complexity Analysis
 
 Let \\(k\\) be the size of the solution space (`high - low`) and \\(f(n)\\) be the time complexity of `is_valid()`. Then:
