@@ -16,7 +16,7 @@ The asymptotic notation tells you how tightly/loosely you're bounding that scena
 
 ### Definition (big O)
 
-\\(\mathcal{O}(f(n))\\) is the set of functions that grow *at most* as fast as \\(c \dot f(n)\\), for some constant \\(c\\). 
+\\(O(f(n))\\) is the set of functions that grow *at most* as fast as \\(c \dot f(n)\\), for some constant \\(c\\). 
 
 If \\(g \in O(f)\\), then we say \\(g\\) is asymptotically **upper bounded** by \\(f\\).
 
