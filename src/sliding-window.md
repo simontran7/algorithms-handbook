@@ -11,19 +11,21 @@ You are looking for the longest/smallest subarray/substring that satisfies a cer
 ```python
 def variable_sliding_window_max(array):
     left = 0
-    current = 0
+    current = <bookkeeping to track the window>
     result = 0
 
     for right in range(len(array)):
-        # 1. unconditonally add the new element to the window.
+        # 1. unconditionally add the new element to the window 
         <update state for array[right]>
 
-        # 2. while the invariant is violated, restore the sliding window.
+        # conditionally update `current` bookkeeping 
+
+        # while the invariant is violated, restore the sliding window.
         while <window is broken condition>:
-            <update state for array[left]>   # undo the leaving element's contribution to the sliding window
+            <update state for array[left]>   
             left += 1
 
-        # 3. record the window length now that the invariant now holds (i.e., window is valid).
+        # record the window length now that the window is valid 
         result = max(result, right - left + 1)
 
     return result
@@ -32,14 +34,16 @@ def variable_sliding_window_max(array):
 ```python
 def variable_sliding_window_min(array):
     left = 0
-    current = <data to track the window>
+    current = <bookkeeping to track the window>
     result = float("inf")
 
     for right in range(len(array)):
-        # 1. unconditonally extend add the new element to the window.
+        # unconditonally extend add the new element to the window.
         <update `current` for `array[right]`>
 
-        # 2. while the invariant holds, shrink the sliding window.
+        # conditionally update `current` bookkeeping 
+
+        # while the invariant holds, shrink the sliding window.
         while <window is valid condition>:
             result = min(result, right - left + 1)
             <update `current` for `array[left]`>
