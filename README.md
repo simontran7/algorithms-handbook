@@ -28,6 +28,8 @@
 
 ### sorting
 
+- [1051. Height Checker](https://leetcode.com/problems/height-checker/description/)
+
 ### math
 
 - [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/description/)
