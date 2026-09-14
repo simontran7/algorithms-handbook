@@ -11,6 +11,7 @@
 - [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)
 - [1089. Duplicate Zeros](https://leetcode.com/problems/duplicate-zeros/description/)
 - [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/description/)
+- [414. Third Maximum Number](https://leetcode.com/problems/third-maximum-number/description/)
 
 ### maps and sets
 
@@ -25,7 +26,6 @@
 - [27. Remove Element](https://leetcode.com/problems/remove-element/description/)
 - [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)
 - [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/description/)
-- [414. Third Maximum Number](https://leetcode.com/problems/third-maximum-number/description/)
 
 ### sliding window
 
