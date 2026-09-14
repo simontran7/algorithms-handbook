@@ -15,7 +15,7 @@ def variable_sliding_window_max(array):
     result = 0
 
     for right in range(len(array)):
-        # 1. unconditonally extend add the new element to the window.
+        # 1. unconditonally add the new element to the window.
         <update state for array[right]>
 
         # 2. while the invariant is violated, restore the sliding window.
