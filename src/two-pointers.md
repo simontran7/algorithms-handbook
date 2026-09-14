@@ -17,9 +17,13 @@ def opposite_ends_two_pointers(array):
     while left < right:
         # process `array[left]` and/or `array[right]`
 
-        if <condition>:
+        if <condition to move only left>:
             left += 1
+        elif <condition to move only right>:
+            right -= 1
         else:
+            # both pointers satisfy/violate the condition together
+            left += 1
             right -= 1
 
     return result
