@@ -70,6 +70,31 @@ Let \\(n\\) be the length of the array. Then:
 
 You want the first index where a condition *flips* in a sorted array
 
+#### C++ STL API
+
+```cpp
+#include <algorithm>
+
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> values = {1, 2, 2, 2, 4, 7};
+
+    // first element >= 2
+    auto lb = std::lower_bound(values.begin(), values.end(), 2);  
+    std::cout << "lower_bound index: " << (lb - values.begin()) << "\n";  // 1
+
+    // first element > 2
+    auto ub = std::upper_bound(values.begin(), values.end(), 2);
+    std::cout << "upper_bound index: " << (ub - values.begin()) << "\n";  // 4
+
+    // number of elements equal to 2
+    int count = ub - lb;  
+    std::cout << "count: " << count << "\n";  // 3
+}
+```
+
 #### Template
 
 ```python
@@ -202,31 +227,6 @@ def binary_search_maximum(array):
             high = mid - 1
 
     return high
-```
-
-#### C++ STL API
-
-```cpp
-#include <algorithm>
-
-#include <vector>
-#include <iostream>
-
-int main() {
-    std::vector<int> values = {1, 2, 2, 2, 4, 7};
-
-    // first element >= 2
-    auto lb = std::lower_bound(values.begin(), values.end(), 2);  
-    std::cout << "lower_bound index: " << (lb - values.begin()) << "\n";  // 1
-
-    // first element > 2
-    auto ub = std::upper_bound(values.begin(), values.end(), 2);
-    std::cout << "upper_bound index: " << (ub - values.begin()) << "\n";  // 4
-
-    // number of elements equal to 2
-    int count = ub - lb;  
-    std::cout << "count: " << count << "\n";  // 3
-}
 ```
 
 #### Complexity Analysis
