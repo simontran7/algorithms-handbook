@@ -89,8 +89,8 @@ int main() {
     auto ub = std::upper_bound(values.begin(), values.end(), 2);
     std::cout << "upper_bound index: " << (ub - values.begin()) << "\n";  // 4
 
-    // number of elements equal to 2
-    int count = ub - lb;  
+    // number of elements == 2
+    auto count = ub - lb;  
     std::cout << "count: " << count << "\n";  // 3
 }
 ```
