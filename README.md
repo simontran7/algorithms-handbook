@@ -25,6 +25,7 @@
 - [27. Remove Element](https://leetcode.com/problems/remove-element/description/)
 - [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)
 - [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/description/)
+- [414. Third Maximum Number](https://leetcode.com/problems/third-maximum-number/description/)
 
 ### sliding window
 
