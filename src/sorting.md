@@ -8,7 +8,7 @@ Given a sequence of \\(n\\) elements \\(A = \langle a_1, a_2, \ldots, a_n \rangl
 a_1 \leq a_2 \leq \cdots \leq a_n.
 \\]
 
-## C++ STL API
+## C++ STL API (introsort)
 
 ```cpp
 #include <algorithm>
@@ -17,17 +17,18 @@ a_1 \leq a_2 \leq \cdots \leq a_n.
 std::sort(v.begin(), v.end());
 
 // sort descending (preserves stability)
-std::stable_sort(v.begin(), v.end(), std::greater<>());
+std::sort(v.begin(), v.end(), std::greater<>());
 
 // sort using a comparator
-std::stable_sort(v.begin(), v.end(), [](const auto& a, const auto& b) {
-    return /* ... */;
+std::sort(v.begin(), v.end(), [](const auto& a, const auto& b) {
+    // `a` should return before `b` when...
+    return /* expression involving `a` and `b` */;
 });
 ```
 
 Let \\(n\\) be the number of elements being sorted. Then:
-> - Time: \\(O(n \log n)\\) if enough extra memory is available, otherwise \\(O(n \log^2 n)\\)
-> - Auxiliary Space: \\(O(n)\\)
+- Time: worst-case \\(O(n \log n)\\)
+- Auxiliary Space: worst-case \\(O(\log n)\\)
 
 ## Bubble Sort
 
